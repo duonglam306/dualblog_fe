@@ -1,0 +1,129 @@
+.homeScreen-component .popular-tag {
+    position: sticky;
+    top: 117px;
+    z-index: 999;
+}
+
+.homeScreen-component-vertical .popular-tag {
+    position: sticky;
+    top: 0;
+    right: 0;
+    z-index: 999;
+    height: 100vh;
+    overflow-y: scroll;
+}
+
+.homeScreen-component-vertical .popular-tag::-webkit-scrollbar {
+    width: 8px;
+    display: none;
+}
+.homeScreen-component-vertical .popular-tag:hover::-webkit-scrollbar {
+    width: 8px;
+    display: block;
+}
+
+/* Track */
+.homeScreen-component-vertical .popular-tag::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+.homeScreen-component-vertical .popular-tag::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+/* Handle on hover */
+.homeScreen-component-vertical .popular-tag::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.homeScreen-component-vertical .icon-more {
+    width: 48px;
+    height: 48px;
+    color: rgba(117, 117, 117, 1);
+    border: 2px solid rgba(117, 117, 117, 1);
+    cursor: pointer;
+}
+
+.homeScreen-component-vertical .icon-more:hover {
+    color: #000;
+    border: 2px solid #000;
+}
+
+.homeScreen-component-vertical .list-user-following-global .image-user {
+    width: 48px;
+    height: 48px;
+}
+.homeScreen-component-vertical .list-user-following-global {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    transition: all 0.2s;
+    transform: scale(0.98);
+    will-change: transform;
+    user-select: none;
+    cursor: pointer;
+}
+
+.homeScreen-component-vertical .list-user-following-global.active {
+    cursor: grabbing;
+    cursor: -webkit-grabbing;
+    transform: scale(1);
+}
+
+.homeScreen-component-vertical .list-user-following-global::-webkit-scrollbar{
+    display: none
+}
+
+
+
+.homeScreen-component-vertical .list-user-following-feed .image-user {
+    width: 48px;
+    height: 48px;
+}
+.homeScreen-component-vertical .list-user-following-feed {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    transition: all 0.2s;
+    transform: scale(0.98);
+    will-change: transform;
+    user-select: none;
+    cursor: pointer;
+}
+
+.homeScreen-component-vertical .list-user-following-feed.active {
+    cursor: grabbing;
+    cursor: -webkit-grabbing;
+    transform: scale(1);
+}
+
+.homeScreen-component-vertical .list-user-following-feed::-webkit-scrollbar{
+    display: none
+}
+
+#popover-user-following .image {
+    height: 36px;
+    width: 36px;
+}
+
+#popover-user-following .username {
+    font-size: 0.95em;
+    color: #000;
+    font-weight: 600;
+}
+#popover-user-following .bio {
+    font-size: 0.8em;
+    color: #000;
+}
+
+#popover-user-following .btn-follow {
+    font-size: 0.6em;
+    padding: 0.25rem 0.5rem;
+}
+
+#popover-user-following .num-of-follower{
+    font-size: 0.85em;
+    color: #000;
+}

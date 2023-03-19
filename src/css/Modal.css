@@ -1,0 +1,147 @@
+
+.modal-backdrop{
+    background-color: rgba(255, 255, 255, 0.94) !important;
+    z-index: 1500 !important;
+    opacity: 1 !important;
+}
+
+/*===============================*/
+.modal#deleteModalYourArticles {
+    z-index: 2000 !important;
+}
+
+.modal#deleteModalYourArticles .modal-dialog {
+    width: 900px !important;
+    max-width: none !important;
+}
+.modal#deleteModalYourArticles .modal-dialog .modal-content {
+    min-height: 550px;
+    box-shadow: rgb(0 0 0 / 15%) 0px 2px 10px;
+}
+.modal#deleteModalYourArticles .modal-dialog .modal-content .btn {
+    font-size: 0.8em;
+}
+
+.modal#deleteModalYourArticles .modal-dialog .modal-content .title{
+    font-size: 1.5em;
+    font-weight: 700;
+}
+.modal#deleteModalYourArticles .modal-dialog .modal-content .description{
+    font-size: 1em;
+    font-weight: 400;
+    color: rgba(117, 117, 117, 1)
+}
+
+/*===============================================*/
+
+
+.modal#deleteModalDetails {
+    z-index: 2000 !important;
+}
+.modal#deleteModalDetails .modal-dialog {
+    width: 900px !important;
+    max-width: none !important;
+}
+.modal#deleteModalDetails .modal-dialog .modal-content {
+    min-height: 550px;
+    box-shadow: rgb(0 0 0 / 15%) 0px 2px 10px;
+}
+.modal#deleteModalDetails .modal-dialog .modal-content .btn {
+    font-size: 0.8em;
+}
+
+.modal#deleteModalDetails .modal-dialog .modal-content .title{
+    font-size: 1.5em;
+    font-weight: 700;
+}
+.modal#deleteModalDetails .modal-dialog .modal-content .description{
+    font-size: 1em;
+    font-weight: 400;
+    color: rgba(117, 117, 117, 1)
+}
+
+
+/*==============================================================*/
+.modal#listUserUnFollowModal {
+    z-index: 2000 !important;
+}
+
+.modal#listUserUnFollowModal .modal-dialog {
+    width: 900px !important;
+    max-width: none !important;
+}
+.modal#listUserUnFollowModal .modal-dialog .modal-content {
+    min-height: 550px;
+    box-shadow: rgb(0 0 0 / 15%) 0px 2px 10px;
+}
+.modal#listUserUnFollowModal .modal-dialog .modal-content .btn {
+    font-size: 0.8em;
+}
+
+.modal#listUserUnFollowModal .modal-dialog .modal-content .title {
+    font-size: 1.5em;
+    font-weight: 700;
+}
+.modal#listUserUnFollowModal .modal-dialog .modal-content .description {
+    font-size: 1em;
+    font-weight: 400;
+    color: rgba(117, 117, 117, 1);
+}
+
+.modal#listUserUnFollowModal .modal-dialog .modal-content .user-follow .image {
+    height: 36px;
+    width: 36px;
+}
+
+.modal#listUserUnFollowModal .modal-dialog .modal-content .follow-list {
+    height: 420px;
+    overflow-y: auto;
+}
+
+.modal#listUserUnFollowModal
+    .modal-dialog
+    .modal-content
+    .follow-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Track */
+.modal#listUserUnFollowModal
+    .modal-dialog
+    .modal-content
+    .follow-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+.modal#listUserUnFollowModal
+    .modal-dialog
+    .modal-content
+    .follow-list::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+/* Handle on hover */
+.modal#listUserUnFollowModal
+    .modal-dialog
+    .modal-content
+    .follow-list::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.modal#listUserUnFollowModal .modal-dialog .modal-content .user-follow .username {
+    font-size: 0.8em;
+    font-weight: 700;
+    color: #000;
+}
+.modal#listUserUnFollowModal .modal-dialog .modal-content .user-follow .bio {
+    font-size: 0.7em;
+    font-weight: 600;
+    color: rgba(117, 117, 117, 1);
+}
+
+.modal#listUserUnFollowModal .modal-dialog .modal-body .title-modal {
+    font-size: 1em;
+    font-weight: 700;
+}

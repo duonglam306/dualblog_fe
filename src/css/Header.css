@@ -1,0 +1,98 @@
+.header-guess-component .title-web{
+    font-size: 1.2em !important;
+}
+.header-guess-component .btn{
+    font-size: 0.8em !important;
+}
+
+.header-guess-component .navbar{
+    transition: background-color 300ms linear;
+}
+
+.header-guess-component .navbar .btn{
+    transition: background-color 300ms linear, color 300ms linear;
+}
+
+.header-vertical-component .font-icon{
+    font-size: 1.4em !important;
+    color: rgb(198, 198, 198);
+    cursor: pointer;
+}
+
+.header-vertical-component .font-icon:hover{
+    color: rgb(0, 0, 0);
+}
+
+.header-vertical-component .font-icon.active{
+    color: rgb(0, 0, 0);
+}
+
+.header-vertical-component .avt-user {
+    height: 32px;
+    width: 32px;
+    cursor: pointer;
+}
+
+#popover-header{
+    min-width: 280px;
+}
+
+#popover-header .avt-user {
+    height: 32px;
+    width: 32px;
+    cursor: pointer;
+}
+
+#popover-header .popover-item {
+    font-size: 0.85em;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    color: #000;
+}
+
+.header-vertical-component {
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    min-height: 100vh;
+}
+
+.header-horizontal-component .font-icon{
+    font-size: 1.4em !important;
+    color: rgb(198, 198, 198);
+    cursor: pointer;
+}
+
+.header-horizontal-component .font-icon:hover{
+    color: rgb(0, 0, 0);
+}
+
+.header-horizontal-component .font-icon.active{
+    color: rgb(0, 0, 0);
+}
+
+.header-horizontal-component .avt-user {
+    height: 32px;
+    width: 32px;
+    cursor: pointer;
+}
+
+.header-horizontal-component {
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 999;
+}
+
+.header-horizontal-component .title-web{
+    font-size: 1.2em !important;
+}
+
+.header-horizontal-component #btn-publish{
+    font-size: 0.8em;
+}
+.header-horizontal-component #btn-save{
+    font-size: 0.8em;
+}

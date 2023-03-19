@@ -1,0 +1,86 @@
+.articles-component .article .author img{
+    width: 36px;
+    height: 36px;
+}
+
+.articles-component .article .author .name{
+    font-size: 0.8em;
+}
+
+.articles-component .article .btn-like{
+    cursor: pointer;
+}
+.articles-component .article .thumbnail{
+    height: 160px;
+    width: 280px;
+}
+
+.articles-component .article .title{
+    font-size: 0.9em;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    display: -webkit-box;
+}
+
+.articles-component .article .description{
+    font-size: 0.75em;
+    color: #000;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    display: -webkit-box;
+}
+.articles-component .article .tag{
+    font-size: 0.7em;
+    color: #000;
+    background-color: rgba(242, 242, 242, 1);
+}
+
+
+.articles-component .page-link{
+    cursor: pointer;
+    color: #000;
+}
+
+.articles-component .page-link.active{
+    color: #fff;
+    background-color: #000;
+    cursor: no-drop;
+}
+
+.articles-component .nav-item{
+    font-size: 0.9em !important;
+    color: rgba(175, 175, 175, 0.787);
+    cursor: pointer;
+}
+
+.articles-component .nav-item.active{
+    color: rgba(0, 0, 0, 1);
+    border-bottom: 2px solid black;
+}
+
+.articles-component .btn-new-article{
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
+
+.articles-component.articles-relative-tag-component .article .title{
+    font-size: 0.8em;
+}
+.articles-component.articles-relative-tag-component .article .author img{
+    width: 28px;
+    height: 28px;
+}
+.articles-component.articles-relative-tag-component .article .author .name{
+    font-size: 0.75em;
+}
+
+.articles-component.articles-trending-component .title-list{
+    font-size: 0.9em;
+    font-weight: 700;
+}
+.articles-component.articles-trending-component .title{
+    font-size: 0.75em !important;
+}

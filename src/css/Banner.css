@@ -1,0 +1,60 @@
+.banner-component {
+    height: 20em;
+}
+
+.banner-component .col-left {
+    height: 80%;
+    margin: auto 0;
+}
+
+.banner-component .col-left .title {
+    font-size: 5em;
+    font-weight: 400;
+}
+.banner-component .col-left .description {
+    font-size: 1.2em;
+    font-weight: 200;
+}
+.banner-component .col-left .btn {
+    font-size: 1em;
+}
+
+.banner-component .col-right {
+    height: 90%;
+    margin: auto 0;
+}
+.banner-component .col-right .title-text-down {
+    height: 100%;
+    position: relative;
+    animation: glideDown 2s ease-in-out alternate infinite;
+}
+
+@keyframes glideDown {
+    from {
+        left: 0;
+        top: 0;
+    }
+
+    to {
+        left: 0;
+        top: 30%;
+    }
+}
+
+.banner-component .col-right .title-text-up {
+    height: 100%;
+    position: relative;
+    animation: glideUp 2s ease-in-out alternate infinite;
+}
+
+@keyframes glideUp {
+    from {
+        left: 0;
+        top: 30%;
+    }
+
+    to {
+        left: 0;
+        top: 0;
+    }
+}

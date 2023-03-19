@@ -1,0 +1,41 @@
+
+
+.popular-tag-component .list-tag{
+    -webkit-box-flex: 0;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+.popular-tag-component .item-tag{
+    border: 1px solid rgba(230,230,230,1);
+    color: rgba(117,117,117,1);
+    font-size: 0.8em;
+}
+
+.popular-tag-component .item-tag.item-first{
+    border: 1px solid #FFBA57;
+    color: #FFBA57;
+    font-weight: 400;
+}
+
+.popular-tag-component .item-tag.item-second{
+    border: 1px solid #9E9E9E;
+    color: #9E9E9E;
+    font-weight: 400;
+}
+
+.popular-tag-component .item-tag.item-third{
+    border: 1px solid #CE7430;
+    color: #CE7430;
+    font-weight: 400;
+}
+
+.popular-tag-component .medal{
+    width: 24px;
+    height: 24px;
+}

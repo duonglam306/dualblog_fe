@@ -1,0 +1,46 @@
+.yourArticlesScreen-component .icon-tag{
+    cursor: default;
+}
+
+.yourArticlesScreen-component .popular-tag{
+    position: sticky;
+    top: 0;
+    right: 0;
+    z-index: 999;
+    height: 100vh;
+    overflow-y: scroll;
+}
+
+.yourArticlesScreen-component .popular-tag::-webkit-scrollbar {
+    width: 8px;
+    display: none;
+}
+.yourArticlesScreen-component .popular-tag:hover::-webkit-scrollbar {
+    width: 8px;
+    display: block;
+}
+
+/* Track */
+.yourArticlesScreen-component .popular-tag::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+.yourArticlesScreen-component .popular-tag::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+/* Handle on hover */
+.yourArticlesScreen-component .popular-tag::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.yourArticlesScreen-component .fa-ellipsis-h{
+    cursor: pointer;
+}
+
+.yourArticlesScreen-component .btn-new-article{
+    font-size: 0.8em;
+    font-weight: bold;
+}

@@ -1,0 +1,18 @@
+
+.settings-component .info .title {
+    font-size: 1em;
+}
+.settings-component .info .body {
+    font-size: 0.8em;
+}
+.settings-component .info .description {
+    font-size: 0.8em;
+    font-weight: 400;
+}
+.settings-component .info-image .image {
+    width: 80px;
+    height: 80px;
+}
+.settings-component .email-description{
+    font-size: 0.8em;
+}

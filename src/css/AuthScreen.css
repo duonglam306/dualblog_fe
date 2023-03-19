@@ -1,0 +1,45 @@
+.login-component{
+    height: 100vh;
+}
+
+.login-component .other-feature{
+    font-size: 0.9em;
+}
+
+.login-component .auth-background{
+    height: 100vh;
+    background-image: url(../image/authBg.jpg);
+    background-size: cover;
+}
+
+.login-component .check-mail-background{
+    height: 40vh;
+    background-image: url(../image/checkEmail.svg);
+    width: 40vh;
+    background-size: cover;
+}
+
+.login-component .done-activate-background{
+    height: 40vh;
+    background-image: url(../image/doneActivate.svg);
+    width: 40vh;
+    background-size: cover;
+}
+
+.login-component .title{
+    font-size: 1.8em !important;
+}
+
+.login-component input {
+    border: 1px solid #000 !important;
+    font-size: 0.9em;
+}
+
+.login-component label{
+    font-size: 0.9em !important;
+    font-weight: 600;
+}
+
+.login-component .description{
+    font-size: 0.9em;
+}

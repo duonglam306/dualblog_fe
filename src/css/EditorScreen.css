@@ -1,0 +1,8 @@
+.editor-component label{
+    font-size: 0.85em;
+}
+
+.editor-component input[type="text"]
+{
+    font-size: 0.8em;
+}
