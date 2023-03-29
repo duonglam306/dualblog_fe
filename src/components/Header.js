@@ -114,7 +114,7 @@ const HeaderVertical = ({
                                         className="popover-item px-3 py-2"
                                         onClick={() => logoutHandler()}
                                     >
-                                        Sign Out
+                                        Sign out
                                     </div>
 
                                     <a
@@ -425,7 +425,7 @@ const HeaderHorizontal = ({
                                                 className="popover-item px-3 py-2"
                                                 onClick={() => logoutHandler()}
                                             >
-                                                Sign Out
+                                                Sign out
                                             </div>
                                         </Popover.Body>
                                     </Popover>

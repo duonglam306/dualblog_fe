@@ -109,7 +109,7 @@ const EditorScreen = () => {
         }
     }
     useEffect(() => {
-        if (userLogin.error || articleDetails.error || userInfo.username !== article.auth_name) {
+        if (userLogin.error || articleDetails.error || (article.auth_name && userInfo.username !== article.auth_name)) {
             setError(true);
         }
         else {
