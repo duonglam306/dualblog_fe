@@ -8,32 +8,7 @@
     right: 0;
     z-index: 999;
     height: 100vh;
-    overflow-y: scroll;
-}
-
-.articlesByTagScreen-component .popular-tag::-webkit-scrollbar {
-    width: 8px;
-    display: none;
-}
-.articlesByTagScreen-component .popular-tag:hover::-webkit-scrollbar {
-    width: 8px;
-    display: block;
-}
-
-/* Track */
-.articlesByTagScreen-component .popular-tag::-webkit-scrollbar-track {
-    background: #f1f1f1;
-}
-
-/* Handle */
-.articlesByTagScreen-component .popular-tag::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 4px;
-}
-
-/* Handle on hover */
-.articlesByTagScreen-component .popular-tag::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    overflow-y: auto;
 }
 
 .yourArticlesScreen-component .fa-ellipsis-h{

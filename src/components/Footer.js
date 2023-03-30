@@ -7,7 +7,7 @@ const Footer = () => {
         <>
             <span className="font-text footer-component d-flex justify-content-center align-items-center pt-2">
                 <i className="fa fa-copyright m-1" aria-hidden="true"></i> Lam
-                Thanh Duong - Designveloper.
+                Thanh Duong - HCMUT, VNU-HCM.
             </span>
             <span className="font-text footer-component d-flex justify-content-center align-items-center">
                 Powered by Medium.
