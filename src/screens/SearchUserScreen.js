@@ -208,7 +208,8 @@ function SearchUserScreen() {
                                 </div>
                               ) : (
                                 <>
-                                  {spinner === index ? (
+                                  {spinner.index === index &&
+                                  spinner.flag === "search-list" ? (
                                     <Loader isSmall={true} />
                                   ) : (
                                     <>

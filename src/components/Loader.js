@@ -1,7 +1,11 @@
 import React from "react";
-const Loader = (isSmall = false) => {
+const Loader = (props) => {
+  const { isSmall = false } = props;
   return (
-    <div className={`text-dark d-flex justify-content-center ${isSmall ? "" : "my-5"}`}>
+    <div
+      className={`text-dark d-flex justify-content-center ${
+        isSmall ? "" : "my-5"
+      }`}>
       <div
         className={`spinner-border ${isSmall ? "spinner-border-sm" : ""}`}
         role="status">

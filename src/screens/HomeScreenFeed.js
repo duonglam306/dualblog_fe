@@ -204,7 +204,8 @@ const HomeScreen = () => {
                                         {`${user.followList.length} Followers`}
                                       </div>
                                     )}
-                                    {spinner === index ? (
+                                    {spinner.index === index &&
+                                    spinner.flag === "follow-list" ? (
                                       <Loader isSmall={true} />
                                     ) : (
                                       <>

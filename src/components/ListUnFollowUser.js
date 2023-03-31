@@ -100,7 +100,8 @@ function ListUnFollowUser({ flag }) {
                             </div>
                           ) : userInfo ? (
                             <>
-                              {spinner === index ? (
+                              {spinner.index === index &&
+                              spinner.flag === "un-follow-list" ? (
                                 <Loader isSmall={true} />
                               ) : (
                                 <>
@@ -148,7 +149,8 @@ function ListUnFollowUser({ flag }) {
                             </>
                           ) : (
                             <>
-                              {spinner === index ? (
+                              {spinner.index === index &&
+                              spinner.flag === "follow-list" ? (
                                 <Loader isSmall={true} />
                               ) : (
                                 <>
@@ -268,7 +270,8 @@ function ListUnFollowUser({ flag }) {
                         </div>
                       </Link>
                       <div className="col-3">
-                        {spinner === index ? (
+                        {spinner.index === index &&
+                        spinner.flag === "un-follow-list" ? (
                           <Loader isSmall={true} />
                         ) : (
                           <>

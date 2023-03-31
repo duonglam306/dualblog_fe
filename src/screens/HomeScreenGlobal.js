@@ -205,8 +205,11 @@ const HomeScreenGlobal = () => {
                                       {`${user.followList.length} Followers`}
                                     </div>
                                   )}
-                                  {spinner === index ? (
-                                    <Loader isSmall={true} />
+                                  {spinner.index === index &&
+                                  spinner.flag === "follow-list" ? (
+                                    <div className="ms-auto">
+                                      <Loader isSmall={true} />
+                                    </div>
                                   ) : (
                                     <>
                                       {user.following ? (

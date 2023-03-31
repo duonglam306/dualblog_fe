@@ -346,7 +346,8 @@ function SearchTagScreen() {
                             </div>
                           ) : (
                             <>
-                              {spinner === index ? (
+                              {spinner.index === index &&
+                              spinner.flag === "search-relative-list" ? (
                                 <Loader isSmall={true} />
                               ) : (
                                 <>

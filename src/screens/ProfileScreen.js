@@ -168,7 +168,7 @@ const ProfileScreen = () => {
                     <>
                       {userInfo && profile.following ? (
                         <>
-                          {spinner === 0 ? (
+                          {spinner.index === 0 && spinner.flag === "profile" ? (
                             <Loader isSmall={true} />
                           ) : (
                             <>

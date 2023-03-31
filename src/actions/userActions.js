@@ -263,7 +263,7 @@ export const followUser =
   async (dispatch) => {
     try {
       dispatch({ type: USER_FOLLOW_REQUEST });
-      dispatch({ type: SPINNER_REQUEST, payload: index });
+      dispatch({ type: SPINNER_REQUEST, payload: { index, flag } });
       const config = configHeader(token);
 
       const { data } = await axios.post(
@@ -321,7 +321,7 @@ export const unFollowUser =
   async (dispatch) => {
     try {
       dispatch({ type: USER_UNFOLLOW_REQUEST });
-      dispatch({ type: SPINNER_REQUEST, payload: index });
+      dispatch({ type: SPINNER_REQUEST, payload: { index, flag } });
       const config = configHeader(token);
 
       const { data } = await axios.delete(

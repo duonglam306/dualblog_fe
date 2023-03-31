@@ -104,7 +104,7 @@ const ListFollowUser = () => {
                             </div>
                           ) : userInfo ? (
                             <>
-                              {spinner === index ? (
+                              {spinner.index === index && spinner.flag === "follow-list" ? (
                                 <Loader isSmall={true} />
                               ) : (
                                 <>
@@ -150,7 +150,7 @@ const ListFollowUser = () => {
                             </>
                           ) : (
                             <>
-                              {spinner === index ? (
+                              {spinner.index === index && spinner.flag === "follow-list" ? (
                                 <Loader isSmall={true} />
                               ) : (
                                 <>
@@ -267,7 +267,7 @@ const ListFollowUser = () => {
                             </div>
                           ) : (
                             <>
-                              {spinner === index ? (
+                              {spinner.index === index && spinner.flag === "follow-list" ? (
                                 <Loader isSmall={true} />
                               ) : (
                                 <>

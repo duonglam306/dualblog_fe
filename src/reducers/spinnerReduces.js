@@ -3,12 +3,17 @@ import {
   SPINNER_SUCCESS,
 } from "../constants/spinnerConstants";
 
-export const spinnerReducer = (state = { spinner: -1 }, action) => {
+export const spinnerReducer = (
+  state = { spinner: { index: -1, flag: "" } },
+  action
+) => {
   switch (action.type) {
     case SPINNER_REQUEST:
-      return { spinner: action.payload };
+      return {
+        spinner: action.payload,
+      };
     case SPINNER_SUCCESS:
-      return { spinner: -1 };
+      return { spinner: { index: -1, flag: "" } };
     default:
       return state;
   }
