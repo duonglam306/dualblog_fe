@@ -14,6 +14,8 @@ import {
 import Loader from "../components/Loader";
 
 import "../css/ListUnFollowUser.css";
+import Img36x36 from "../image/36x36.png";
+import Img48x48 from "../image/28x28.png";
 
 function ListUnFollowUser({ flag }) {
   let token = Cookies.get("token");
@@ -82,6 +84,10 @@ function ListUnFollowUser({ flag }) {
                           <div className="col-12 d-flex align-items-center">
                             <div className="image me-2">
                               <img
+                                onError={({ currentTarget }) => {
+                                  currentTarget.onerror = null; // prevents looping
+                                  currentTarget.src = Img36x36;
+                                }}
                                 src={item.image}
                                 alt="follower-img"
                                 className="img-fluid rounded-circle border"
@@ -250,6 +256,10 @@ function ListUnFollowUser({ flag }) {
                         <div className="col-12 d-flex align-items-center">
                           <div className="image me-2 col-4">
                             <img
+                              onError={({ currentTarget }) => {
+                                currentTarget.onerror = null; // prevents looping
+                                currentTarget.src = Img48x48;
+                              }}
                               src={item.image}
                               alt="follower-img"
                               className="img-fluid rounded-circle border"

@@ -7,6 +7,7 @@ import Loader from "../components/Loader";
 import { listArticlePopular } from "../actions/articleActions";
 
 import "../css/Trending.css";
+import Img36x36 from "../image/36x36.png";
 
 const Trending = () => {
   const dispatch = useDispatch();
@@ -59,6 +60,10 @@ const Trending = () => {
                           <div className="author d-flex">
                             <div>
                               <img
+                                onError={({ currentTarget }) => {
+                                  currentTarget.onerror = null; // prevents looping
+                                  currentTarget.src = Img36x36;
+                                }}
                                 src={article.auth_image}
                                 alt="avt-author"
                                 className="img-fluid rounded-circle me-1"

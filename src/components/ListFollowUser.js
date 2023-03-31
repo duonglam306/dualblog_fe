@@ -14,6 +14,8 @@ import {
 import Loader from "../components/Loader";
 
 import "../css/ListFollowUser.css";
+import Img36x36 from "../image/36x36.png";
+import Img28x28 from "../image/28x28.png";
 
 const ListFollowUser = () => {
   let { userName } = useParams();
@@ -86,6 +88,10 @@ const ListFollowUser = () => {
                           <div className="col-12 d-flex align-items-center">
                             <div className="image me-2">
                               <img
+                                onError={({ currentTarget }) => {
+                                  currentTarget.onerror = null; // prevents looping
+                                  currentTarget.src = Img36x36;
+                                }}
                                 src={item.image}
                                 alt="follower-img"
                                 className="img-fluid rounded-circle border"
@@ -239,6 +245,10 @@ const ListFollowUser = () => {
                           className="text-decoration-none col-9">
                           <div className="d-flex align-items-center">
                             <img
+                              onError={({ currentTarget }) => {
+                                currentTarget.onerror = null; // prevents looping
+                                currentTarget.src = Img28x28;
+                              }}
                               src={item.image}
                               alt="follower-img"
                               className="img-fluid rounded-circle border image me-2"

@@ -20,6 +20,7 @@ import ErrorNotFound from "../components/ErrorNotFound";
 import ListFollowUser from "../components/ListFollowUser";
 
 import "../css/ProfileScreen.css";
+import Img86x86 from "../image/86x86.png";
 
 const ProfileScreen = () => {
   let { userName } = useParams();
@@ -144,6 +145,12 @@ const ProfileScreen = () => {
                   <div className="information mt-3 me-auto">
                     <div className="image mb-1">
                       <img
+                        onError={({ currentTarget }) => {
+                          currentTarget.onerror = null; // prevents looping
+                          currentTarget.src = Img86x86;
+                        }}
+                        width={"86px"}
+                        height={"86px"}
                         src={profile.image}
                         alt="user-img"
                         className="img-fluid rounded-circle border"

@@ -23,6 +23,7 @@ import ErrorNotFound from "../components/ErrorNotFound";
 import ListFollowUser from "../components/ListFollowUser";
 
 import "../css/ProfileScreen.css";
+import Img86x86 from "../image/86x86.png";
 
 const ProfileAboutScreen = () => {
   const config = useMemo(
@@ -336,6 +337,12 @@ const ProfileAboutScreen = () => {
               <div className="information mt-3 me-auto">
                 <div className="image mb-1">
                   <img
+                    width={"86px"}
+                    height={"86px"}
+                    onError={({ currentTarget }) => {
+                      currentTarget.onerror = null; // prevents looping
+                      currentTarget.src = Img86x86;
+                    }}
                     src={profile.image}
                     alt="user-img"
                     className="img-fluid rounded-circle border"

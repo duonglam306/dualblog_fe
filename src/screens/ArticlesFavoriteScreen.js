@@ -25,6 +25,8 @@ import {
 
 import "../css/ArticlesFavoriteScreen.css";
 import "../css/ListArticle.css";
+import Img36x36 from "../image/36x36.png";
+import Img112x112 from "../image/112x112.png";
 
 function ArticlesFavoriteScreen() {
   let token = Cookies.get("token");
@@ -151,6 +153,10 @@ function ArticlesFavoriteScreen() {
                                 <div className="author d-flex">
                                   <div>
                                     <img
+                                      onError={({ currentTarget }) => {
+                                        currentTarget.onerror = null; // prevents looping
+                                        currentTarget.src = Img36x36;
+                                      }}
                                       src={article.auth_image}
                                       alt="avt-author"
                                       className="img-fluid rounded-circle me-1 border"
@@ -258,6 +264,10 @@ function ArticlesFavoriteScreen() {
                                   to={`/article/${article.slug}`}
                                   className="text-decoration-none text-black d-flex justify-content-center">
                                   <img
+                                    onError={({ currentTarget }) => {
+                                      currentTarget.onerror = null; // prevents looping
+                                      currentTarget.src = Img112x112;
+                                    }}
                                     src={article.thumbnail_url}
                                     alt="img-article"
                                     className="img-fluid border thumbnail"
@@ -324,6 +334,10 @@ function ArticlesFavoriteScreen() {
                     authImages.map((item, index) => {
                       return (
                         <img
+                          onError={({ currentTarget }) => {
+                            currentTarget.onerror = null; // prevents looping
+                            currentTarget.src = Img36x36;
+                          }}
                           key={index}
                           src={item}
                           alt="avt-auth"

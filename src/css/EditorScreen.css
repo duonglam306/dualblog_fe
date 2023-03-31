@@ -1,17 +1,23 @@
-.editor-component label{
-    font-size: 0.85em;
+.editor-component label {
+  font-size: 0.85em;
 }
 
-.editor-component input[type="text"]
-{
-    font-size: 0.8em;
+.editor-component input[type="text"] {
+  font-size: 0.8em;
 }
 
-.btn-edit-tag-list{
-    height: 40px;
-    width: 40px;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    padding: 0!important;
+.btn-edit-tag-list {
+  height: 40px;
+  width: 40px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  padding: 0 !important;
+}
+
+.editor-component .thumbnail {
+  width: 200px;
+  aspect-ratio: auto 200 / 134;
+  height: 134px;
+  vertical-align: middle;
 }

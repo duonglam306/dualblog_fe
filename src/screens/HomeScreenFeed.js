@@ -22,9 +22,11 @@ import PopularTag from "../components/PopularTag";
 import ListUnFollowUser from "../components/ListUnFollowUser";
 import { ListArticleTrending } from "../components/ListArticle";
 import ErrorNotFound from "../components/ErrorNotFound";
+import Loader from "../components/Loader";
 
 import "../css/HomeScreen.css";
-import Loader from "../components/Loader";
+import Img48x48 from "../image/48x48.png";
+import Img36x36 from "../image/36x36.png";
 
 const HomeScreen = () => {
   let token = Cookies.get("token");
@@ -181,6 +183,10 @@ const HomeScreen = () => {
                                   className="text-decoration-none col-9">
                                   <div className="d-flex align-items-center mb-2">
                                     <img
+                                      onError={({ currentTarget }) => {
+                                        currentTarget.onerror = null; // prevents looping
+                                        currentTarget.src = Img36x36;
+                                      }}
                                       src={user.image}
                                       alt="follower-img"
                                       className="img-fluid rounded-circle border image me-2"
@@ -255,6 +261,10 @@ const HomeScreen = () => {
                             </Popover>
                           }>
                           <img
+                            onError={({ currentTarget }) => {
+                              currentTarget.onerror = null; // prevents looping
+                              currentTarget.src = Img48x48;
+                            }}
                             src={user.image}
                             alt="img-user-following"
                             className="image-user rounded-circle border-white me-2"

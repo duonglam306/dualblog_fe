@@ -25,6 +25,8 @@ import ErrorNotFound from "../components/ErrorNotFound";
 import Message from "../components/Message";
 
 import "../css/HomeScreen.css";
+import Img36x36 from "../image/36x36.png";
+import Img48x48 from "../image/48x48.png";
 
 const HomeScreenGlobal = () => {
   let token = Cookies.get("token");
@@ -45,8 +47,6 @@ const HomeScreenGlobal = () => {
     loading,
     users: { users, page, pages },
   } = userFollowList;
-
-  const { spinner } = useSelector((state) => state.spinner);
 
   const tagList = useSelector((state) => state.tagList);
 
@@ -182,6 +182,10 @@ const HomeScreenGlobal = () => {
                                   className="text-decoration-none col-9">
                                   <div className="d-flex align-items-center mb-2">
                                     <img
+                                      onError={({ currentTarget }) => {
+                                        currentTarget.onerror = null; // prevents looping
+                                        currentTarget.src = Img36x36;
+                                      }}
                                       src={user.image}
                                       alt="follower-img"
                                       className="img-fluid rounded-circle border image me-2"
@@ -253,6 +257,10 @@ const HomeScreenGlobal = () => {
                             </Popover>
                           }>
                           <img
+                            onError={({ currentTarget }) => {
+                              currentTarget.onerror = null; // prevents looping
+                              currentTarget.src = Img48x48;
+                            }}
                             src={user.image}
                             alt="img-user-following"
                             className="image-user rounded-circle border-white me-2"

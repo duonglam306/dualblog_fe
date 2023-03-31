@@ -13,6 +13,7 @@ import ErrorNotFound from "../components/ErrorNotFound";
 import { USER_UPDATE_RESET } from "../constants/userConstants";
 
 import "../css/SettingScreen.css";
+import Img80x80 from "../image/80x80.png";
 
 const SettingScreen = () => {
   document.querySelector("title").innerHTML = "Settings — DualBlog";
@@ -263,6 +264,10 @@ const SettingScreen = () => {
                         </form>
                         <div className="col-3 d-flex justify-content-center">
                           <img
+                            onError={({ currentTarget }) => {
+                              currentTarget.onerror = null; // prevents looping
+                              currentTarget.src = Img80x80;
+                            }}
                             src={image}
                             alt="avt-user"
                             className="image img-fluid rounded-circle border border-1"

@@ -9,6 +9,7 @@ import dompurify from "dompurify";
 
 import { createComment, deleteComment } from "../actions/commentActions";
 
+import Img32x32 from "../image/32x32.png";
 import "../css/ArticleScreen.css";
 
 function CommentInfo({ cmt, slug, article_auth_name }) {
@@ -60,6 +61,10 @@ function CommentInfo({ cmt, slug, article_auth_name }) {
             to={`/@${cmt.auth_name}`}
             className="text-decoration-none d-flex text-dark align-items-center">
             <img
+              onError={({ currentTarget }) => {
+                currentTarget.onerror = null; // prevents looping
+                currentTarget.src = Img32x32;
+              }}
               src={cmt.auth_image}
               alt="avt-user"
               className="image rounded-circle me-2"
@@ -189,6 +194,10 @@ function CommentInfo({ cmt, slug, article_auth_name }) {
           <div className={`form-comment p-2`}>
             <div className="user-info d-flex align-items-center">
               <img
+                onError={({ currentTarget }) => {
+                  currentTarget.onerror = null; // prevents looping
+                  currentTarget.src = Img32x32;
+                }}
                 src={userInfo && userInfo.image}
                 alt="avt-user"
                 className="image rounded-circle border me-2"

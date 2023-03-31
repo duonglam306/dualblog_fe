@@ -8,6 +8,7 @@ import { createArticle, updateArticle } from "../actions/articleActions";
 import { USER_REGISTER_RESET } from "../constants/userConstants";
 
 import logo from "../image/logo.png";
+import Img32x32 from "../image/32x32.png";
 import "../css/Header.css";
 
 const HeaderVertical = ({
@@ -111,6 +112,10 @@ const HeaderVertical = ({
                     <div className="popover-item px-3 py-2 info-user d-flex align-items-center">
                       <div className="col-2">
                         <img
+                          onError={({ currentTarget }) => {
+                            currentTarget.onerror = null; // prevents looping
+                            currentTarget.src = Img32x32;
+                          }}
                           src={userInfo.image}
                           alt="avt-user"
                           className="img-fluid rounded-circle avt-user border border-1"
@@ -129,6 +134,10 @@ const HeaderVertical = ({
             }
             rootClose>
             <img
+              onError={({ currentTarget }) => {
+                currentTarget.onerror = null; // prevents looping
+                currentTarget.src = Img32x32;
+              }}
               src={userInfo.image}
               alt="avt-user"
               className="img-fluid rounded-circle avt-user border border-1"
@@ -352,6 +361,10 @@ const HeaderHorizontal = ({
                         <div className="popover-item px-3 py-2 info-user d-flex align-items-center">
                           <div className="col-2">
                             <img
+                              onError={({ currentTarget }) => {
+                                currentTarget.onerror = null; // prevents looping
+                                currentTarget.src = Img32x32;
+                              }}
                               src={userInfo.image}
                               alt="avt-user"
                               className="img-fluid rounded-circle avt-user border border-1"
@@ -380,6 +393,10 @@ const HeaderHorizontal = ({
                 }
                 rootClose>
                 <img
+                  onError={({ currentTarget }) => {
+                    currentTarget.onerror = null; // prevents looping
+                    currentTarget.src = Img32x32;
+                  }}
                   src={userInfo.image}
                   alt="avt-user"
                   className="img-fluid rounded-circle avt-user border border-1"

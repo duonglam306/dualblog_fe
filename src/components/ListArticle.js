@@ -9,6 +9,10 @@ import _debounce from "lodash/debounce";
 import Loader from "../components/Loader";
 import EmptyData from "../components/EmptyData";
 
+import Img112x112 from "../image/112x112.png";
+import Img200x134 from "../image/200x134.png";
+import Img36x36 from "../image/36x36.png";
+
 import {
   listArticle,
   listYourArticle,
@@ -95,6 +99,10 @@ function ListArticleYourFeed() {
                         <div className="col-12 author d-flex">
                           <div>
                             <img
+                              onError={({ currentTarget }) => {
+                                currentTarget.onerror = null; // prevents looping
+                                currentTarget.src = Img36x36;
+                              }}
                               src={article.auth_image}
                               alt="avt-author"
                               className="img-fluid rounded-circle me-1 border"
@@ -227,6 +235,10 @@ function ListArticleYourFeed() {
                           to={`/article/${article.slug}`}
                           className="text-decoration-none text-black d-flex justify-content-center">
                           <img
+                            onError={({ currentTarget }) => {
+                              currentTarget.onerror = null; // prevents looping
+                              currentTarget.src = Img112x112;
+                            }}
                             src={article.thumbnail_url}
                             alt="img-article"
                             className="img-fluid border thumbnail"
@@ -328,6 +340,10 @@ function ListArticleGlobalFeed() {
                         <div className="author d-flex">
                           <div>
                             <img
+                              onError={({ currentTarget }) => {
+                                currentTarget.onerror = null; // prevents looping
+                                currentTarget.src = Img36x36;
+                              }}
                               src={article.auth_image}
                               alt="avt-author"
                               className="img-fluid rounded-circle me-1 border"
@@ -463,6 +479,12 @@ function ListArticleGlobalFeed() {
                           to={`/article/${article.slug}`}
                           className="text-decoration-none text-black d-flex justify-content-center">
                           <img
+                            onError={({ currentTarget }) => {
+                              currentTarget.onerror = null; // prevents looping
+                              currentTarget.src = userInfo
+                                ? Img112x112
+                                : Img200x134;
+                            }}
                             src={article.thumbnail_url}
                             alt="img-article"
                             className={`img-fluid ${
@@ -558,6 +580,10 @@ function ListArticleByAuthor({ author, flag }) {
                         <div className="author d-flex">
                           <div>
                             <img
+                              onError={({ currentTarget }) => {
+                                currentTarget.onerror = null; // prevents looping
+                                currentTarget.src = Img36x36;
+                              }}
                               src={article.auth_image}
                               alt="avt-author"
                               className="img-fluid rounded-circle me-1 border"
@@ -692,6 +718,10 @@ function ListArticleByAuthor({ author, flag }) {
                           to={`/article/${article.slug}`}
                           className="text-decoration-none text-black d-flex justify-content-center">
                           <img
+                            onError={({ currentTarget }) => {
+                              currentTarget.onerror = null; // prevents looping
+                              currentTarget.src = Img112x112;
+                            }}
                             src={article.thumbnail_url}
                             alt="img-article"
                             className="img-fluid thumbnail border"
@@ -785,10 +815,14 @@ function ListArticleRelativeByAuthor({ author, slug }) {
                   <div className="col-12">
                     <Link
                       to={`/@${article.auth_name}`}
-                      className="text-decoration-none text-dark">
+                      className="text-decoration-none text-dark d-flex align-items-center">
                       <div className="author d-flex">
                         <div>
                           <img
+                            onError={({ currentTarget }) => {
+                              currentTarget.onerror = null; // prevents looping
+                              currentTarget.src = Img36x36;
+                            }}
                             src={article.auth_image}
                             alt="avt-author"
                             className="img-fluid rounded-circle me-1 border"
@@ -922,6 +956,10 @@ function ListArticleRelativeByAuthor({ author, slug }) {
                         to={`/article/${article.slug}`}
                         className="text-decoration-none text-black d-flex justify-content-center">
                         <img
+                          onError={({ currentTarget }) => {
+                            currentTarget.onerror = null; // prevents looping
+                            currentTarget.src = Img112x112;
+                          }}
                           src={article.thumbnail_url}
                           alt="img-article"
                           className="img-fluid border thumbnail"
@@ -983,6 +1021,10 @@ function ListArticleRelativeByTag({ tag, slug }) {
                       <div className="author d-flex">
                         <div>
                           <img
+                            onError={({ currentTarget }) => {
+                              currentTarget.onerror = null; // prevents looping
+                              currentTarget.src = Img36x36;
+                            }}
                             src={article.auth_image}
                             alt="avt-author"
                             className="img-fluid rounded-circle me-1 border"
@@ -1002,6 +1044,10 @@ function ListArticleRelativeByTag({ tag, slug }) {
                   </div>
                   <div className="col-3 my-auto d-flex justify-content-center">
                     <img
+                      onError={({ currentTarget }) => {
+                        currentTarget.onerror = null; // prevents looping
+                        currentTarget.src = Img112x112;
+                      }}
                       src={article.thumbnail_url}
                       alt="img-article"
                       className="img-fluid border thumbnail"
@@ -1055,6 +1101,10 @@ function ListArticleTrending() {
                       <div className="author d-flex">
                         <div>
                           <img
+                            onError={({ currentTarget }) => {
+                              currentTarget.onerror = null; // prevents looping
+                              currentTarget.src = Img36x36;
+                            }}
                             src={article.auth_image}
                             alt="avt-author"
                             className="img-fluid rounded-circle me-1 border"

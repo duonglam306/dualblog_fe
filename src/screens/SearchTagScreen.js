@@ -29,6 +29,8 @@ import ErrorNotFound from "../components/ErrorNotFound";
 import Empty from "../image/empty.svg";
 import "../css/ListArticle.css";
 import "../css/SearchScreen.css";
+import Img36x36 from "../image/36x36.png";
+import Img28x28 from "../image/28x28.png";
 
 function SearchTagScreen() {
   let { keyword } = useParams();
@@ -275,6 +277,10 @@ function SearchTagScreen() {
                               <div className="author d-flex">
                                 <div>
                                   <img
+                                  onError={({ currentTarget }) => {
+                                    currentTarget.onerror = null; // prevents looping
+                                    currentTarget.src = Img36x36;
+                                  }}
                                     src={article.auth_image}
                                     alt="avt-author"
                                     className="img-fluid rounded-circle me-1 border"
@@ -331,6 +337,10 @@ function SearchTagScreen() {
                           to={`/@${user.username}`}>
                           <div className="d-flex align-items-center">
                             <img
+                            onError={({ currentTarget }) => {
+                              currentTarget.onerror = null; // prevents looping
+                              currentTarget.src = Img28x28;
+                            }}
                               src={user.image}
                               alt="follower-img"
                               className="img-fluid image me-2 rounded-circle border"

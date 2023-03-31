@@ -36,6 +36,10 @@ import Message from "../components/Message";
 import ErrorNotFound from "../components/ErrorNotFound";
 
 import "../css/ArticleScreen.css";
+import Img86x86 from "../image/86x86.png";
+import Img48x48 from "../image/48x48.png";
+import Img36x36 from "../image/36x36.png";
+import Img32x32 from "../image/32x32.png";
 
 const ArticleScreen = () => {
   const token = Cookies.get("token");
@@ -253,6 +257,10 @@ const ArticleScreen = () => {
               <div className="user-info d-flex align-items-center">
                 <img
                   src={userInfo.image}
+                  onError={({ currentTarget }) => {
+                    currentTarget.onerror = null; // prevents looping
+                    currentTarget.src = Img36x36;
+                  }}
                   alt="avt-user"
                   className="image rounded-circle border me-2"
                 />
@@ -312,6 +320,10 @@ const ArticleScreen = () => {
                                 to={`/@${cmt.auth_name}`}
                                 className="text-decoration-none d-flex text-dark align-items-center">
                                 <img
+                                  onError={({ currentTarget }) => {
+                                    currentTarget.onerror = null; // prevents looping
+                                    currentTarget.src = Img32x32;
+                                  }}
                                   src={cmt.auth_image}
                                   alt="avt-user"
                                   className="image rounded-circle me-2"
@@ -425,6 +437,10 @@ const ArticleScreen = () => {
                                 <div className="user-info d-flex align-items-center">
                                   <img
                                     src={userInfo && userInfo.image}
+                                    onError={({ currentTarget }) => {
+                                      currentTarget.onerror = null; // prevents looping
+                                      currentTarget.src = Img36x36;
+                                    }}
                                     alt="avt-user"
                                     className="image rounded-circle border me-2"
                                   />
@@ -569,6 +585,10 @@ const ArticleScreen = () => {
                     <div className="image me-2">
                       <Link to={`/@${article.auth_name}`}>
                         <img
+                          onError={({ currentTarget }) => {
+                            currentTarget.onerror = null; // prevents looping
+                            currentTarget.src = Img48x48;
+                          }}
                           src={article.auth_image}
                           alt="author-img"
                           className="img-fluid rounded-circle border"
@@ -951,6 +971,12 @@ const ArticleScreen = () => {
                           className="text-decoration-none text-dark">
                           <div className="image mb-1">
                             <img
+                              width={"86px"}
+                              heigth={"86px"}
+                              onError={({ currentTarget }) => {
+                                currentTarget.onerror = null; // prevents looping
+                                currentTarget.src = Img86x86;
+                              }}
                               src={profile.image}
                               alt="user-img"
                               className="img-fluid rounded-circle border"

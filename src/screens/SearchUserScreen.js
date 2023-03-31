@@ -26,6 +26,8 @@ import ErrorNotFound from "../components/ErrorNotFound";
 import Empty from "../image/empty.svg";
 import "../css/ListArticle.css";
 import "../css/SearchScreen.css";
+import Img64x64 from "../image/64x64.png";
+import Img36x36 from "../image/36x36.png";
 
 function SearchUserScreen() {
   let { keyword } = useParams();
@@ -186,6 +188,10 @@ function SearchUserScreen() {
                               <div className="d-flex align-items-center">
                                 <div className="image me-2">
                                   <img
+                                    onError={({ currentTarget }) => {
+                                      currentTarget.onerror = null; // prevents looping
+                                      currentTarget.src = Img64x64;
+                                    }}
                                     src={user.image}
                                     alt="follower-img"
                                     className="img-fluid rounded-circle border"
@@ -342,6 +348,10 @@ function SearchUserScreen() {
                               <div className="author d-flex">
                                 <div>
                                   <img
+                                    onError={({ currentTarget }) => {
+                                      currentTarget.onerror = null; // prevents looping
+                                      currentTarget.src = Img36x36;
+                                    }}
                                     src={article.auth_image}
                                     alt="avt-author"
                                     className="img-fluid rounded-circle me-1 border"

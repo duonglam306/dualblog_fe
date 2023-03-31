@@ -13,6 +13,7 @@ import Message from "../components/Message";
 import ErrorNotFound from "../components/ErrorNotFound";
 
 import "../css/EditorScreen.css";
+import Img200x134 from "../image/200x134.png";
 
 const EditorScreen = () => {
   document.querySelector("title").innerHTML = "Editor — DualBlog";
@@ -242,7 +243,7 @@ const EditorScreen = () => {
                   </div>
                 </div>
                 <div className="mb-3 col-12 d-flex justify-content-between">
-                  <div className="col-7 mb-auto">
+                  <div className="col-8 mb-auto">
                     <label htmlFor="thumbnailInputCreate">
                       Thumbnail <span className="text-danger">*</span>
                     </label>
@@ -265,15 +266,15 @@ const EditorScreen = () => {
                       This field is required. File type: JPG, JPEG, PNG or GIF.
                     </div>
                   </div>
-                  <div className="col-4">
+                  <div className="col-3 d-flex justify-content-end">
                     <img
-                      src={
-                        thumbnailUrl
-                          ? thumbnailUrl
-                          : "http://placehold.jp/20/b1aaaa/ffffff/300x150.png?text=thumbnail_article"
-                      }
+                      onError={({ currentTarget }) => {
+                        currentTarget.onerror = null; // prevents looping
+                        currentTarget.src = Img200x134;
+                      }}
+                      src={thumbnailUrl ? thumbnailUrl : Img200x134}
                       alt="thumbnail"
-                      className="img-fluid border"
+                      className="img-fluid thumbnail border"
                     />
                   </div>
                 </div>
