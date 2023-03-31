@@ -4,6 +4,7 @@ import { useNavigate, Link, useParams } from "react-router-dom";
 import { Tooltip, OverlayTrigger } from "react-bootstrap";
 import Moment from "react-moment";
 import Cookies from "js-cookie";
+import _debounce from "lodash/debounce";
 
 import {
   searchArticle,
@@ -42,8 +43,6 @@ function SearchArticleScreen() {
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
-
-  const { spinner } = useSelector((state) => state.spinner);
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -272,19 +271,23 @@ function SearchArticleScreen() {
                                         overlay={<Tooltip>Unfavorite</Tooltip>}>
                                         <div
                                           className="btn-like"
-                                          onClick={() => {
-                                            if (token && userInfo) {
-                                              dispatch(
-                                                unFavoriteArticle(
-                                                  article.slug,
-                                                  token,
-                                                  "search"
-                                                )
-                                              );
-                                            } else {
-                                              navigate("/login");
-                                            }
-                                          }}>
+                                          onClick={_debounce(
+                                            () => {
+                                              if (token && userInfo) {
+                                                dispatch(
+                                                  unFavoriteArticle(
+                                                    article.slug,
+                                                    token,
+                                                    "search"
+                                                  )
+                                                );
+                                              } else {
+                                                navigate("/login");
+                                              }
+                                            },
+                                            250,
+                                            { maxWait: 60000 }
+                                          )}>
                                           <i className="fa fa-heart"></i>
                                         </div>
                                       </OverlayTrigger>
@@ -295,19 +298,23 @@ function SearchArticleScreen() {
                                         overlay={<Tooltip>Favorite</Tooltip>}>
                                         <div
                                           className="btn-like"
-                                          onClick={() => {
-                                            if (token && userInfo) {
-                                              dispatch(
-                                                favoriteArticle(
-                                                  article.slug,
-                                                  token,
-                                                  "search"
-                                                )
-                                              );
-                                            } else {
-                                              navigate("/login");
-                                            }
-                                          }}>
+                                          onClick={_debounce(
+                                            () => {
+                                              if (token && userInfo) {
+                                                dispatch(
+                                                  favoriteArticle(
+                                                    article.slug,
+                                                    token,
+                                                    "search"
+                                                  )
+                                                );
+                                              } else {
+                                                navigate("/login");
+                                              }
+                                            },
+                                            250,
+                                            { maxWait: 60000 }
+                                          )}>
                                           <i className="fa fa-heart-o"></i>
                                         </div>
                                       </OverlayTrigger>
@@ -452,7 +459,7 @@ function SearchArticleScreen() {
                     People matching {newKeyword}
                   </div>
 
-                  {userSearchRelative.users.users.map((user, index) => {
+                  {userSearchRelative.users.users.map((user) => {
                     return (
                       <div
                         key={user.username}
@@ -476,51 +483,50 @@ function SearchArticleScreen() {
                             </div>
                           ) : (
                             <>
-                              {spinner.index === index &&
-                              spinner.flag === "search-relative-list" ? (
-                                <Loader isSmall={true} />
+                              {user.following ? (
+                                <div
+                                  className="col-12 btn border-success btn-follow bg-white text-success font-btn rounded-pill"
+                                  onClick={_debounce(
+                                    () => {
+                                      if (userInfo && token) {
+                                        dispatch(
+                                          unFollowUser(
+                                            user.username,
+                                            token,
+                                            "search-relative-list"
+                                          )
+                                        );
+                                      } else {
+                                        navigate("/login");
+                                      }
+                                    },
+                                    250,
+                                    { maxWait: 60000 }
+                                  )}>
+                                  Following
+                                </div>
                               ) : (
-                                <>
-                                  {user.following ? (
-                                    <div
-                                      className="col-12 btn border-success btn-follow bg-white text-success font-btn rounded-pill"
-                                      onClick={() => {
-                                        if (userInfo && token) {
-                                          dispatch(
-                                            unFollowUser(
-                                              user.username,
-                                              token,
-                                              index,
-                                              "search-relative-list"
-                                            )
-                                          );
-                                        } else {
-                                          navigate("/login");
-                                        }
-                                      }}>
-                                      Following
-                                    </div>
-                                  ) : (
-                                    <div
-                                      className="col-12 btn bg-success text-white btn-follow font-btn rounded-pill"
-                                      onClick={() => {
-                                        if (userInfo && token) {
-                                          dispatch(
-                                            followUser(
-                                              user.username,
-                                              token,
-                                              index,
-                                              "search-relative-list"
-                                            )
-                                          );
-                                        } else {
-                                          navigate("/login");
-                                        }
-                                      }}>
-                                      Follow
-                                    </div>
-                                  )}
-                                </>
+                                <div
+                                  className="col-12 btn bg-success text-white btn-follow font-btn rounded-pill"
+                                  onClick={_debounce(
+                                    () => {
+                                      if (userInfo && token) {
+                                        dispatch(
+                                          followUser(
+                                            user.username,
+                                            token,
+                                            "search-relative-list"
+                                          )
+                                        );
+                                      } else {
+                                        navigate("/login");
+                                      }
+                                    },
+                                    250,
+                                    { maxWait: 60000 }
+                                  )}>
+                                  Follow
+                                </div>
                               )}
                             </>
                           )}

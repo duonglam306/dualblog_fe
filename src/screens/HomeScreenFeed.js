@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { Popover, OverlayTrigger } from "react-bootstrap";
+import _debounce from "lodash/debounce";
 
 import {
   followUser,
@@ -45,7 +46,6 @@ const HomeScreen = () => {
     users: { users, page, pages },
   } = userFollowList;
 
-  const { spinner } = useSelector((state) => state.spinner);
   const tagList = useSelector((state) => state.tagList);
 
   const articleListLoadMore = useSelector((state) => state.articleListLoadMore);
@@ -166,7 +166,7 @@ const HomeScreen = () => {
               users.length > 0 && (
                 <div className="col-12 mt-5">
                   <div className="mx-auto col-10 list-user-following-feed d-flex">
-                    {users.map((user, index) => {
+                    {users.map((user) => {
                       return (
                         <OverlayTrigger
                           key={user.username}
@@ -204,50 +204,51 @@ const HomeScreen = () => {
                                         {`${user.followList.length} Followers`}
                                       </div>
                                     )}
-                                    {spinner.index === index &&
-                                    spinner.flag === "follow-list" ? (
-                                      <Loader isSmall={true} />
-                                    ) : (
-                                      <>
-                                        {user.following ? (
-                                          <div
-                                            className="ms-auto btn border-success btn-follow bg-white text-success font-btn rounded-pill"
-                                            onClick={() => {
+                                    <>
+                                      {user.following ? (
+                                        <div
+                                          className="ms-auto btn border-success btn-follow bg-white text-success font-btn rounded-pill"
+                                          onClick={_debounce(
+                                            () => {
                                               if (userInfo && token) {
                                                 dispatch(
                                                   unFollowUser(
                                                     user.username,
-                                                    token,
-                                                    index
+                                                    token
                                                   )
                                                 );
                                               } else {
                                                 navigate("/login");
                                               }
-                                            }}>
-                                            Following
-                                          </div>
-                                        ) : (
-                                          <div
-                                            className="ms-auto btn bg-success text-white btn-follow font-btn rounded-pill"
-                                            onClick={() => {
+                                            },
+                                            250,
+                                            { maxWait: 60000 }
+                                          )}>
+                                          Following
+                                        </div>
+                                      ) : (
+                                        <div
+                                          className="ms-auto btn bg-success text-white btn-follow font-btn rounded-pill"
+                                          onClick={_debounce(
+                                            () => {
                                               if (userInfo && token) {
                                                 dispatch(
                                                   followUser(
                                                     user.username,
-                                                    token,
-                                                    index
+                                                    token
                                                   )
                                                 );
                                               } else {
                                                 navigate("/login");
                                               }
-                                            }}>
-                                            Follow
-                                          </div>
-                                        )}
-                                      </>
-                                    )}
+                                            },
+                                            250,
+                                            { maxWait: 60000 }
+                                          )}>
+                                          Follow
+                                        </div>
+                                      )}
+                                    </>
                                   </div>
                                 </Link>
                               </Popover.Body>

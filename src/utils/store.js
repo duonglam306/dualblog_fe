@@ -52,9 +52,6 @@ import {
     deleteCommentReducer,
     createCommentReducer,
 } from "../reducers/commentReducers";
-import {
-    spinnerReducer,
-} from "../reducers/spinnerReduces";
 const rootReducer = combineReducers({
     tagList: tagListReducer,
     tagListLoadMore: tagListLoadMoreReducer,
@@ -96,7 +93,6 @@ const rootReducer = combineReducers({
     userForgotPassword: userForgotPasswordReducer,
     userResetPassword: resetPasswordReducer,
     userListLoadMore: userListLoadMoreReducer,
-    spinner: spinnerReducer
 });
 
 const persistConfig = {

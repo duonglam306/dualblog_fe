@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import Cookies from "js-cookie";
+import _debounce from "lodash/debounce";
 
 import {
   followUser,
@@ -25,7 +26,6 @@ const ListFollowUser = () => {
 
   const dispatch = useDispatch();
 
-  const { spinner } = useSelector((state) => state.spinner);
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
@@ -75,7 +75,7 @@ const ListFollowUser = () => {
               </div>
               <div className="modal-main-content d-flex flex-column align-items-center">
                 <div className="mx-auto col-10 follow-list">
-                  {users.map((item, index) => {
+                  {users.map((item) => {
                     return (
                       <div
                         key={item.username}
@@ -104,98 +104,86 @@ const ListFollowUser = () => {
                             </div>
                           ) : userInfo ? (
                             <>
-                              {spinner.index === index && spinner.flag === "follow-list" ? (
-                                <Loader isSmall={true} />
+                              {item.following ? (
+                                <div
+                                  className="col-12 btn border-success btn-follow bg-white text-success font-btn rounded-pill"
+                                  onClick={_debounce(
+                                    () => {
+                                      if (userInfo && token) {
+                                        dispatch(
+                                          unFollowUser(item.username, token)
+                                        );
+                                      } else {
+                                        navigate("/login");
+                                      }
+                                    },
+                                    250,
+                                    { maxWait: 60000 }
+                                  )}>
+                                  Following
+                                </div>
                               ) : (
-                                <>
-                                  {item.following ? (
-                                    <div
-                                      className="col-12 btn border-success btn-follow bg-white text-success font-btn rounded-pill"
-                                      onClick={() => {
-                                        if (userInfo && token) {
-                                          dispatch(
-                                            unFollowUser(
-                                              item.username,
-                                              token,
-                                              index
-                                            )
-                                          );
-                                        } else {
-                                          navigate("/login");
-                                        }
-                                      }}>
-                                      Following
-                                    </div>
-                                  ) : (
-                                    <div
-                                      className="col-12 btn bg-success text-white btn-follow font-btn rounded-pill"
-                                      onClick={() => {
-                                        if (userInfo && token) {
-                                          dispatch(
-                                            followUser(
-                                              item.username,
-                                              token,
-                                              index
-                                            )
-                                          );
-                                        } else {
-                                          navigate("/login");
-                                        }
-                                      }}>
-                                      Follow
-                                    </div>
-                                  )}
-                                </>
+                                <div
+                                  className="col-12 btn bg-success text-white btn-follow font-btn rounded-pill"
+                                  onClick={_debounce(
+                                    () => {
+                                      if (userInfo && token) {
+                                        dispatch(
+                                          followUser(item.username, token)
+                                        );
+                                      } else {
+                                        navigate("/login");
+                                      }
+                                    },
+                                    250,
+                                    { maxWait: 60000 }
+                                  )}>
+                                  Follow
+                                </div>
                               )}
                             </>
                           ) : (
                             <>
-                              {spinner.index === index && spinner.flag === "follow-list" ? (
-                                <Loader isSmall={true} />
+                              {item.following ? (
+                                <div
+                                  className="col-12 btn border-success btn-follow bg-white text-success font-btn rounded-pill"
+                                  data-bs-dismiss="modal"
+                                  aria-label="Close"
+                                  onClick={_debounce(
+                                    () => {
+                                      if (userInfo && token) {
+                                        dispatch(
+                                          unFollowUser(item.username, token)
+                                        );
+                                      } else {
+                                        navigate("/login");
+                                      }
+                                    },
+                                    250,
+                                    { maxWait: 60000 }
+                                  )}>
+                                  Following
+                                </div>
                               ) : (
-                                <>
-                                  {item.following ? (
-                                    <div
-                                      className="col-12 btn border-success btn-follow bg-white text-success font-btn rounded-pill"
-                                      data-bs-dismiss="modal"
-                                      aria-label="Close"
-                                      onClick={() => {
-                                        if (userInfo && token) {
-                                          dispatch(
-                                            unFollowUser(
-                                              item.username,
-                                              token,
-                                              index
-                                            )
-                                          );
-                                        } else {
-                                          navigate("/login");
-                                        }
-                                      }}>
-                                      Following
-                                    </div>
-                                  ) : (
-                                    <div
-                                      className="col-12 btn bg-success text-white btn-follow font-btn rounded-pill"
-                                      data-bs-dismiss="modal"
-                                      aria-label="Close"
-                                      onClick={() => {
-                                        if (userInfo && token) {
-                                          dispatch(
-                                            followUser(
-                                              item.username,
-                                              token,
-                                              index
-                                            )
-                                          );
-                                        } else {
-                                          navigate("/login");
-                                        }
-                                      }}>
-                                      Follow
-                                    </div>
-                                  )}
-                                </>
+                                <div
+                                  className="col-12 btn bg-success text-white btn-follow font-btn rounded-pill"
+                                  data-bs-dismiss="modal"
+                                  aria-label="Close"
+                                  onClick={_debounce(
+                                    () => {
+                                      if (userInfo && token) {
+                                        dispatch(
+                                          followUser(item.username, token)
+                                        );
+                                      } else {
+                                        navigate("/login");
+                                      }
+                                    },
+                                    250,
+                                    { maxWait: 60000 }
+                                  )}>
+                                  Follow
+                                </div>
                               )}
                             </>
                           )}
@@ -267,48 +255,42 @@ const ListFollowUser = () => {
                             </div>
                           ) : (
                             <>
-                              {spinner.index === index && spinner.flag === "follow-list" ? (
-                                <Loader isSmall={true} />
+                              {item.following ? (
+                                <div
+                                  className="col-12 btn border-success btn-follow bg-white text-success font-btn rounded-pill"
+                                  onClick={_debounce(
+                                    () => {
+                                      if (userInfo && token) {
+                                        dispatch(
+                                          unFollowUser(item.username, token)
+                                        );
+                                      } else {
+                                        navigate("/login");
+                                      }
+                                    },
+                                    250,
+                                    { maxWait: 60000 }
+                                  )}>
+                                  Following
+                                </div>
                               ) : (
-                                <>
-                                  {item.following ? (
-                                    <div
-                                      className="col-12 btn border-success btn-follow bg-white text-success font-btn rounded-pill"
-                                      onClick={() => {
-                                        if (userInfo && token) {
-                                          dispatch(
-                                            unFollowUser(
-                                              item.username,
-                                              token,
-                                              index
-                                            )
-                                          );
-                                        } else {
-                                          navigate("/login");
-                                        }
-                                      }}>
-                                      Following
-                                    </div>
-                                  ) : (
-                                    <div
-                                      className="col-12 btn bg-success text-white btn-follow font-btn rounded-pill"
-                                      onClick={() => {
-                                        if (userInfo && token) {
-                                          dispatch(
-                                            followUser(
-                                              item.username,
-                                              token,
-                                              index
-                                            )
-                                          );
-                                        } else {
-                                          navigate("/login");
-                                        }
-                                      }}>
-                                      Follow
-                                    </div>
-                                  )}
-                                </>
+                                <div
+                                  className="col-12 btn bg-success text-white btn-follow font-btn rounded-pill"
+                                  onClick={_debounce(
+                                    () => {
+                                      if (userInfo && token) {
+                                        dispatch(
+                                          followUser(item.username, token)
+                                        );
+                                      } else {
+                                        navigate("/login");
+                                      }
+                                    },
+                                    250,
+                                    { maxWait: 60000 }
+                                  )}>
+                                  Follow
+                                </div>
                               )}
                             </>
                           )}

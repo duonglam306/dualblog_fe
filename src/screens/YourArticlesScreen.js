@@ -4,6 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { Tooltip, OverlayTrigger, Popover } from "react-bootstrap";
 import Moment from "react-moment";
 import Cookies from "js-cookie";
+import _debounce from "lodash/debounce";
 
 import {
   listYourArticle,
@@ -261,19 +262,23 @@ function YourArticlesScreen() {
                                           }>
                                           <div
                                             className="btn-like"
-                                            onClick={() => {
-                                              if (token && userInfo) {
-                                                dispatch(
-                                                  unFavoriteArticle(
-                                                    article.slug,
-                                                    token,
-                                                    "your-list"
-                                                  )
-                                                );
-                                              } else {
-                                                navigate("/login");
-                                              }
-                                            }}>
+                                            onClick={_debounce(
+                                              () => {
+                                                if (token && userInfo) {
+                                                  dispatch(
+                                                    unFavoriteArticle(
+                                                      article.slug,
+                                                      token,
+                                                      "your-list"
+                                                    )
+                                                  );
+                                                } else {
+                                                  navigate("/login");
+                                                }
+                                              },
+                                              250,
+                                              { maxWait: 60000 }
+                                            )}>
                                             <i className="fa fa-heart"></i>
                                           </div>
                                         </OverlayTrigger>
@@ -284,19 +289,23 @@ function YourArticlesScreen() {
                                           overlay={<Tooltip>Favorite</Tooltip>}>
                                           <div
                                             className="btn-like"
-                                            onClick={() => {
-                                              if (token && userInfo) {
-                                                dispatch(
-                                                  favoriteArticle(
-                                                    article.slug,
-                                                    token,
-                                                    "your-list"
-                                                  )
-                                                );
-                                              } else {
-                                                navigate("/login");
-                                              }
-                                            }}>
+                                            onClick={_debounce(
+                                              () => {
+                                                if (token && userInfo) {
+                                                  dispatch(
+                                                    favoriteArticle(
+                                                      article.slug,
+                                                      token,
+                                                      "your-list"
+                                                    )
+                                                  );
+                                                } else {
+                                                  navigate("/login");
+                                                }
+                                              },
+                                              250,
+                                              { maxWait: 60000 }
+                                            )}>
                                             <i className="fa fa-heart-o"></i>
                                           </div>
                                         </OverlayTrigger>

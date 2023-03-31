@@ -6,6 +6,7 @@ import JoditEditor from "jodit-react";
 import Moment from "react-moment";
 import { Popover, OverlayTrigger, Tooltip } from "react-bootstrap";
 import dompurify from "dompurify";
+import _debounce from "lodash/debounce";
 
 import { getDetailArticle } from "../actions/articleActions";
 import {
@@ -101,8 +102,6 @@ const ArticleScreen = () => {
   const [comment, setComment] = useState("");
   const [reply, setReply] = useState("");
   const [pageComment, setPageComment] = useState(1);
-
-  const { spinner } = useSelector((state) => state.spinner);
 
   const articleDetails = useSelector((state) => state.articleDetails);
   const { article, loading } = articleDetails;
@@ -607,19 +606,23 @@ const ArticleScreen = () => {
                           overlay={<Tooltip>Unfavorite</Tooltip>}>
                           <div
                             className="btn-like"
-                            onClick={() => {
-                              if (token && userInfo) {
-                                dispatch(
-                                  unFavoriteArticle(
-                                    article.slug,
-                                    token,
-                                    "details"
-                                  )
-                                );
-                              } else {
-                                navigate("/login");
-                              }
-                            }}>
+                            onClick={_debounce(
+                              () => {
+                                if (token && userInfo) {
+                                  dispatch(
+                                    unFavoriteArticle(
+                                      article.slug,
+                                      token,
+                                      "details"
+                                    )
+                                  );
+                                } else {
+                                  navigate("/login");
+                                }
+                              },
+                              250,
+                              { maxWait: 60000 }
+                            )}>
                             <i className="fa fa-heart"></i>
                           </div>
                         </OverlayTrigger>
@@ -630,19 +633,23 @@ const ArticleScreen = () => {
                           overlay={<Tooltip>Favorite</Tooltip>}>
                           <div
                             className="btn-like"
-                            onClick={() => {
-                              if (token && userInfo) {
-                                dispatch(
-                                  favoriteArticle(
-                                    article.slug,
-                                    token,
-                                    "details"
-                                  )
-                                );
-                              } else {
-                                navigate("/login");
-                              }
-                            }}>
+                            onClick={_debounce(
+                              () => {
+                                if (token && userInfo) {
+                                  dispatch(
+                                    favoriteArticle(
+                                      article.slug,
+                                      token,
+                                      "details"
+                                    )
+                                  );
+                                } else {
+                                  navigate("/login");
+                                }
+                              },
+                              250,
+                              { maxWait: 60000 }
+                            )}>
                             <i className="fa fa-heart-o"></i>
                           </div>
                         </OverlayTrigger>
@@ -709,19 +716,23 @@ const ArticleScreen = () => {
                         overlay={<Tooltip>Unfavorite</Tooltip>}>
                         <div
                           className="btn-like"
-                          onClick={() => {
-                            if (token && userInfo) {
-                              dispatch(
-                                unFavoriteArticle(
-                                  article.slug,
-                                  token,
-                                  "details"
-                                )
-                              );
-                            } else {
-                              navigate("/login");
-                            }
-                          }}>
+                          onClick={_debounce(
+                            () => {
+                              if (token && userInfo) {
+                                dispatch(
+                                  unFavoriteArticle(
+                                    article.slug,
+                                    token,
+                                    "details"
+                                  )
+                                );
+                              } else {
+                                navigate("/login");
+                              }
+                            },
+                            250,
+                            { maxWait: 60000 }
+                          )}>
                           <i className="fa fa-heart"></i>
                         </div>
                       </OverlayTrigger>
@@ -732,15 +743,23 @@ const ArticleScreen = () => {
                         overlay={<Tooltip>Favorite</Tooltip>}>
                         <div
                           className="btn-like"
-                          onClick={() => {
-                            if (token && userInfo) {
-                              dispatch(
-                                favoriteArticle(article.slug, token, "details")
-                              );
-                            } else {
-                              navigate("/login");
-                            }
-                          }}>
+                          onClick={_debounce(
+                            () => {
+                              if (token && userInfo) {
+                                dispatch(
+                                  favoriteArticle(
+                                    article.slug,
+                                    token,
+                                    "details"
+                                  )
+                                );
+                              } else {
+                                navigate("/login");
+                              }
+                            },
+                            250,
+                            { maxWait: 60000 }
+                          )}>
                           <i className="fa fa-heart-o"></i>
                         </div>
                       </OverlayTrigger>
@@ -804,19 +823,23 @@ const ArticleScreen = () => {
                         overlay={<Tooltip>Unfavorite</Tooltip>}>
                         <div
                           className="btn-like"
-                          onClick={() => {
-                            if (token && userInfo) {
-                              dispatch(
-                                unFavoriteArticle(
-                                  article.slug,
-                                  token,
-                                  "details"
-                                )
-                              );
-                            } else {
-                              navigate("/login");
-                            }
-                          }}>
+                          onClick={_debounce(
+                            () => {
+                              if (token && userInfo) {
+                                dispatch(
+                                  unFavoriteArticle(
+                                    article.slug,
+                                    token,
+                                    "details"
+                                  )
+                                );
+                              } else {
+                                navigate("/login");
+                              }
+                            },
+                            250,
+                            { maxWait: 60000 }
+                          )}>
                           <i className="fa fa-heart"></i>
                         </div>
                       </OverlayTrigger>
@@ -827,15 +850,23 @@ const ArticleScreen = () => {
                         overlay={<Tooltip>Favorite</Tooltip>}>
                         <div
                           className="btn-like"
-                          onClick={() => {
-                            if (token && userInfo) {
-                              dispatch(
-                                favoriteArticle(article.slug, token, "details")
-                              );
-                            } else {
-                              navigate("/login");
-                            }
-                          }}>
+                          onClick={_debounce(
+                            () => {
+                              if (token && userInfo) {
+                                dispatch(
+                                  favoriteArticle(
+                                    article.slug,
+                                    token,
+                                    "details"
+                                  )
+                                );
+                              } else {
+                                navigate("/login");
+                              }
+                            },
+                            250,
+                            { maxWait: 60000 }
+                          )}>
                           <i className="fa fa-heart-o"></i>
                         </div>
                       </OverlayTrigger>
@@ -943,60 +974,49 @@ const ArticleScreen = () => {
                       ) : (
                         <>
                           {userInfo && profile.following ? (
-                            <>
-                              {spinner.index === 0 &&
-                              spinner.flag === "profile" ? (
-                                <Loader isSmall={true} />
-                              ) : (
-                                <>
-                                  <div
-                                    className="mt-3 btn border-success btn-edit bg-white text-success font-btn rounded-pill"
-                                    onClick={() => {
-                                      if (userInfo) {
-                                        dispatch(
-                                          unFollowUser(
-                                            profile.username,
-                                            token,
-                                            0,
-                                            "profile"
-                                          )
-                                        );
-                                      } else {
-                                        navigate("/login");
-                                      }
-                                    }}>
-                                    Following
-                                  </div>
-                                </>
-                              )}
-                            </>
+                            <div
+                              className="mt-3 btn border-success btn-edit bg-white text-success font-btn rounded-pill"
+                              onClick={_debounce(
+                                () => {
+                                  if (userInfo) {
+                                    dispatch(
+                                      unFollowUser(
+                                        profile.username,
+                                        token,
+                                        "profile"
+                                      )
+                                    );
+                                  } else {
+                                    navigate("/login");
+                                  }
+                                },
+                                250,
+                                { maxWait: 60000 }
+                              )}>
+                              Following
+                            </div>
                           ) : (
-                            <>
-                              {spinner === 0 ? (
-                                <Loader isSmall={true} />
-                              ) : (
-                                <>
-                                  <div
-                                    className="mt-3 btn bg-success text-white btn-edit font-btn rounded-pill"
-                                    onClick={() => {
-                                      if (userInfo) {
-                                        dispatch(
-                                          followUser(
-                                            profile.username,
-                                            token,
-                                            0,
-                                            "profile"
-                                          )
-                                        );
-                                      } else {
-                                        navigate("/login");
-                                      }
-                                    }}>
-                                    Follow
-                                  </div>
-                                </>
-                              )}
-                            </>
+                            <div
+                              className="mt-3 btn bg-success text-white btn-edit font-btn rounded-pill"
+                              onClick={_debounce(
+                                () => {
+                                  if (userInfo) {
+                                    dispatch(
+                                      followUser(
+                                        profile.username,
+                                        token,
+                                        "profile"
+                                      )
+                                    );
+                                  } else {
+                                    navigate("/login");
+                                  }
+                                },
+                                250,
+                                { maxWait: 60000 }
+                              )}>
+                              Follow
+                            </div>
                           )}
                         </>
                       )}

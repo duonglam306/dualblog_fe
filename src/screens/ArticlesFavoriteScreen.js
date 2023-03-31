@@ -4,6 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { Tooltip, OverlayTrigger } from "react-bootstrap";
 import Moment from "react-moment";
 import Cookies from "js-cookie";
+import _debounce from "lodash/debounce";
 
 import Loader from "../components/Loader";
 import Footer from "../components/Footer";
@@ -227,19 +228,23 @@ function ArticlesFavoriteScreen() {
                                       overlay={<Tooltip>Unfavorite</Tooltip>}>
                                       <div
                                         className="btn-like"
-                                        onClick={() => {
-                                          if (token && userInfo) {
-                                            dispatch(
-                                              unFavoriteArticle(
-                                                article.slug,
-                                                token,
-                                                "list-favorite"
-                                              )
-                                            );
-                                          } else {
-                                            navigate("/login");
-                                          }
-                                        }}>
+                                        onClick={_debounce(
+                                          () => {
+                                            if (token && userInfo) {
+                                              dispatch(
+                                                unFavoriteArticle(
+                                                  article.slug,
+                                                  token,
+                                                  "list-favorite"
+                                                )
+                                              );
+                                            } else {
+                                              navigate("/login");
+                                            }
+                                          },
+                                          250,
+                                          { maxWait: 60000 }
+                                        )}>
                                         <i
                                           className="fa fa-trash"
                                           aria-hidden="true"></i>

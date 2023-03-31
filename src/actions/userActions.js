@@ -66,10 +66,6 @@ import {
   ARTICLE_UPDATE_RESET,
   ARTICLE_CREATE_RESET,
 } from "../constants/articleConstants";
-import {
-  SPINNER_REQUEST,
-  SPINNER_SUCCESS,
-} from "../constants/spinnerConstants";
 import { COMMENT_CREATE_RESET } from "../constants/commentConstants";
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -259,11 +255,10 @@ export const getProfileUser = (username, token) => async (dispatch) => {
 };
 
 export const followUser =
-  (username, token, index, flag = "follow-list") =>
+  (username, token, flag = "follow-list") =>
   async (dispatch) => {
     try {
       dispatch({ type: USER_FOLLOW_REQUEST });
-      dispatch({ type: SPINNER_REQUEST, payload: { index, flag } });
       const config = configHeader(token);
 
       const { data } = await axios.post(
@@ -294,9 +289,6 @@ export const followUser =
           payload: data.profile,
         });
       }
-      setTimeout(() => {
-        dispatch({ type: SPINNER_SUCCESS });
-      }, 1000);
     } catch (error) {
       const message =
         error.response && error.response.data.message
@@ -310,18 +302,14 @@ export const followUser =
         type: USER_FOLLOW_FAIL,
         payload: message,
       });
-      setTimeout(() => {
-        dispatch({ type: SPINNER_SUCCESS });
-      }, 1000);
     }
   };
 
 export const unFollowUser =
-  (username, token, index, flag = "follow-list") =>
+  (username, token, flag = "follow-list") =>
   async (dispatch) => {
     try {
       dispatch({ type: USER_UNFOLLOW_REQUEST });
-      dispatch({ type: SPINNER_REQUEST, payload: { index, flag } });
       const config = configHeader(token);
 
       const { data } = await axios.delete(
@@ -351,9 +339,6 @@ export const unFollowUser =
           payload: data.profile,
         });
       }
-      setTimeout(() => {
-        dispatch({ type: SPINNER_SUCCESS });
-      }, 1000);
     } catch (error) {
       const message =
         error.response && error.response.data.message
@@ -367,9 +352,6 @@ export const unFollowUser =
         type: USER_UNFOLLOW_FAIL,
         payload: message,
       });
-      setTimeout(() => {
-        dispatch({ type: SPINNER_SUCCESS });
-      }, 1000);
     }
   };
 

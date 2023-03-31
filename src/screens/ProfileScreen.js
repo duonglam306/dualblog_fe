@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import Cookies from "js-cookie";
+import _debounce from "lodash/debounce";
 
 import {
   getProfileUser,
@@ -30,8 +31,6 @@ const ProfileScreen = () => {
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
-
-  const { spinner } = useSelector((state) => state.spinner);
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -167,59 +166,45 @@ const ProfileScreen = () => {
                   ) : (
                     <>
                       {userInfo && profile.following ? (
-                        <>
-                          {spinner.index === 0 && spinner.flag === "profile" ? (
-                            <Loader isSmall={true} />
-                          ) : (
-                            <>
-                              <div
-                                className="mt-3 btn border-success btn-edit bg-white text-success font-btn rounded-pill"
-                                onClick={() => {
-                                  if (userInfo && token) {
-                                    dispatch(
-                                      unFollowUser(
-                                        profile.username,
-                                        token,
-                                        0,
-                                        "profile"
-                                      )
-                                    );
-                                  } else {
-                                    navigate("/login");
-                                  }
-                                }}>
-                                Following
-                              </div>
-                            </>
-                          )}
-                        </>
+                        <div
+                          className="mt-3 btn border-success btn-edit bg-white text-success font-btn rounded-pill"
+                          onClick={_debounce(
+                            () => {
+                              if (userInfo && token) {
+                                dispatch(
+                                  unFollowUser(
+                                    profile.username,
+                                    token,
+                                    "profile"
+                                  )
+                                );
+                              } else {
+                                navigate("/login");
+                              }
+                            },
+                            250,
+                            { maxWait: 60000 }
+                          )}>
+                          Following
+                        </div>
                       ) : (
-                        <>
-                          {spinner === 0 ? (
-                            <Loader isSmall={true} />
-                          ) : (
-                            <>
-                              <div
-                                className="mt-3 btn bg-success text-white btn-edit font-btn rounded-pill"
-                                onClick={() => {
-                                  if (userInfo && token) {
-                                    dispatch(
-                                      followUser(
-                                        profile.username,
-                                        token,
-                                        0,
-                                        "profile"
-                                      )
-                                    );
-                                  } else {
-                                    navigate("/login");
-                                  }
-                                }}>
-                                Follow
-                              </div>
-                            </>
-                          )}
-                        </>
+                        <div
+                          className="mt-3 btn bg-success text-white btn-edit font-btn rounded-pill"
+                          onClick={_debounce(
+                            () => {
+                              if (userInfo && token) {
+                                dispatch(
+                                  followUser(profile.username, token, "profile")
+                                );
+                              } else {
+                                navigate("/login");
+                              }
+                            },
+                            250,
+                            { maxWait: 60000 }
+                          )}>
+                          Follow
+                        </div>
                       )}
                     </>
                   )}

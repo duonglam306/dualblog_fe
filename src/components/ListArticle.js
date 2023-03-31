@@ -4,6 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { Tooltip, OverlayTrigger } from "react-bootstrap";
 import Moment from "react-moment";
 import Cookies from "js-cookie";
+import _debounce from "lodash/debounce";
 
 import Loader from "../components/Loader";
 import EmptyData from "../components/EmptyData";
@@ -157,19 +158,23 @@ function ListArticleYourFeed() {
                                 overlay={<Tooltip>Unfavorite</Tooltip>}>
                                 <div
                                   className="btn-like"
-                                  onClick={() => {
-                                    if (token && userInfo) {
-                                      dispatch(
-                                        unFavoriteArticle(
-                                          article.slug,
-                                          token,
-                                          "list-feed"
-                                        )
-                                      );
-                                    } else {
-                                      navigate("/login");
-                                    }
-                                  }}>
+                                  onClick={_debounce(
+                                    () => {
+                                      if (token && userInfo) {
+                                        dispatch(
+                                          unFavoriteArticle(
+                                            article.slug,
+                                            token,
+                                            "list-feed"
+                                          )
+                                        );
+                                      } else {
+                                        navigate("/login");
+                                      }
+                                    },
+                                    250,
+                                    { maxWait: 60000 }
+                                  )}>
                                   <i className="fa fa-heart"></i>
                                 </div>
                               </OverlayTrigger>
@@ -180,19 +185,23 @@ function ListArticleYourFeed() {
                                 overlay={<Tooltip>Favorite</Tooltip>}>
                                 <div
                                   className="btn-like"
-                                  onClick={() => {
-                                    if (token && userInfo) {
-                                      dispatch(
-                                        favoriteArticle(
-                                          article.slug,
-                                          token,
-                                          "list-feed"
-                                        )
-                                      );
-                                    } else {
-                                      navigate("/login");
-                                    }
-                                  }}>
+                                  onClick={_debounce(
+                                    () => {
+                                      if (token && userInfo) {
+                                        dispatch(
+                                          favoriteArticle(
+                                            article.slug,
+                                            token,
+                                            "list-feed"
+                                          )
+                                        );
+                                      } else {
+                                        navigate("/login");
+                                      }
+                                    },
+                                    250,
+                                    { maxWait: 60000 }
+                                  )}>
                                   <i className="fa fa-heart-o"></i>
                                 </div>
                               </OverlayTrigger>
@@ -385,19 +394,23 @@ function ListArticleGlobalFeed() {
                                 overlay={<Tooltip>Unfavorite</Tooltip>}>
                                 <div
                                   className="btn-like"
-                                  onClick={() => {
-                                    if (token && userInfo) {
-                                      dispatch(
-                                        unFavoriteArticle(
-                                          article.slug,
-                                          token,
-                                          "list"
-                                        )
-                                      );
-                                    } else {
-                                      navigate("/login");
-                                    }
-                                  }}>
+                                  onClick={_debounce(
+                                    () => {
+                                      if (token && userInfo) {
+                                        dispatch(
+                                          unFavoriteArticle(
+                                            article.slug,
+                                            token,
+                                            "list"
+                                          )
+                                        );
+                                      } else {
+                                        navigate("/login");
+                                      }
+                                    },
+                                    250,
+                                    { maxWait: 60000 }
+                                  )}>
                                   <i className="fa fa-heart"></i>
                                 </div>
                               </OverlayTrigger>
@@ -408,19 +421,23 @@ function ListArticleGlobalFeed() {
                                 overlay={<Tooltip>Favorite</Tooltip>}>
                                 <div
                                   className="btn-like"
-                                  onClick={() => {
-                                    if (token && userInfo) {
-                                      dispatch(
-                                        favoriteArticle(
-                                          article.slug,
-                                          token,
-                                          "list"
-                                        )
-                                      );
-                                    } else {
-                                      navigate("/login");
-                                    }
-                                  }}>
+                                  onClick={_debounce(
+                                    () => {
+                                      if (token && userInfo) {
+                                        dispatch(
+                                          favoriteArticle(
+                                            article.slug,
+                                            token,
+                                            "list"
+                                          )
+                                        );
+                                      } else {
+                                        navigate("/login");
+                                      }
+                                    },
+                                    250,
+                                    { maxWait: 60000 }
+                                  )}>
                                   <i className="fa fa-heart-o"></i>
                                 </div>
                               </OverlayTrigger>
@@ -605,19 +622,23 @@ function ListArticleByAuthor({ author, flag }) {
                                 overlay={<Tooltip>Unfavorite</Tooltip>}>
                                 <div
                                   className="btn-like"
-                                  onClick={() => {
-                                    if (token && userInfo) {
-                                      dispatch(
-                                        unFavoriteArticle(
-                                          article.slug,
-                                          token,
-                                          "your-list"
-                                        )
-                                      );
-                                    } else {
-                                      navigate("/login");
-                                    }
-                                  }}>
+                                  onClick={_debounce(
+                                    () => {
+                                      if (token && userInfo) {
+                                        dispatch(
+                                          unFavoriteArticle(
+                                            article.slug,
+                                            token,
+                                            "your-list"
+                                          )
+                                        );
+                                      } else {
+                                        navigate("/login");
+                                      }
+                                    },
+                                    250,
+                                    { maxWait: 60000 }
+                                  )}>
                                   <i className="fa fa-heart"></i>
                                 </div>
                               </OverlayTrigger>
@@ -628,19 +649,23 @@ function ListArticleByAuthor({ author, flag }) {
                                 overlay={<Tooltip>Favorite</Tooltip>}>
                                 <div
                                   className="btn-like"
-                                  onClick={() => {
-                                    if (token && userInfo) {
-                                      dispatch(
-                                        favoriteArticle(
-                                          article.slug,
-                                          token,
-                                          "your-list"
-                                        )
-                                      );
-                                    } else {
-                                      navigate("/login");
-                                    }
-                                  }}>
+                                  onClick={_debounce(
+                                    () => {
+                                      if (token && userInfo) {
+                                        dispatch(
+                                          favoriteArticle(
+                                            article.slug,
+                                            token,
+                                            "your-list"
+                                          )
+                                        );
+                                      } else {
+                                        navigate("/login");
+                                      }
+                                    },
+                                    250,
+                                    { maxWait: 60000 }
+                                  )}>
                                   <i className="fa fa-heart-o"></i>
                                 </div>
                               </OverlayTrigger>
@@ -828,19 +853,23 @@ function ListArticleRelativeByAuthor({ author, slug }) {
                               overlay={<Tooltip>Unfavorite</Tooltip>}>
                               <div
                                 className="btn-like"
-                                onClick={() => {
-                                  if (token && userInfo) {
-                                    dispatch(
-                                      unFavoriteArticle(
-                                        article.slug,
-                                        token,
-                                        "relative-author"
-                                      )
-                                    );
-                                  } else {
-                                    navigate("/login");
-                                  }
-                                }}>
+                                onClick={_debounce(
+                                  () => {
+                                    if (token && userInfo) {
+                                      dispatch(
+                                        unFavoriteArticle(
+                                          article.slug,
+                                          token,
+                                          "relative-author"
+                                        )
+                                      );
+                                    } else {
+                                      navigate("/login");
+                                    }
+                                  },
+                                  250,
+                                  { maxWait: 60000 }
+                                )}>
                                 <i className="fa fa-heart"></i>
                               </div>
                             </OverlayTrigger>
@@ -851,19 +880,23 @@ function ListArticleRelativeByAuthor({ author, slug }) {
                               overlay={<Tooltip>Favorite</Tooltip>}>
                               <div
                                 className="btn-like"
-                                onClick={() => {
-                                  if (token && userInfo) {
-                                    dispatch(
-                                      favoriteArticle(
-                                        article.slug,
-                                        token,
-                                        "relative-author"
-                                      )
-                                    );
-                                  } else {
-                                    navigate("/login");
-                                  }
-                                }}>
+                                onClick={_debounce(
+                                  () => {
+                                    if (token && userInfo) {
+                                      dispatch(
+                                        favoriteArticle(
+                                          article.slug,
+                                          token,
+                                          "relative-author"
+                                        )
+                                      );
+                                    } else {
+                                      navigate("/login");
+                                    }
+                                  },
+                                  250,
+                                  { maxWait: 60000 }
+                                )}>
                                 <i className="fa fa-heart-o"></i>
                               </div>
                             </OverlayTrigger>

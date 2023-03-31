@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Link, useParams } from "react-router-dom";
 import Cookies from "js-cookie";
+import _debounce from "lodash/debounce";
 
 import { searchArticleRelative } from "../actions/articleActions";
 import {
@@ -39,8 +40,6 @@ function SearchTagScreen() {
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
-
-  const { spinner } = useSelector((state) => state.spinner);
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -322,7 +321,7 @@ function SearchTagScreen() {
                     People matching {newKeyword}
                   </div>
 
-                  {userSearchRelative.users.users.map((user, index) => {
+                  {userSearchRelative.users.users.map((user) => {
                     return (
                       <div
                         key={user.username}
@@ -346,51 +345,50 @@ function SearchTagScreen() {
                             </div>
                           ) : (
                             <>
-                              {spinner.index === index &&
-                              spinner.flag === "search-relative-list" ? (
-                                <Loader isSmall={true} />
+                              {user.following ? (
+                                <div
+                                  className="col-12 btn border-success btn-follow bg-white text-success font-btn rounded-pill"
+                                  onClick={_debounce(
+                                    () => {
+                                      if (userInfo && token) {
+                                        dispatch(
+                                          unFollowUser(
+                                            user.username,
+                                            token,
+                                            "search-relative-list"
+                                          )
+                                        );
+                                      } else {
+                                        navigate("/login");
+                                      }
+                                    },
+                                    250,
+                                    { maxWait: 60000 }
+                                  )}>
+                                  Following
+                                </div>
                               ) : (
-                                <>
-                                  {user.following ? (
-                                    <div
-                                      className="col-12 btn border-success btn-follow bg-white text-success font-btn rounded-pill"
-                                      onClick={() => {
-                                        if (userInfo && token) {
-                                          dispatch(
-                                            unFollowUser(
-                                              user.username,
-                                              token,
-                                              index,
-                                              "search-relative-list"
-                                            )
-                                          );
-                                        } else {
-                                          navigate("/login");
-                                        }
-                                      }}>
-                                      Following
-                                    </div>
-                                  ) : (
-                                    <div
-                                      className="col-12 btn bg-success text-white btn-follow font-btn rounded-pill"
-                                      onClick={() => {
-                                        if (userInfo && token) {
-                                          dispatch(
-                                            followUser(
-                                              user.username,
-                                              token,
-                                              index,
-                                              "search-relative-list"
-                                            )
-                                          );
-                                        } else {
-                                          navigate("/login");
-                                        }
-                                      }}>
-                                      Follow
-                                    </div>
-                                  )}
-                                </>
+                                <div
+                                  className="col-12 btn bg-success text-white btn-follow font-btn rounded-pill"
+                                  onClick={_debounce(
+                                    () => {
+                                      if (userInfo && token) {
+                                        dispatch(
+                                          followUser(
+                                            user.username,
+                                            token,
+                                            "search-relative-list"
+                                          )
+                                        );
+                                      } else {
+                                        navigate("/login");
+                                      }
+                                    },
+                                    250,
+                                    { maxWait: 60000 }
+                                  )}>
+                                  Follow
+                                </div>
                               )}
                             </>
                           )}
