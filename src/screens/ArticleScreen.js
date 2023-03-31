@@ -102,6 +102,8 @@ const ArticleScreen = () => {
   const [reply, setReply] = useState("");
   const [pageComment, setPageComment] = useState(1);
 
+  const { spinner } = useSelector((state) => state.spinner);
+
   const articleDetails = useSelector((state) => state.articleDetails);
   const { article, loading } = articleDetails;
 
@@ -941,41 +943,59 @@ const ArticleScreen = () => {
                       ) : (
                         <>
                           {userInfo && profile.following ? (
-                            <div
-                              className="mt-3 btn border-success btn-edit bg-white text-success font-btn rounded-pill"
-                              onClick={() => {
-                                if (userInfo) {
-                                  dispatch(
-                                    unFollowUser(
-                                      profile.username,
-                                      token,
-                                      "profile"
-                                    )
-                                  );
-                                } else {
-                                  navigate("/login");
-                                }
-                              }}>
-                              Following
-                            </div>
+                            <>
+                              {spinner === 0 ? (
+                                <Loader isSmall={true} />
+                              ) : (
+                                <>
+                                  <div
+                                    className="mt-3 btn border-success btn-edit bg-white text-success font-btn rounded-pill"
+                                    onClick={() => {
+                                      if (userInfo) {
+                                        dispatch(
+                                          unFollowUser(
+                                            profile.username,
+                                            token,
+                                            0,
+                                            "profile"
+                                          )
+                                        );
+                                      } else {
+                                        navigate("/login");
+                                      }
+                                    }}>
+                                    Following
+                                  </div>
+                                </>
+                              )}
+                            </>
                           ) : (
-                            <div
-                              className="mt-3 btn bg-success text-white btn-edit font-btn rounded-pill"
-                              onClick={() => {
-                                if (userInfo) {
-                                  dispatch(
-                                    followUser(
-                                      profile.username,
-                                      token,
-                                      "profile"
-                                    )
-                                  );
-                                } else {
-                                  navigate("/login");
-                                }
-                              }}>
-                              Follow
-                            </div>
+                            <>
+                              {spinner === 0 ? (
+                                <Loader isSmall={true} />
+                              ) : (
+                                <>
+                                  <div
+                                    className="mt-3 btn bg-success text-white btn-edit font-btn rounded-pill"
+                                    onClick={() => {
+                                      if (userInfo) {
+                                        dispatch(
+                                          followUser(
+                                            profile.username,
+                                            token,
+                                            0,
+                                            "profile"
+                                          )
+                                        );
+                                      } else {
+                                        navigate("/login");
+                                      }
+                                    }}>
+                                    Follow
+                                  </div>
+                                </>
+                              )}
+                            </>
                           )}
                         </>
                       )}

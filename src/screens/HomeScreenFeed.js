@@ -45,6 +45,7 @@ const HomeScreen = () => {
     users: { users, page, pages },
   } = userFollowList;
 
+  const { spinner } = useSelector((state) => state.spinner);
   const tagList = useSelector((state) => state.tagList);
 
   const articleListLoadMore = useSelector((state) => state.articleListLoadMore);
@@ -165,7 +166,7 @@ const HomeScreen = () => {
               users.length > 0 && (
                 <div className="col-12 mt-5">
                   <div className="mx-auto col-10 list-user-following-feed d-flex">
-                    {users.map((user) => {
+                    {users.map((user, index) => {
                       return (
                         <OverlayTrigger
                           key={user.username}
@@ -203,34 +204,48 @@ const HomeScreen = () => {
                                         {`${user.followList.length} Followers`}
                                       </div>
                                     )}
-                                    {user.following ? (
-                                      <div
-                                        className="ms-auto btn border-success btn-follow bg-white text-success font-btn rounded-pill"
-                                        onClick={() => {
-                                          if (userInfo && token) {
-                                            dispatch(
-                                              unFollowUser(user.username, token)
-                                            );
-                                          } else {
-                                            navigate("/login");
-                                          }
-                                        }}>
-                                        Following
-                                      </div>
+                                    {spinner === index ? (
+                                      <Loader isSmall={true} />
                                     ) : (
-                                      <div
-                                        className="ms-auto btn bg-success text-white btn-follow font-btn rounded-pill"
-                                        onClick={() => {
-                                          if (userInfo && token) {
-                                            dispatch(
-                                              followUser(user.username, token)
-                                            );
-                                          } else {
-                                            navigate("/login");
-                                          }
-                                        }}>
-                                        Follow
-                                      </div>
+                                      <>
+                                        {user.following ? (
+                                          <div
+                                            className="ms-auto btn border-success btn-follow bg-white text-success font-btn rounded-pill"
+                                            onClick={() => {
+                                              if (userInfo && token) {
+                                                dispatch(
+                                                  unFollowUser(
+                                                    user.username,
+                                                    token,
+                                                    index
+                                                  )
+                                                );
+                                              } else {
+                                                navigate("/login");
+                                              }
+                                            }}>
+                                            Following
+                                          </div>
+                                        ) : (
+                                          <div
+                                            className="ms-auto btn bg-success text-white btn-follow font-btn rounded-pill"
+                                            onClick={() => {
+                                              if (userInfo && token) {
+                                                dispatch(
+                                                  followUser(
+                                                    user.username,
+                                                    token,
+                                                    index
+                                                  )
+                                                );
+                                              } else {
+                                                navigate("/login");
+                                              }
+                                            }}>
+                                            Follow
+                                          </div>
+                                        )}
+                                      </>
                                     )}
                                   </div>
                                 </Link>
@@ -277,7 +292,9 @@ const HomeScreen = () => {
               </div>
             </div>
           </div>
-          <aside className="col-3 position-relative" style={{paddingRight: "8px"}}>
+          <aside
+            className="col-3 position-relative"
+            style={{ paddingRight: "8px" }}>
             <div className="popular-tag p-4 border-start">
               <div className="mt-2 ms-1 pb-4 border-bottom">
                 <SearchBox />

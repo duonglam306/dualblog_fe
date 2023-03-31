@@ -40,6 +40,8 @@ function SearchTagScreen() {
 
   const dispatch = useDispatch();
 
+  const { spinner } = useSelector((state) => state.spinner);
+
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
@@ -320,7 +322,7 @@ function SearchTagScreen() {
                     People matching {newKeyword}
                   </div>
 
-                  {userSearchRelative.users.users.map((user) => {
+                  {userSearchRelative.users.users.map((user, index) => {
                     return (
                       <div
                         key={user.username}
@@ -344,42 +346,50 @@ function SearchTagScreen() {
                             </div>
                           ) : (
                             <>
-                              {user.following ? (
-                                <div
-                                  className="col-12 btn border-success btn-follow bg-white text-success font-btn rounded-pill"
-                                  onClick={() => {
-                                    if (userInfo && token) {
-                                      dispatch(
-                                        unFollowUser(
-                                          user.username,
-                                          token,
-                                          "search-relative-list"
-                                        )
-                                      );
-                                    } else {
-                                      navigate("/login");
-                                    }
-                                  }}>
-                                  Following
-                                </div>
+                              {spinner === index ? (
+                                <Loader isSmall={true} />
                               ) : (
-                                <div
-                                  className="col-12 btn bg-success text-white btn-follow font-btn rounded-pill"
-                                  onClick={() => {
-                                    if (userInfo && token) {
-                                      dispatch(
-                                        followUser(
-                                          user.username,
-                                          token,
-                                          "search-relative-list"
-                                        )
-                                      );
-                                    } else {
-                                      navigate("/login");
-                                    }
-                                  }}>
-                                  Follow
-                                </div>
+                                <>
+                                  {user.following ? (
+                                    <div
+                                      className="col-12 btn border-success btn-follow bg-white text-success font-btn rounded-pill"
+                                      onClick={() => {
+                                        if (userInfo && token) {
+                                          dispatch(
+                                            unFollowUser(
+                                              user.username,
+                                              token,
+                                              index,
+                                              "search-relative-list"
+                                            )
+                                          );
+                                        } else {
+                                          navigate("/login");
+                                        }
+                                      }}>
+                                      Following
+                                    </div>
+                                  ) : (
+                                    <div
+                                      className="col-12 btn bg-success text-white btn-follow font-btn rounded-pill"
+                                      onClick={() => {
+                                        if (userInfo && token) {
+                                          dispatch(
+                                            followUser(
+                                              user.username,
+                                              token,
+                                              index,
+                                              "search-relative-list"
+                                            )
+                                          );
+                                        } else {
+                                          navigate("/login");
+                                        }
+                                      }}>
+                                      Follow
+                                    </div>
+                                  )}
+                                </>
                               )}
                             </>
                           )}
