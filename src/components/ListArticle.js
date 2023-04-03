@@ -180,7 +180,7 @@ function ListArticleYourFeed() {
                                         navigate("/login");
                                       }
                                     },
-                                    250,
+                                    100,
                                     { maxWait: 60000 }
                                   )}>
                                   <i className="fa fa-heart"></i>
@@ -207,7 +207,7 @@ function ListArticleYourFeed() {
                                         navigate("/login");
                                       }
                                     },
-                                    250,
+                                    100,
                                     { maxWait: 60000 }
                                   )}>
                                   <i className="fa fa-heart-o"></i>
@@ -424,7 +424,7 @@ function ListArticleGlobalFeed() {
                                         navigate("/login");
                                       }
                                     },
-                                    250,
+                                    100,
                                     { maxWait: 60000 }
                                   )}>
                                   <i className="fa fa-heart"></i>
@@ -451,7 +451,7 @@ function ListArticleGlobalFeed() {
                                         navigate("/login");
                                       }
                                     },
-                                    250,
+                                    100,
                                     { maxWait: 60000 }
                                   )}>
                                   <i className="fa fa-heart-o"></i>
@@ -662,7 +662,7 @@ function ListArticleByAuthor({ author, flag }) {
                                         navigate("/login");
                                       }
                                     },
-                                    250,
+                                    100,
                                     { maxWait: 60000 }
                                   )}>
                                   <i className="fa fa-heart"></i>
@@ -689,7 +689,7 @@ function ListArticleByAuthor({ author, flag }) {
                                         navigate("/login");
                                       }
                                     },
-                                    250,
+                                    100,
                                     { maxWait: 60000 }
                                   )}>
                                   <i className="fa fa-heart-o"></i>
@@ -901,7 +901,7 @@ function ListArticleRelativeByAuthor({ author, slug }) {
                                       navigate("/login");
                                     }
                                   },
-                                  250,
+                                  100,
                                   { maxWait: 60000 }
                                 )}>
                                 <i className="fa fa-heart"></i>
@@ -928,7 +928,7 @@ function ListArticleRelativeByAuthor({ author, slug }) {
                                       navigate("/login");
                                     }
                                   },
-                                  250,
+                                  100,
                                   { maxWait: 60000 }
                                 )}>
                                 <i className="fa fa-heart-o"></i>

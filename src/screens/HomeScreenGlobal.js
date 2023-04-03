@@ -227,7 +227,7 @@ const HomeScreenGlobal = () => {
                                               navigate("/login");
                                             }
                                           },
-                                          250,
+                                          100,
                                           { maxWait: 60000 }
                                         )}>
                                         Following
@@ -245,7 +245,7 @@ const HomeScreenGlobal = () => {
                                               navigate("/login");
                                             }
                                           },
-                                          250,
+                                          100,
                                           { maxWait: 60000 }
                                         )}>
                                         Follow

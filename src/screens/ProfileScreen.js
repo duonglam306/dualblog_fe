@@ -189,7 +189,7 @@ const ProfileScreen = () => {
                                 navigate("/login");
                               }
                             },
-                            250,
+                            100,
                             { maxWait: 60000 }
                           )}>
                           Following
@@ -207,7 +207,7 @@ const ProfileScreen = () => {
                                 navigate("/login");
                               }
                             },
-                            250,
+                            100,
                             { maxWait: 60000 }
                           )}>
                           Follow

@@ -227,7 +227,7 @@ const HomeScreen = () => {
                                                 navigate("/login");
                                               }
                                             },
-                                            250,
+                                            100,
                                             { maxWait: 60000 }
                                           )}>
                                           Following
@@ -248,7 +248,7 @@ const HomeScreen = () => {
                                                 navigate("/login");
                                               }
                                             },
-                                            250,
+                                            100,
                                             { maxWait: 60000 }
                                           )}>
                                           Follow

@@ -292,7 +292,7 @@ function SearchArticleScreen() {
                                                 navigate("/login");
                                               }
                                             },
-                                            250,
+                                            100,
                                             { maxWait: 60000 }
                                           )}>
                                           <i className="fa fa-heart"></i>
@@ -319,7 +319,7 @@ function SearchArticleScreen() {
                                                 navigate("/login");
                                               }
                                             },
-                                            250,
+                                            100,
                                             { maxWait: 60000 }
                                           )}>
                                           <i className="fa fa-heart-o"></i>
@@ -515,7 +515,7 @@ function SearchArticleScreen() {
                                         navigate("/login");
                                       }
                                     },
-                                    250,
+                                    100,
                                     { maxWait: 60000 }
                                   )}>
                                   Following
@@ -537,7 +537,7 @@ function SearchArticleScreen() {
                                         navigate("/login");
                                       }
                                     },
-                                    250,
+                                    100,
                                     { maxWait: 60000 }
                                   )}>
                                   Follow

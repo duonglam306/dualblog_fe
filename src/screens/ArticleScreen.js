@@ -640,7 +640,7 @@ const ArticleScreen = () => {
                                   navigate("/login");
                                 }
                               },
-                              250,
+                              100,
                               { maxWait: 60000 }
                             )}>
                             <i className="fa fa-heart"></i>
@@ -667,7 +667,7 @@ const ArticleScreen = () => {
                                   navigate("/login");
                                 }
                               },
-                              250,
+                              100,
                               { maxWait: 60000 }
                             )}>
                             <i className="fa fa-heart-o"></i>
@@ -750,7 +750,7 @@ const ArticleScreen = () => {
                                 navigate("/login");
                               }
                             },
-                            250,
+                            100,
                             { maxWait: 60000 }
                           )}>
                           <i className="fa fa-heart"></i>
@@ -777,7 +777,7 @@ const ArticleScreen = () => {
                                 navigate("/login");
                               }
                             },
-                            250,
+                            100,
                             { maxWait: 60000 }
                           )}>
                           <i className="fa fa-heart-o"></i>
@@ -857,7 +857,7 @@ const ArticleScreen = () => {
                                 navigate("/login");
                               }
                             },
-                            250,
+                            100,
                             { maxWait: 60000 }
                           )}>
                           <i className="fa fa-heart"></i>
@@ -884,7 +884,7 @@ const ArticleScreen = () => {
                                 navigate("/login");
                               }
                             },
-                            250,
+                            100,
                             { maxWait: 60000 }
                           )}>
                           <i className="fa fa-heart-o"></i>
@@ -1016,7 +1016,7 @@ const ArticleScreen = () => {
                                     navigate("/login");
                                   }
                                 },
-                                250,
+                                100,
                                 { maxWait: 60000 }
                               )}>
                               Following
@@ -1038,7 +1038,7 @@ const ArticleScreen = () => {
                                     navigate("/login");
                                   }
                                 },
-                                250,
+                                100,
                                 { maxWait: 60000 }
                               )}>
                               Follow

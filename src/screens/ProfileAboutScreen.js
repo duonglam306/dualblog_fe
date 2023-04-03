@@ -377,7 +377,7 @@ const ProfileAboutScreen = () => {
                             navigate("/login");
                           }
                         },
-                        250,
+                        100,
                         { maxWait: 60000 }
                       )}>
                       Following
@@ -395,7 +395,7 @@ const ProfileAboutScreen = () => {
                             navigate("/login");
                           }
                         },
-                        250,
+                        100,
                         { maxWait: 60000 }
                       )}>
                       Follow

@@ -123,7 +123,7 @@ function ListUnFollowUser({ flag }) {
                                         navigate("/login");
                                       }
                                     },
-                                    250,
+                                    100,
                                     { maxWait: 60000 }
                                   )}>
                                   Following
@@ -145,7 +145,7 @@ function ListUnFollowUser({ flag }) {
                                         navigate("/login");
                                       }
                                     },
-                                    250,
+                                    100,
                                     { maxWait: 60000 }
                                   )}>
                                   Follow
@@ -169,7 +169,7 @@ function ListUnFollowUser({ flag }) {
                                         navigate("/login");
                                       }
                                     },
-                                    250,
+                                    100,
                                     { maxWait: 60000 }
                                   )}>
                                   Following
@@ -189,7 +189,7 @@ function ListUnFollowUser({ flag }) {
                                         navigate("/login");
                                       }
                                     },
-                                    250,
+                                    100,
                                     { maxWait: 60000 }
                                   )}>
                                   Follow
@@ -290,7 +290,7 @@ function ListUnFollowUser({ flag }) {
                                     navigate("/login");
                                   }
                                 },
-                                250,
+                                100,
                                 { maxWait: 60000 }
                               )}>
                               Following
@@ -312,7 +312,7 @@ function ListUnFollowUser({ flag }) {
                                     navigate("/login");
                                   }
                                 },
-                                250,
+                                100,
                                 { maxWait: 60000 }
                               )}>
                               Follow

@@ -248,7 +248,7 @@ function ArticlesFavoriteScreen() {
                                               navigate("/login");
                                             }
                                           },
-                                          250,
+                                          100,
                                           { maxWait: 60000 }
                                         )}>
                                         <i

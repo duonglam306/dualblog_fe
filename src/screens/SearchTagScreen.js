@@ -372,7 +372,7 @@ function SearchTagScreen() {
                                         navigate("/login");
                                       }
                                     },
-                                    250,
+                                    100,
                                     { maxWait: 60000 }
                                   )}>
                                   Following
@@ -394,7 +394,7 @@ function SearchTagScreen() {
                                         navigate("/login");
                                       }
                                     },
-                                    250,
+                                    100,
                                     { maxWait: 60000 }
                                   )}>
                                   Follow

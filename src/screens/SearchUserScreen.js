@@ -230,7 +230,7 @@ function SearchUserScreen() {
                                             navigate("/login");
                                           }
                                         },
-                                        250,
+                                        100,
                                         { maxWait: 60000 }
                                       )}>
                                       Following
@@ -252,7 +252,7 @@ function SearchUserScreen() {
                                             navigate("/login");
                                           }
                                         },
-                                        250,
+                                        100,
                                         { maxWait: 60000 }
                                       )}>
                                       Follow

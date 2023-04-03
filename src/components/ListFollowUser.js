@@ -123,7 +123,7 @@ const ListFollowUser = () => {
                                         navigate("/login");
                                       }
                                     },
-                                    250,
+                                    100,
                                     { maxWait: 60000 }
                                   )}>
                                   Following
@@ -141,7 +141,7 @@ const ListFollowUser = () => {
                                         navigate("/login");
                                       }
                                     },
-                                    250,
+                                    100,
                                     { maxWait: 60000 }
                                   )}>
                                   Follow
@@ -165,7 +165,7 @@ const ListFollowUser = () => {
                                         navigate("/login");
                                       }
                                     },
-                                    250,
+                                    100,
                                     { maxWait: 60000 }
                                   )}>
                                   Following
@@ -185,7 +185,7 @@ const ListFollowUser = () => {
                                         navigate("/login");
                                       }
                                     },
-                                    250,
+                                    100,
                                     { maxWait: 60000 }
                                   )}>
                                   Follow
@@ -278,7 +278,7 @@ const ListFollowUser = () => {
                                         navigate("/login");
                                       }
                                     },
-                                    250,
+                                    100,
                                     { maxWait: 60000 }
                                   )}>
                                   Following
@@ -296,7 +296,7 @@ const ListFollowUser = () => {
                                         navigate("/login");
                                       }
                                     },
-                                    250,
+                                    100,
                                     { maxWait: 60000 }
                                   )}>
                                   Follow

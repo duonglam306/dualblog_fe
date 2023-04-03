@@ -282,7 +282,7 @@ function YourArticlesScreen() {
                                                   navigate("/login");
                                                 }
                                               },
-                                              250,
+                                              100,
                                               { maxWait: 60000 }
                                             )}>
                                             <i className="fa fa-heart"></i>
@@ -309,7 +309,7 @@ function YourArticlesScreen() {
                                                   navigate("/login");
                                                 }
                                               },
-                                              250,
+                                              100,
                                               { maxWait: 60000 }
                                             )}>
                                             <i className="fa fa-heart-o"></i>
