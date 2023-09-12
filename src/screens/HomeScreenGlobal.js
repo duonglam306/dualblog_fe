@@ -119,7 +119,6 @@ const HomeScreenGlobal = () => {
     if (
       userUnFollowList.error ||
       userFollowList.error ||
-      userLogin.error ||
       tagList.error ||
       articleListLoadMore.error ||
       articleList.error ||
@@ -132,7 +131,6 @@ const HomeScreenGlobal = () => {
     userFollowList,
     tagList,
     articleList,
-    userLogin,
     articleNewList,
     articleListLoadMore,
   ]);
