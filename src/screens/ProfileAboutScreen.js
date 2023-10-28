@@ -19,7 +19,6 @@ import Footer from "../components/Footer";
 import SearchBox from "../components/SearchBox";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
-import ErrorNotFound from "../components/ErrorNotFound";
 import ListFollowUser from "../components/ListFollowUser";
 
 import "../css/ProfileScreen.css";
@@ -71,7 +70,7 @@ const ProfileAboutScreen = () => {
 
   useEffect(() => {
     if (!userInfo || !token) {
-      navigate(`/@${userName}`);
+      navigate(`/profile/${userName}`);
     }
   }, [userName, userInfo, navigate, token]);
 
@@ -256,23 +255,16 @@ const ProfileAboutScreen = () => {
     }
   }
 
-  const [error, setError] = useState(false);
-
   useEffect(() => {
     if (userProfile.error || userFollowList.error) {
-      setError(true);
-    } else {
-      setError(false);
+      navigate("/login");
     }
-  }, [userProfile, userFollowList]);
+  }, [userProfile, userFollowList, navigate]);
 
-  if (error) {
-    return <ErrorNotFound />;
-  }
   return (
     profile && (
       <div className="position-relative">
-        {userUpdate.error && <Message variant="danger">{error}</Message>}
+        {userUpdate.error && <Message variant="danger">{userUpdate.error}</Message>}
         {userFollow.error && (
           <Message variant="danger">{userFollow.error}</Message>
         )}
@@ -291,13 +283,13 @@ const ProfileAboutScreen = () => {
                 <div className="col-10 mx-auto mt-4">
                   <div className="title-page">{profile.username}</div>
                   <nav className="nav mt-4 border-bottom">
-                    <Link className="text-decoration-none" to={`/@${userName}`}>
+                    <Link className="text-decoration-none" to={`/profile/${userName}`}>
                       <div className={`nav-item py-2`}>Home</div>
                     </Link>
                     {!checkInfo() && (
                       <Link
                         className="text-decoration-none"
-                        to={`/@${userName}/about`}>
+                        to={`/profile/about/${userName}`}>
                         <div className={`nav-item py-2 ms-3 active`}>About</div>
                       </Link>
                     )}

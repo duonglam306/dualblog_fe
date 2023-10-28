@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
-import { login } from "../actions/userActions";
+import { login, logout } from "../actions/userActions";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import Footer from "../components/Footer";
@@ -28,8 +28,10 @@ const LoginScreen = () => {
   useEffect(() => {
     if (userInfo && token) {
       navigate("/");
+    } else {
+      dispatch(logout());
     }
-  }, [userInfo, navigate, token]);
+  }, [userInfo, navigate, token, dispatch]);
 
   const loginHandler = (e) => {
     e.preventDefault();

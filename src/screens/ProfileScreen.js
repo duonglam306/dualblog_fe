@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import Cookies from "js-cookie";
@@ -16,7 +16,6 @@ import Footer from "../components/Footer";
 import SearchBox from "../components/SearchBox";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
-import ErrorNotFound from "../components/ErrorNotFound";
 import ListFollowUser from "../components/ListFollowUser";
 
 import "../css/ProfileScreen.css";
@@ -61,8 +60,6 @@ const ProfileScreen = () => {
     } else return false;
   }
 
-  const [error, setError] = useState(false);
-
   useEffect(() => {
     if (
       userProfile.error ||
@@ -70,13 +67,10 @@ const ProfileScreen = () => {
       articleYourList.error ||
       articleListLoadMore.error
     ) {
-      setError(true);
-    } else setError(false);
-  }, [userProfile, userFollowList, articleYourList, articleListLoadMore]);
+      navigate("/login");
+    }
+  }, [userProfile, userFollowList, articleYourList, articleListLoadMore, navigate]);
 
-  if (error) {
-    return <ErrorNotFound />;
-  }
   return (
     <div className="position-relative">
       {userFollow.error && (
@@ -98,13 +92,13 @@ const ProfileScreen = () => {
                 <div className="col-10 mx-auto mt-4">
                   <div className="title-page">{profile.username}</div>
                   <nav className="nav mt-4 border-bottom">
-                    <Link className="text-decoration-none" to={`/@${userName}`}>
+                    <Link className="text-decoration-none" to={`/profile/${userName}`}>
                       <div className={`nav-item py-2 active`}>Home</div>
                     </Link>
                     {!checkInfo() && (
                       <Link
                         className="text-decoration-none"
-                        to={`/@${userName}/about`}>
+                        to={`/profile/about/${userName}`}>
                         <div className={`nav-item py-2 ms-3 `}>About</div>
                       </Link>
                     )}

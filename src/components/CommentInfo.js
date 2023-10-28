@@ -58,7 +58,7 @@ function CommentInfo({ cmt, slug, article_auth_name }) {
       <div className="author d-flex justify-content-between align-items-center  px-2 py-1">
         <div className="d-flex align-items-center">
           <Link
-            to={`/@${cmt.auth_name}`}
+            to={`/profile/${cmt.auth_name}`}
             className="text-decoration-none d-flex text-dark align-items-center">
             <img
               onError={({ currentTarget }) => {
@@ -175,7 +175,7 @@ function CommentInfo({ cmt, slug, article_auth_name }) {
                 }
                 if (userInfo.username !== cmt.auth_name) {
                   setComment(
-                    `<a href="/@${cmt.auth_name}" style="color: #000;font-weight: bold;">@${cmt.auth_name}</a> `
+                    `<a href="/profile/${cmt.auth_name}" style="color: #000;font-weight: bold;">@${cmt.auth_name}</a> `
                   );
                 }
               }}

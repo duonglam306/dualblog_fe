@@ -21,7 +21,6 @@ import ListUnFollowUser from "../components/ListUnFollowUser";
 import { ListArticleTrending } from "../components/ListArticle";
 import Message from "../components/Message";
 import SearchBox from "../components/SearchBox";
-import ErrorNotFound from "../components/ErrorNotFound";
 
 import Empty from "../image/empty.svg";
 import "../css/ListArticle.css";
@@ -101,8 +100,6 @@ function SearchUserScreen() {
     }
   }
 
-  const [error, setError] = useState(false);
-
   useEffect(() => {
     if (
       userSearch.error ||
@@ -113,10 +110,11 @@ function SearchUserScreen() {
       tagList.error ||
       articleNewList.error
     ) {
-      setError(true);
-    } else setError(false);
+      navigate("/login");
+    }
   }, [
     userSearch,
+    navigate,
     userListLoadMore,
     articleSearchRelative,
     tagSearchRelative,
@@ -125,9 +123,6 @@ function SearchUserScreen() {
     articleNewList,
   ]);
 
-  if (error) {
-    return <ErrorNotFound />;
-  }
   return (
     <div className="position-relative">
       {userFollow.error && (
@@ -184,7 +179,7 @@ function SearchUserScreen() {
                             className="d-flex user-info mb-2">
                             <Link
                               className="text-decoration-none col-9"
-                              to={`/@${user.username}`}>
+                              to={`/profile/${user.username}`}>
                               <div className="d-flex align-items-center">
                                 <div className="image me-2">
                                   <img
@@ -343,7 +338,7 @@ function SearchUserScreen() {
                           className="article d-flex justify-content-between mb-2">
                           <div>
                             <Link
-                              to={`/@${article.auth_name}`}
+                              to={`/profile/${article.auth_name}`}
                               className="text-decoration-none text-dark">
                               <div className="author d-flex">
                                 <div>

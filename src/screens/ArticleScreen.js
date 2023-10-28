@@ -33,7 +33,6 @@ import Footer from "../components/Footer";
 import ListUnFollowUser from "../components/ListUnFollowUser";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
-import ErrorNotFound from "../components/ErrorNotFound";
 
 import "../css/ArticleScreen.css";
 import Img86x86 from "../image/86x86.png";
@@ -123,8 +122,6 @@ const ArticleScreen = () => {
   const [isMinimizeListBtn, setIsMinimizeListBtn] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
-  const [error, setError] = useState(false);
-
   const changeBackground = () => {
     let btn = document.getElementById("btn-feature-bottom");
     let header = document.querySelector(".header-vertical-component");
@@ -189,6 +186,7 @@ const ArticleScreen = () => {
     }
     dispatch(deleteComment(slug, id, token, "comment"));
   };
+
   useEffect(() => {
     if (
       commentListLoadMore.error ||
@@ -199,8 +197,8 @@ const ArticleScreen = () => {
       userProfile.error ||
       articleRelativeAuthor.error
     ) {
-      setError(true);
-    } else setError(false);
+      navigate("/login");
+    }
   }, [
     commentListLoadMore,
     articleRelativeTag,
@@ -209,10 +207,8 @@ const ArticleScreen = () => {
     articleDetails,
     userProfile,
     articleRelativeAuthor,
+    navigate
   ]);
-  if (error) {
-    return <ErrorNotFound />;
-  }
 
   return (
     <div className="position-relative">
@@ -317,7 +313,7 @@ const ArticleScreen = () => {
                           <div className="author d-flex justify-content-between px-2 py-1">
                             <div className="d-flex align-items-center">
                               <Link
-                                to={`/@${cmt.auth_name}`}
+                                to={`/profile/${cmt.auth_name}`}
                                 className="text-decoration-none d-flex text-dark align-items-center">
                                 <img
                                   onError={({ currentTarget }) => {
@@ -418,7 +414,7 @@ const ArticleScreen = () => {
                                   }
                                   if (userInfo.username !== cmt.auth_name) {
                                     setReply(
-                                      `<a href="/@${cmt.auth_name}" style="color: #000;font-weight: bold;">@${cmt.auth_name}</a> `
+                                      `<a href="/profile/${cmt.auth_name}" style="color: #000;font-weight: bold;">@${cmt.auth_name}</a> `
                                     );
                                   }
                                 }}
@@ -583,7 +579,7 @@ const ArticleScreen = () => {
                 <div className="author-row d-flex align-items-center justify-content-between">
                   <div className="d-flex align-items-center">
                     <div className="image me-2">
-                      <Link to={`/@${article.auth_name}`}>
+                      <Link to={`/profile/${article.auth_name}`}>
                         <img
                           onError={({ currentTarget }) => {
                             currentTarget.onerror = null; // prevents looping
@@ -597,7 +593,7 @@ const ArticleScreen = () => {
                     </div>
                     <div className="me-4">
                       <Link
-                        to={`/@${article.auth_name}`}
+                        to={`/profile/${article.auth_name}`}
                         className="text-decoration-none text-dark">
                         <div className="name fw-bold">{article.auth_name}</div>
                       </Link>
@@ -967,7 +963,7 @@ const ArticleScreen = () => {
                     <div className="mt-3">
                       <div className="information me-auto">
                         <Link
-                          to={`/@${article.auth_name}`}
+                          to={`/profile/${article.auth_name}`}
                           className="text-decoration-none text-dark">
                           <div className="image mb-1">
                             <img

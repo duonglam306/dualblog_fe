@@ -24,7 +24,6 @@ import ListUnFollowUser from "../components/ListUnFollowUser";
 import { ListArticleTrending } from "../components/ListArticle";
 import Message from "../components/Message";
 import SearchBox from "../components/SearchBox";
-import ErrorNotFound from "../components/ErrorNotFound";
 
 import Empty from "../image/empty.svg";
 import "../css/ListArticle.css";
@@ -102,7 +101,6 @@ function SearchTagScreen() {
       return false;
     }
   }
-  const [error, setError] = useState(false);
 
   useEffect(() => {
     if (
@@ -114,8 +112,8 @@ function SearchTagScreen() {
       tagList.error ||
       articleNewList.error
     ) {
-      setError(true);
-    } else setError(false);
+      navigate("/login");
+    }
   }, [
     tagSearch,
     tagListLoadMore,
@@ -124,11 +122,8 @@ function SearchTagScreen() {
     userUnFollowList,
     tagList,
     articleNewList,
+    navigate
   ]);
-
-  if (error) {
-    return <ErrorNotFound />;
-  }
 
   return (
     <div className="position-relative">
@@ -272,7 +267,7 @@ function SearchTagScreen() {
                           className="article d-flex justify-content-between mb-2">
                           <div>
                             <Link
-                              to={`/@${article.auth_name}`}
+                              to={`/profile/${article.auth_name}`}
                               className="text-decoration-none text-dark">
                               <div className="author d-flex">
                                 <div>
@@ -334,7 +329,7 @@ function SearchTagScreen() {
                         className="d-flex user-info mb-2">
                         <Link
                           className="text-decoration-none col-9"
-                          to={`/@${user.username}`}>
+                          to={`/profile/${user.username}`}>
                           <div className="d-flex align-items-center">
                             <img
                             onError={({ currentTarget }) => {

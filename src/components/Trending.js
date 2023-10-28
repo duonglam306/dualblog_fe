@@ -55,7 +55,7 @@ const Trending = () => {
                       <div className="col-2 id">0{index + 1}</div>
                       <div className="col-10">
                         <Link
-                          to={`/@${article.auth_name}`}
+                          to={`/profile/${article.auth_name}`}
                           className="text-decoration-none text-dark">
                           <div className="author d-flex">
                             <div>

@@ -25,63 +25,45 @@ import Modal from "./components/Modal";
 import ErrorNotFound from "./components/ErrorNotFound";
 
 function App() {
-    return (
-        <div>
-            <BrowserRouter>
-                <Modal />
-                <ScrollToTop />
-                <Routes>
-                    <Route path="/following" element={<HomeScreenFeed />} />
-                    <Route path="/" element={<HomeScreenGlobal />} />
-                    <Route path="*" element={<ErrorNotFound />} />
-                    <Route
-                        path="/search/articles/:keyword"
-                        element={<SearchArticleScreen />}
-                    />
-                    <Route
-                        path="/search/tags/:keyword"
-                        element={<SearchTagScreen />}
-                    />
-                    <Route
-                        path="/search/users/:keyword"
-                        element={<SearchUserScreen />}
-                    />
-                    <Route path="/setting" element={<SettingScreen />} />
-                    <Route path="/register" element={<RegisterScreen />} />
-                    <Route
-                        path="/forgotPassword"
-                        element={<ForgotPasswordScreen />}
-                    />
-                    <Route path="/login" element={<LoginScreen />} />
-                    <Route path="/editor/:slug" element={<EditorScreen />} />
-                    <Route path="/editor" element={<EditorScreen />} />
-                    <Route path="/article/:slug" element={<ArticleScreen />} />
-                    <Route path="/tag/:tag" element={<ArticlesByTagScreen />} />
-                    <Route
-                        path="/user/activate/:token"
-                        element={<ActivateAccountScreen />}
-                    />
-                    <Route
-                        path="/user/resetPassword/:token"
-                        element={<ResetPasswordScreen />}
-                    />
-                    <Route
-                        path="/@:userName/about"
-                        element={<ProfileAboutScreen />}
-                    />
-                    <Route path="/@:userName" element={<ProfileScreen />} />
-                    <Route
-                        path="/me/favorite"
-                        element={<ArticlesFavoriteScreen />}
-                    />
-                    <Route
-                        path="/me/articles"
-                        element={<YourArticlesScreen />}
-                    />
-                </Routes>
-            </BrowserRouter>
-        </div>
-    );
+  return (
+    <div>
+      <BrowserRouter>
+        <Modal />
+        <ScrollToTop />
+        <Routes>
+          <Route path="/following" element={<HomeScreenFeed />} />
+          <Route path="/" element={<HomeScreenGlobal />} />
+          <Route
+            path="/search/articles/:keyword"
+            element={<SearchArticleScreen />}
+          />
+          <Route path="/search/tags/:keyword" element={<SearchTagScreen />} />
+          <Route path="/search/users/:keyword" element={<SearchUserScreen />} />
+          <Route path="/setting" element={<SettingScreen />} />
+          <Route path="/register" element={<RegisterScreen />} />
+          <Route path="/forgotPassword" element={<ForgotPasswordScreen />} />
+          <Route path="/login" element={<LoginScreen />} />
+          <Route path="/editor/:slug" element={<EditorScreen />} />
+          <Route path="/editor" element={<EditorScreen />} />
+          <Route path="/article/:slug" element={<ArticleScreen />} />
+          <Route path="/tag/:tag" element={<ArticlesByTagScreen />} />
+          <Route
+            path="/user/activate/:token"
+            element={<ActivateAccountScreen />}
+          />
+          <Route
+            path="/user/resetPassword/:token"
+            element={<ResetPasswordScreen />}
+          />
+          <Route path="/profile/about/:userName" element={<ProfileAboutScreen />} />
+          <Route path="/profile/:userName" element={<ProfileScreen />} />
+          <Route path="/me/favorite" element={<ArticlesFavoriteScreen />} />
+          <Route path="/me/articles" element={<YourArticlesScreen />} />
+          <Route path="*" element={<ErrorNotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
 }
 
 export default App;

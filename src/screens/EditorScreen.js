@@ -10,7 +10,6 @@ import { HeaderHorizontal } from "../components/Header";
 import Footer from "../components/Footer";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
-import ErrorNotFound from "../components/ErrorNotFound";
 
 import "../css/EditorScreen.css";
 import Img200x134 from "../image/200x134.png";
@@ -52,8 +51,6 @@ const EditorScreen = () => {
       value: "",
     },
   ];
-
-  const [error, setError] = useState(false);
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -100,8 +97,11 @@ const EditorScreen = () => {
       e.target.value &&
       e.target.value.length > 0 &&
       e.target.value.length <= 16 &&
-      article &&
-      !article.tagList.includes(e.target.value)
+      !(
+        article &&
+        article.tagList &&
+        article.tagList.includes(e.target.value)
+      )
     ) {
       setValidTag(true);
       setIdxValidTag(-1);
@@ -169,13 +169,11 @@ const EditorScreen = () => {
     if (
       userLogin.error ||
       articleDetails.error ||
-      (article.auth_name && userInfo.username !== article.auth_name)
+      (article && article.auth_name && userInfo.username !== article.auth_name)
     ) {
-      setError(true);
-    } else {
-      setError(false);
+      navigate("/login");
     }
-  }, [userLogin, articleDetails, article, userInfo]);
+  }, [userLogin, articleDetails, article, userInfo, navigate]);
   useEffect(() => {
     if (articleCreate.success) {
       navigate(`/article/${articleCreate.article.slug}`);
@@ -184,9 +182,7 @@ const EditorScreen = () => {
       navigate(`/article/${articleUpdate.article.slug}`);
     }
   }, [articleUpdate, articleCreate, navigate]);
-  if (error) {
-    return <ErrorNotFound />;
-  }
+
   return (
     <div className="position-relative">
       {articleCreate.error && (

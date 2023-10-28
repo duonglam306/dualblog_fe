@@ -94,7 +94,7 @@ function ListArticleYourFeed() {
                     key={index}>
                     <div className="col-12">
                       <Link
-                        to={`/@${article.auth_name}`}
+                        to={`/profile/${article.auth_name}`}
                         className="text-decoration-none text-dark">
                         <div className="col-12 author d-flex">
                           <div>
@@ -335,7 +335,7 @@ function ListArticleGlobalFeed() {
                     key={index}>
                     <div className="col-12">
                       <Link
-                        to={`/@${article.auth_name}`}
+                        to={`/profile/${article.auth_name}`}
                         className="text-decoration-none text-dark d-flex align-items-center">
                         <div className="author d-flex">
                           <div>
@@ -575,7 +575,7 @@ function ListArticleByAuthor({ author, flag }) {
                     className="article py-4 border-1 border-bottom">
                     <div className="col-12">
                       <Link
-                        to={`/@${article.auth_name}`}
+                        to={`/profile/${article.auth_name}`}
                         className="text-decoration-none text-dark">
                         <div className="author d-flex">
                           <div>
@@ -814,7 +814,7 @@ function ListArticleRelativeByAuthor({ author, slug }) {
                   className="article py-4 border-1 border-bottom">
                   <div className="col-12">
                     <Link
-                      to={`/@${article.auth_name}`}
+                      to={`/profile/${article.auth_name}`}
                       className="text-decoration-none text-dark d-flex align-items-center">
                       <div className="author d-flex">
                         <div>
@@ -971,7 +971,7 @@ function ListArticleRelativeByAuthor({ author, slug }) {
               );
             })}
           {total > 5 && (
-            <Link to={`/@${author}`} className="text-decoration-none d-flex">
+            <Link to={`/profile/${author}`} className="text-decoration-none d-flex">
               <div className="author-article-more btn btn-success mt-3 col-5 mx-auto rounded-pill">
                 Read more from {`${author}`}
               </div>
@@ -1016,7 +1016,7 @@ function ListArticleRelativeByTag({ tag, slug }) {
                   className="article d-flex justify-content-between mb-2">
                   <div className="col-9 pe-1">
                     <Link
-                      to={`/@${article.auth_name}`}
+                      to={`/profile/${article.auth_name}`}
                       className="text-decoration-none text-dark">
                       <div className="author d-flex">
                         <div>
@@ -1096,7 +1096,7 @@ function ListArticleTrending() {
                   className="article d-flex justify-content-between mb-2">
                   <div>
                     <Link
-                      to={`/@${article.auth_name}`}
+                      to={`/profile/${article.auth_name}`}
                       className="text-decoration-none text-dark">
                       <div className="author d-flex">
                         <div>

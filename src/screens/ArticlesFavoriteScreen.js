@@ -11,7 +11,6 @@ import Footer from "../components/Footer";
 import SearchBox from "../components/SearchBox";
 import ListUnFollowUser from "../components/ListUnFollowUser";
 import Message from "../components/Message";
-import ErrorNotFound from "../components/ErrorNotFound";
 import EmptyData from "../components/EmptyData";
 import { ListArticleTrending } from "../components/ListArticle";
 import PopularTag from "../components/PopularTag";
@@ -86,8 +85,6 @@ function ArticlesFavoriteScreen() {
     pageArticleFavorite,
   ]);
 
-  const [error, setError] = useState(false);
-
   useEffect(() => {
     if (
       userLogin.error ||
@@ -97,8 +94,8 @@ function ArticlesFavoriteScreen() {
       articleNewList.error ||
       articleListLoadMore.error
     ) {
-      setError(true);
-    } else setError(false);
+      navigate("/login");
+    }
   }, [
     userLogin,
     userUnFollowList,
@@ -106,14 +103,13 @@ function ArticlesFavoriteScreen() {
     articleNewList,
     articleListLoadMore,
     articleFavoriteList,
+    navigate
   ]);
 
   function tagHandle(str) {
     return str.split("").join("-");
   }
-  if (error) {
-    return <ErrorNotFound />;
-  }
+
   return (
     <div className="position-relative">
       {articleFavorite.error && (
@@ -148,7 +144,7 @@ function ArticlesFavoriteScreen() {
                             className="article py-4 border-1 border-bottom">
                             <div className="col-12">
                               <Link
-                                to={`/@${article.auth_name}`}
+                                to={`/profile/${article.auth_name}`}
                                 className="text-decoration-none text-dark d-flex align-items-center">
                                 <div className="author d-flex">
                                   <div>

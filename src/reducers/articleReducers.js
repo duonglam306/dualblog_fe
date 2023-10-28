@@ -24,6 +24,7 @@ import {
     ARTICLE_DETAILS_SUCCESS,
     ARTICLE_DETAILS_UPDATE,
     ARTICLE_DETAILS_FAIL,
+    ARTICLE_DETAILS_RESET,
     ARTICLE_POPULAR_REQUEST,
     ARTICLE_POPULAR_SUCCESS,
     ARTICLE_POPULAR_UPDATE,
@@ -395,6 +396,8 @@ export const articleDetailsReducer = (state = { article: {} }, action) => {
             };
         case ARTICLE_DETAILS_FAIL:
             return { loading: false, error: action.payload };
+        case ARTICLE_DETAILS_RESET:
+            return { };
         default:
             return state;
     }

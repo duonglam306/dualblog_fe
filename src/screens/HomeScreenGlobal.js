@@ -21,7 +21,6 @@ import ListArticleGlobalFeed from "../components/ListArticle";
 import PopularTag from "../components/PopularTag";
 import ListUnFollowUser from "../components/ListUnFollowUser";
 import { ListArticleTrending } from "../components/ListArticle";
-import ErrorNotFound from "../components/ErrorNotFound";
 import Message from "../components/Message";
 
 import "../css/HomeScreen.css";
@@ -96,8 +95,6 @@ const HomeScreenGlobal = () => {
     });
   }
 
-  const [error, setError] = useState(false);
-
   const [pageUser, setPageUser] = useState(1);
 
   useEffect(() => {
@@ -124,8 +121,8 @@ const HomeScreenGlobal = () => {
       articleList.error ||
       articleNewList.error
     ) {
-      setError(true);
-    } else setError(false);
+      navigate('/login')
+    };
   }, [
     userUnFollowList,
     userFollowList,
@@ -133,10 +130,8 @@ const HomeScreenGlobal = () => {
     articleList,
     articleNewList,
     articleListLoadMore,
+    navigate
   ]);
-  if (error) {
-    return <ErrorNotFound />;
-  }
 
   if (userInfo && token) {
     return (
@@ -176,7 +171,7 @@ const HomeScreenGlobal = () => {
                             <Popover id="popover-user-following">
                               <Popover.Body>
                                 <Link
-                                  to={`/@${user.username}`}
+                                  to={`/profile/${user.username}`}
                                   className="text-decoration-none col-9">
                                   <div className="d-flex align-items-center mb-2">
                                     <img
@@ -200,11 +195,11 @@ const HomeScreenGlobal = () => {
                                   {user.followList.length === 0 ? (
                                     <></>
                                   ) : user.followList.length === 1 ? (
-                                    <div className="num-of-follower">
+                                    <div className="num-of-follower me-2">
                                       {`${user.followList.length} Follower`}
                                     </div>
                                   ) : (
-                                    <div className="num-of-follower">
+                                    <div className="num-of-follower me-2">
                                       {`${user.followList.length} Followers`}
                                     </div>
                                   )}

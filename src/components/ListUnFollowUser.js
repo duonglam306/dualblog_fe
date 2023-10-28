@@ -69,7 +69,7 @@ function ListUnFollowUser({ flag }) {
             </div>
             <div className="modal-body pt-0">
               <div className="my-2 title-modal font-text text-center">
-                {total} following
+                List User
               </div>
               <div className="modal-main-content d-flex flex-column align-items-center">
                 <div className="mx-auto col-10 follow-list">
@@ -79,7 +79,7 @@ function ListUnFollowUser({ flag }) {
                         key={item.username}
                         className="d-flex justify-content-between user-follow my-1 me-1">
                         <Link
-                          to={`/@${item.username}`}
+                          to={`/profile/${item.username}`}
                           className="text-decoration-none col-9">
                           <div className="col-12 d-flex align-items-center">
                             <div className="image me-2">
@@ -251,7 +251,7 @@ function ListUnFollowUser({ flag }) {
                       key={item.username}
                       className="d-flex justify-content-between align-items-center user-un-follow my-1">
                       <Link
-                        to={`/@${item.username}`}
+                        to={`/profile/${item.username}`}
                         className="text-decoration-none col-9 me-1">
                         <div className="col-12 d-flex align-items-center">
                           <div className="image me-2 col-4">

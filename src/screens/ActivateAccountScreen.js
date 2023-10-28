@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 
 import {
   activateAccount,
@@ -10,7 +10,6 @@ import {
 
 import Footer from "../components/Footer";
 import Loader from "../components/Loader";
-import ErrorNotFound from "../components/ErrorNotFound";
 
 import "../css/AuthScreen.css";
 
@@ -18,6 +17,8 @@ function ActivateAccountScreen() {
   document.querySelector("title").innerHTML = "Activate account — DualBlog";
 
   const { token } = useParams();
+
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
   const accountActivate = useSelector((state) => state.accountActivate);
@@ -31,12 +32,17 @@ function ActivateAccountScreen() {
       );
     }
   }, [dispatch, token, userInfo]);
+
+  useEffect(() => {
+    if (error) {
+      navigate("/login");
+    }
+  }, [error, navigate]);
+
   return (
     <div>
       {loading ? (
         <Loader />
-      ) : error ? (
-        <ErrorNotFound />
       ) : (
         <div className="login-component">
           <div className="d-flex">

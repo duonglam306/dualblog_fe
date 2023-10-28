@@ -94,9 +94,11 @@
 #popover-user-following .btn-follow {
   font-size: 0.6em;
   padding: 0.25rem 0.5rem;
+  max-height: 24px;
 }
 
 #popover-user-following .num-of-follower {
   font-size: 0.85em;
   color: #000;
+  max-width: 100px;
 }

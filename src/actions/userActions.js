@@ -65,6 +65,7 @@ import {
 import {
   ARTICLE_UPDATE_RESET,
   ARTICLE_CREATE_RESET,
+  ARTICLE_DETAILS_RESET,
 } from "../constants/articleConstants";
 import { COMMENT_CREATE_RESET } from "../constants/commentConstants";
 import axios from "axios";
@@ -232,6 +233,7 @@ export const logout = () => (dispatch) => {
   dispatch({ type: ARTICLE_UPDATE_RESET });
   dispatch({ type: ARTICLE_CREATE_RESET });
   dispatch({ type: COMMENT_CREATE_RESET });
+  dispatch({ type: ARTICLE_DETAILS_RESET });
 };
 
 export const getProfileUser = (username, token) => async (dispatch) => {

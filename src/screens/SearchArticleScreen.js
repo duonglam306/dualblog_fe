@@ -27,7 +27,6 @@ import ListUnFollowUser from "../components/ListUnFollowUser";
 import { ListArticleTrending } from "../components/ListArticle";
 import Message from "../components/Message";
 import SearchBox from "../components/SearchBox";
-import ErrorNotFound from "../components/ErrorNotFound";
 
 import Empty from "../image/empty.svg";
 import "../css/ListArticle.css";
@@ -114,8 +113,6 @@ function SearchArticleScreen() {
     }
   }
 
-  const [error, setError] = useState(false);
-
   useEffect(() => {
     if (
       articleSearch.error ||
@@ -126,8 +123,8 @@ function SearchArticleScreen() {
       tagList.error ||
       articleNewList.error
     ) {
-      setError(true);
-    } else setError(false);
+      navigate("/login");
+    }
   }, [
     articleSearch,
     articleListLoadMore,
@@ -136,11 +133,9 @@ function SearchArticleScreen() {
     userUnFollowList,
     tagList,
     articleNewList,
+    navigate
   ]);
 
-  if (error) {
-    return <ErrorNotFound />;
-  }
   return (
     <div className="position-relative">
       {articleFavorite.error && (
@@ -203,7 +198,7 @@ function SearchArticleScreen() {
                             key={index}>
                             <div className="col-12">
                               <Link
-                                to={`/@${article.auth_name}`}
+                                to={`/profile/${article.auth_name}`}
                                 className="text-decoration-none text-dark">
                                 <div className="author d-flex">
                                   <div>
@@ -477,7 +472,7 @@ function SearchArticleScreen() {
                         className="d-flex user-info mb-2">
                         <Link
                           className="text-decoration-none col-9"
-                          to={`/@${user.username}`}>
+                          to={`/profile/${user.username}`}>
                           <div className="d-flex align-items-center">
                             <img
                               onError={({ currentTarget }) => {

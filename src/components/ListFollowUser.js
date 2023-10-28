@@ -83,7 +83,7 @@ const ListFollowUser = () => {
                         key={item.username}
                         className="d-flex justify-content-between user-follow my-1 me-1">
                         <Link
-                          to={`/@${item.username}`}
+                          to={`/profile/${item.username}`}
                           className="text-decoration-none col-9">
                           <div className="col-12 d-flex align-items-center">
                             <div className="image me-2">
@@ -241,7 +241,7 @@ const ListFollowUser = () => {
                         key={index}
                         className="d-flex align-items-center user-follow my-2">
                         <Link
-                          to={`/@${item.username}`}
+                          to={`/profile/${item.username}`}
                           className="text-decoration-none col-9">
                           <div className="d-flex align-items-center">
                             <img

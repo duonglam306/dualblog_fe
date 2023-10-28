@@ -107,7 +107,7 @@ const HeaderVertical = ({
                   <hr />
 
                   <Link
-                    to={`/@${userInfo.username}`}
+                    to={`/profile/${userInfo.username}`}
                     className="text-decoration-none">
                     <div className="popover-item px-3 py-2 info-user d-flex align-items-center">
                       <div className="col-2">
@@ -356,7 +356,7 @@ const HeaderHorizontal = ({
                   <Popover id="popover-header">
                     <Popover.Body className="p-0 py-3">
                       <Link
-                        to={`/@${userInfo.username}`}
+                        to={`/profile/${userInfo.username}`}
                         className="text-decoration-none">
                         <div className="popover-item px-3 py-2 info-user d-flex align-items-center">
                           <div className="col-2">

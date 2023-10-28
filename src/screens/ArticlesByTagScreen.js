@@ -13,7 +13,6 @@ import ListUnFollowUser from "../components/ListUnFollowUser";
 import Loader from "../components/Loader";
 import SearchBox from "../components/SearchBox";
 import Message from "../components/Message";
-import ErrorNotFound from "../components/ErrorNotFound";
 import EmptyData from "../components/EmptyData";
 
 import {
@@ -64,8 +63,6 @@ function ArticlesByTagScreen() {
 
   const [pageArticleTag, setPageArticleTag] = useState(1);
 
-  const [error, setError] = useState(false);
-
   useEffect(() => {
     if (pageArticleTag === 1) {
       dispatch(listArticle(tag, pageArticleTag, "", "", token));
@@ -87,15 +84,12 @@ function ArticlesByTagScreen() {
       userUnFollowList.error ||
       tagList.error
     ) {
-      setError(true);
-    } else setError(false);
-  }, [articleList, articleListLoadMore, userUnFollowList, tagList]);
+      navigate("/login")
+    }
+  }, [articleList, articleListLoadMore, userUnFollowList, tagList, navigate]);
 
   function tagHandle(str) {
     return str.split(" ").join("-");
-  }
-  if (error) {
-    return <ErrorNotFound />;
   }
   return (
     <div className="position-relative">
@@ -130,7 +124,7 @@ function ArticlesByTagScreen() {
                           className="article py-4 border-1 border-bottom">
                           <div className="col-12">
                             <Link
-                              to={`/@${article.auth_name}`}
+                              to={`/profile/${article.auth_name}`}
                               className="text-decoration-none text-dark">
                               <div className="author d-flex">
                                 <div>

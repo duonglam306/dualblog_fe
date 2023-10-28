@@ -8,7 +8,6 @@ import { HeaderHorizontal } from "../components/Header";
 import Footer from "../components/Footer";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
-import ErrorNotFound from "../components/ErrorNotFound";
 
 import { USER_UPDATE_RESET } from "../constants/userConstants";
 
@@ -194,9 +193,12 @@ const SettingScreen = () => {
       }
     }
   }, [dispatch, navigate, userInfo, user, error, success, token]);
-  if (userCurrent.error || userLogin.error) {
-    return <ErrorNotFound />;
-  }
+
+  useEffect(() => {
+    if (userCurrent.error || userLogin.error) {
+      navigate("/login");
+    }
+  }, [userCurrent, userLogin, navigate]);
   return (
     <div className="position-relative">
       {error && <Message variant="danger">{error}</Message>}
@@ -251,7 +253,7 @@ const SettingScreen = () => {
                           <div className="description mt-3">
                             <div className="mb-2">
                               Your photo appears on your{" "}
-                              <Link className="text-dark" to={`/@${username}`}>
+                              <Link className="text-dark" to={`/profile/${username}`}>
                                 Profile
                               </Link>{" "}
                               page and with your stories across DualBlog.
@@ -349,7 +351,7 @@ const SettingScreen = () => {
 
                           <div className="description mt-3">
                             Your name appears on your{" "}
-                            <Link className="text-dark" to={`/@${username}`}>
+                            <Link className="text-dark" to={`/profile/${username}`}>
                               Profile
                             </Link>{" "}
                             page, as your byline, and in your responses.
@@ -410,7 +412,7 @@ const SettingScreen = () => {
 
                           <div className="description mt-3">
                             Your email appears on your{" "}
-                            <Link className="text-dark" to={`/@${username}`}>
+                            <Link className="text-dark" to={`/profile/${username}`}>
                               Profile
                             </Link>{" "}
                             page, as your byline, and in your responses.
@@ -459,7 +461,7 @@ const SettingScreen = () => {
 
                           <div className="description mt-3">
                             Your short bio appears on your{" "}
-                            <Link className="text-dark" to={`/@${username}`}>
+                            <Link className="text-dark" to={`/profile/${username}`}>
                               Profile
                             </Link>{" "}
                             and next to your stories.

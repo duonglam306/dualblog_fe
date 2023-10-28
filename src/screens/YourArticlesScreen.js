@@ -15,7 +15,6 @@ import {
 } from "../actions/articleActions";
 
 import Message from "../components/Message";
-import ErrorNotFound from "../components/ErrorNotFound";
 import Loader from "../components/Loader";
 import SearchBox from "../components/SearchBox";
 import Footer from "../components/Footer";
@@ -94,16 +93,26 @@ function YourArticlesScreen() {
     dispatch(deleteArticle(slug, token, "your-articles"));
     setSlug("");
   };
-  if (
-    articleYourList.error ||
-    articleListLoadMore.error ||
-    tagList.error ||
-    articleNewList.error ||
-    userUnFollowList.error ||
-    userLogin.error
-  ) {
-    return <ErrorNotFound />;
-  }
+  useEffect(() => {
+    if (
+      articleYourList.error ||
+      articleListLoadMore.error ||
+      tagList.error ||
+      articleNewList.error ||
+      userUnFollowList.error ||
+      userLogin.error
+    ) {
+      navigate("/login");
+    }
+  }, [
+    navigate,
+    articleYourList,
+    articleListLoadMore,
+    tagList,
+    articleNewList,
+    userUnFollowList,
+    userLogin,
+  ]);
   return (
     <div className="position-relative">
       {articleFavorite.error && (
@@ -189,7 +198,7 @@ function YourArticlesScreen() {
                               className="article py-4 border-1 border-bottom">
                               <div className="col-12">
                                 <Link
-                                  to={`/@${article.auth_name}`}
+                                  to={`/profile/${article.auth_name}`}
                                   className="text-decoration-none text-dark d-flex align-items-center">
                                   <div className="author d-flex">
                                     <div>
