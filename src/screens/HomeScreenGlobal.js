@@ -42,10 +42,6 @@ const HomeScreenGlobal = () => {
   const userUnFollowList = useSelector((state) => state.userUnFollowList);
 
   const userFollowList = useSelector((state) => state.userFollowList);
-  const {
-    loading,
-    users: { users, page, pages },
-  } = userFollowList;
 
   const tagList = useSelector((state) => state.tagList);
 
@@ -64,6 +60,8 @@ const HomeScreenGlobal = () => {
   const articleUnFavorite = useSelector((state) => state.articleUnFavorite);
 
   const userListLoadMore = useSelector((state) => state.userListLoadMore);
+
+  const { loading, users } = userFollowList;
 
   const slider = document.querySelector(".list-user-following-global");
   let isDown = false;
@@ -98,6 +96,27 @@ const HomeScreenGlobal = () => {
   const [pageUser, setPageUser] = useState(1);
 
   useEffect(() => {
+    if (
+      userUnFollowList.error ||
+      userFollowList.error ||
+      tagList.error ||
+      articleListLoadMore.error ||
+      articleList.error ||
+      articleNewList.error
+    ) {
+      navigate("/login");
+    }
+  }, [
+    userUnFollowList,
+    userFollowList,
+    tagList,
+    articleList,
+    articleNewList,
+    articleListLoadMore,
+    navigate,
+  ]);
+
+  useEffect(() => {
     if (userInfo && token) {
       if (pageUser === 1) {
         dispatch(getFollowListUser(userInfo.username, token, 1, 20));
@@ -112,26 +131,6 @@ const HomeScreenGlobal = () => {
       }
     }
   }, [dispatch, token, userInfo, pageUser]);
-  useEffect(() => {
-    if (
-      userUnFollowList.error ||
-      userFollowList.error ||
-      tagList.error ||
-      articleListLoadMore.error ||
-      articleList.error ||
-      articleNewList.error
-    ) {
-      navigate('/login')
-    };
-  }, [
-    userUnFollowList,
-    userFollowList,
-    tagList,
-    articleList,
-    articleNewList,
-    articleListLoadMore,
-    navigate
-  ]);
 
   if (userInfo && token) {
     return (
@@ -157,10 +156,11 @@ const HomeScreenGlobal = () => {
               <Loader />
             ) : (
               users &&
-              users.length > 0 && (
+              users.users &&
+              users.users.length > 0 && (
                 <div className="col-12 mt-5">
                   <div className="mx-auto col-10 list-user-following-global d-flex">
-                    {users.map((user) => {
+                    {users.users.map((user) => {
                       return (
                         <OverlayTrigger
                           key={user.username}
@@ -268,10 +268,10 @@ const HomeScreenGlobal = () => {
                         </div>
                       </div>
                     ) : (
-                      page &&
-                      pages &&
-                      pages > 1 &&
-                      page < pages && (
+                      users.page &&
+                      users.pages &&
+                      users.pages > 1 &&
+                      users.page < users.pages && (
                         <div
                           className="icon-more rounded-circle d-flex align-items-center justify-content-center"
                           onClick={() => {

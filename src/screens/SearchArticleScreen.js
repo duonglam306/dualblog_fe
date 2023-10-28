@@ -53,7 +53,7 @@ function SearchArticleScreen() {
 
   const {
     loading,
-    articles: { articles, page, pages },
+    articles
   } = articleSearch;
 
   const articleListLoadMore = useSelector((state) => state.articleListLoadMore);
@@ -189,9 +189,9 @@ function SearchArticleScreen() {
                 <Loader />
               ) : (
                 <div className="py-3 list-article">
-                  {articles && articles.length !== 0 ? (
+                  {articles&&articles.articles && articles.articles.length !== 0 ? (
                     <>
-                      {articles.map((article, index) => {
+                      {articles.articles.map((article, index) => {
                         return (
                           <div
                             className="article py-4 border-1 border-bottom"
@@ -221,6 +221,7 @@ function SearchArticleScreen() {
                                   <OverlayTrigger
                                     trigger={["hover", "focus"]}
                                     placement="bottom"
+                                    rootClose
                                     overlay={
                                       <Tooltip className="date">
                                         <Moment format="ddd, MMM DD YYYY HH:mm">
@@ -270,6 +271,7 @@ function SearchArticleScreen() {
                                       <OverlayTrigger
                                         trigger={["hover", "focus"]}
                                         placement="top"
+                                        rootClose
                                         overlay={<Tooltip>Unfavorite</Tooltip>}>
                                         <div
                                           className="btn-like"
@@ -297,6 +299,7 @@ function SearchArticleScreen() {
                                       <OverlayTrigger
                                         trigger={["hover", "focus"]}
                                         placement="top"
+                                        rootClose
                                         overlay={<Tooltip>Favorite</Tooltip>}>
                                         <div
                                           className="btn-like"
@@ -361,10 +364,10 @@ function SearchArticleScreen() {
                       {articleListLoadMore && articleListLoadMore.loading ? (
                         <Loader />
                       ) : (
-                        page &&
-                        pages &&
-                        pages > 1 &&
-                        page < pages && (
+                        articles.page &&
+                        articles.pages &&
+                        articles.pages > 1 &&
+                        articles.page < articles.pages && (
                           <div className="d-flex justify-content-center">
                             <div
                               className="btn my-3 col-5 text-white bg-dark rounded-0 font-btn"

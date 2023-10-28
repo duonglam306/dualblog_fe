@@ -99,6 +99,7 @@ const EditorScreen = () => {
       e.target.value.length <= 16 &&
       !(
         article &&
+        slug &&
         article.tagList &&
         article.tagList.includes(e.target.value)
       )

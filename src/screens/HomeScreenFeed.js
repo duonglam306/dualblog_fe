@@ -42,10 +42,7 @@ const HomeScreen = () => {
   const userUnFollowList = useSelector((state) => state.userUnFollowList);
 
   const userFollowList = useSelector((state) => state.userFollowList);
-  const {
-    loading,
-    users: { users, page, pages },
-  } = userFollowList;
+  const { loading, users } = userFollowList;
 
   const tagList = useSelector((state) => state.tagList);
 
@@ -133,7 +130,7 @@ const HomeScreen = () => {
     articleListLoadMore,
     articleNewList,
     articleFeedList,
-    navigate
+    navigate,
   ]);
 
   if (userInfo && token) {
@@ -160,10 +157,11 @@ const HomeScreen = () => {
               <Loader />
             ) : (
               users &&
-              users.length > 0 && (
+              users.users &&
+              users.users.length > 0 && (
                 <div className="col-12 mt-5">
                   <div className="mx-auto col-10 list-user-following-feed d-flex">
-                    {users.map((user) => {
+                    {users.users.map((user) => {
                       return (
                         <OverlayTrigger
                           key={user.username}
@@ -274,10 +272,10 @@ const HomeScreen = () => {
                         </div>
                       </div>
                     ) : (
-                      page &&
-                      pages &&
-                      pages > 1 &&
-                      page < pages && (
+                      users.page &&
+                      users.pages &&
+                      users.pages > 1 &&
+                      users.page < users.pages && (
                         <div
                           className="icon-more rounded-circle d-flex align-items-center justify-content-center"
                           onClick={() => {

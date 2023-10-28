@@ -76,6 +76,7 @@ function CommentInfo({ cmt, slug, article_auth_name }) {
                 <OverlayTrigger
                   trigger={["hover", "focus"]}
                   placement="bottom"
+                  rootClose
                   overlay={
                     <Tooltip className="date">
                       <Moment format="ddd, MMM DD YYYY HH:mm">

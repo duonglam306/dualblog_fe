@@ -46,10 +46,7 @@ function SearchTagScreen() {
   const { userInfo } = userLogin;
 
   const tagSearch = useSelector((state) => state.tagSearch);
-  const {
-    loading,
-    tags: { tags, page, pages },
-  } = tagSearch;
+  const { loading, tags } = tagSearch;
 
   const tagListLoadMore = useSelector((state) => state.tagListLoadMore);
 
@@ -122,7 +119,7 @@ function SearchTagScreen() {
     userUnFollowList,
     tagList,
     articleNewList,
-    navigate
+    navigate,
   ]);
 
   return (
@@ -172,10 +169,10 @@ function SearchTagScreen() {
                 <Loader />
               ) : (
                 <div>
-                  {tags && tags.length !== 0 ? (
+                  {tags && tags.tags && tags.tags.length !== 0 ? (
                     <>
                       <div className="list-tag-search py-3 d-flex flex-wrap">
-                        {tags.map((tag) => {
+                        {tags.tags.map((tag) => {
                           return (
                             <Link
                               to={`/tag/${tagHandle(tag.name)}`}
@@ -191,10 +188,10 @@ function SearchTagScreen() {
                       {tagListLoadMore && tagListLoadMore.loading ? (
                         <Loader />
                       ) : (
-                        page &&
-                        pages &&
-                        pages > 1 &&
-                        page < pages && (
+                        tags.page &&
+                        tags.pages &&
+                        tags.pages > 1 &&
+                        tags.page < tags.pages && (
                           <div className="d-flex justify-content-center">
                             <div
                               className="btn my-3 col-5 text-white bg-dark rounded-0 font-btn"
@@ -272,10 +269,10 @@ function SearchTagScreen() {
                               <div className="author d-flex">
                                 <div>
                                   <img
-                                  onError={({ currentTarget }) => {
-                                    currentTarget.onerror = null; // prevents looping
-                                    currentTarget.src = Img36x36;
-                                  }}
+                                    onError={({ currentTarget }) => {
+                                      currentTarget.onerror = null; // prevents looping
+                                      currentTarget.src = Img36x36;
+                                    }}
                                     src={article.auth_image}
                                     alt="avt-author"
                                     className="img-fluid rounded-circle me-1 border"
@@ -332,10 +329,10 @@ function SearchTagScreen() {
                           to={`/profile/${user.username}`}>
                           <div className="d-flex align-items-center">
                             <img
-                            onError={({ currentTarget }) => {
-                              currentTarget.onerror = null; // prevents looping
-                              currentTarget.src = Img28x28;
-                            }}
+                              onError={({ currentTarget }) => {
+                                currentTarget.onerror = null; // prevents looping
+                                currentTarget.src = Img28x28;
+                              }}
                               src={user.image}
                               alt="follower-img"
                               className="img-fluid image me-2 rounded-circle border"

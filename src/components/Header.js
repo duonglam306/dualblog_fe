@@ -37,6 +37,7 @@ const HeaderVertical = ({
           <OverlayTrigger
             trigger={["hover", "focus"]}
             placement="right"
+            rootClose
             overlay={<Tooltip>Home</Tooltip>}>
             <div
               className={`d-flex justify-content-center py-3 font-icon ${
@@ -50,6 +51,7 @@ const HeaderVertical = ({
           <OverlayTrigger
             trigger={["hover", "focus"]}
             placement="right"
+            rootClose
             overlay={<Tooltip>Favorites</Tooltip>}>
             <div
               className={`d-flex justify-content-center py-3 font-icon ${
@@ -63,6 +65,7 @@ const HeaderVertical = ({
           <OverlayTrigger
             trigger={["hover", "focus"]}
             placement="right"
+            rootClose
             overlay={<Tooltip>Your Articles</Tooltip>}>
             <div
               className={`d-flex justify-content-center py-3 font-icon ${
@@ -77,6 +80,7 @@ const HeaderVertical = ({
         <OverlayTrigger
           trigger={["hover", "focus"]}
           placement="right"
+          rootClose
           overlay={<Tooltip>New Articles</Tooltip>}>
           <div
             className={`d-flex justify-content-center py-3 font-icon ${
@@ -91,6 +95,7 @@ const HeaderVertical = ({
           <OverlayTrigger
             trigger="click"
             placement="top"
+            rootClose
             overlay={
               <Popover id="popover-header">
                 <Popover.Body className="p-0 py-3">
@@ -131,8 +136,7 @@ const HeaderVertical = ({
                   </Link>
                 </Popover.Body>
               </Popover>
-            }
-            rootClose>
+            }>
             <img
               onError={({ currentTarget }) => {
                 currentTarget.onerror = null; // prevents looping
@@ -195,14 +199,15 @@ const HeaderHorizontal = ({
 
   useEffect(() => {
     if (
-      article.title.length > 100 ||
-      article.description.length > 300 ||
-      article.body === "" ||
-      article.tagInputList.length < 1 ||
-      article.tagInputList.length > 3 ||
-      findDuplicates(article.tagInputList.map((item) => item.value)).length >
-        0 ||
-      checkUrl(article.thumbnailUrl)
+      article &&
+      (article.title.length > 100 ||
+        article.description.length > 300 ||
+        article.body === "" ||
+        article.tagInputList.length < 1 ||
+        article.tagInputList.length > 3 ||
+        findDuplicates(article.tagInputList.map((item) => item.value)).length >
+          0 ||
+        checkUrl(article.thumbnailUrl))
     ) {
       if (feature === "create") {
         setIsPublish(false);
@@ -297,6 +302,7 @@ const HeaderHorizontal = ({
               <OverlayTrigger
                 trigger={["hover", "focus"]}
                 placement="bottom"
+                rootClose
                 overlay={<Tooltip>Home</Tooltip>}>
                 <div
                   className={`d-flex justify-content-center px-3 font-icon ${
@@ -310,6 +316,7 @@ const HeaderHorizontal = ({
               <OverlayTrigger
                 trigger={["hover", "focus"]}
                 placement="bottom"
+                rootClose
                 overlay={<Tooltip>Favorites</Tooltip>}>
                 <div
                   className={`d-flex justify-content-center px-3 font-icon ${
@@ -323,6 +330,7 @@ const HeaderHorizontal = ({
               <OverlayTrigger
                 trigger={["hover", "focus"]}
                 placement="bottom"
+                rootClose
                 overlay={<Tooltip>Your articles</Tooltip>}>
                 <div
                   className={`d-flex justify-content-center px-3 font-icon ${
@@ -336,6 +344,7 @@ const HeaderHorizontal = ({
               <OverlayTrigger
                 trigger={["hover", "focus"]}
                 placement="bottom"
+                rootClose
                 overlay={<Tooltip>New article</Tooltip>}>
                 <div
                   className={`d-flex justify-content-center px-3 font-icon ${
@@ -352,6 +361,7 @@ const HeaderHorizontal = ({
               <OverlayTrigger
                 trigger="click"
                 placement="bottom"
+                rootClose
                 overlay={
                   <Popover id="popover-header">
                     <Popover.Body className="p-0 py-3">
@@ -390,8 +400,7 @@ const HeaderHorizontal = ({
                       </div>
                     </Popover.Body>
                   </Popover>
-                }
-                rootClose>
+                }>
                 <img
                   onError={({ currentTarget }) => {
                     currentTarget.onerror = null; // prevents looping

@@ -45,10 +45,7 @@ function ListArticleYourFeed() {
 
   const articleFeedList = useSelector((state) => state.articleFeedList);
 
-  const {
-    loading,
-    articles: { articles, page, pages },
-  } = articleFeedList;
+  const { loading, articles } = articleFeedList;
 
   const [pageYourFeed, setPageYourFeed] = useState(1);
   useEffect(() => {
@@ -85,9 +82,9 @@ function ListArticleYourFeed() {
               </Link>
             </nav>
           )}
-          {articles && articles.length !== 0 ? (
+          {articles && articles.articles && articles.articles.length !== 0 ? (
             <div>
-              {articles.map((article, index) => {
+              {articles.articles.map((article, index) => {
                 return (
                   <div
                     className="article py-4 border-1 border-bottom"
@@ -117,6 +114,7 @@ function ListArticleYourFeed() {
                           <OverlayTrigger
                             trigger={["hover", "focus"]}
                             placement="bottom"
+                            rootClose
                             overlay={
                               <Tooltip className="date">
                                 <Moment format="ddd, MMM DD YYYY HH:mm">
@@ -163,6 +161,7 @@ function ListArticleYourFeed() {
                               <OverlayTrigger
                                 trigger={["hover", "focus"]}
                                 placement="top"
+                                rootClose
                                 overlay={<Tooltip>Unfavorite</Tooltip>}>
                                 <div
                                   className="btn-like"
@@ -190,6 +189,7 @@ function ListArticleYourFeed() {
                               <OverlayTrigger
                                 trigger={["hover", "focus"]}
                                 placement="top"
+                                rootClose
                                 overlay={<Tooltip>Favorite</Tooltip>}>
                                 <div
                                   className="btn-like"
@@ -252,10 +252,10 @@ function ListArticleYourFeed() {
               {articleListLoadMore && articleListLoadMore.loading ? (
                 <Loader />
               ) : (
-                page &&
-                pages &&
-                pages > 1 &&
-                page < pages && (
+                articles.page &&
+                articles.pages &&
+                articles.pages > 1 &&
+                articles.page < articles.pages && (
                   <div className="d-flex justify-content-center">
                     <div
                       className="btn my-3 col-5 text-white bg-dark rounded-0 font-btn"
@@ -290,10 +290,7 @@ function ListArticleGlobalFeed() {
   const articleListLoadMore = useSelector((state) => state.articleListLoadMore);
 
   const articleList = useSelector((state) => state.articleList);
-  const {
-    loading,
-    articles: { articles, page, pages },
-  } = articleList;
+  const { loading, articles } = articleList;
 
   const [pageGlobalFeed, setPageGlobalFeed] = useState(1);
   useEffect(() => {
@@ -326,9 +323,9 @@ function ListArticleGlobalFeed() {
               </Link>
             </nav>
           )}
-          {articles && articles.length !== 0 ? (
+          {articles && articles.articles && articles.articles.length !== 0 ? (
             <div>
-              {articles.map((article, index) => {
+              {articles.articles.map((article, index) => {
                 return (
                   <div
                     className="article py-4 border-1 border-bottom"
@@ -358,6 +355,7 @@ function ListArticleGlobalFeed() {
                           <OverlayTrigger
                             trigger={["hover", "focus"]}
                             placement="bottom"
+                            rootClose
                             overlay={
                               <Tooltip className="date">
                                 <Moment format="ddd, MMM DD YYYY HH:mm">
@@ -407,6 +405,7 @@ function ListArticleGlobalFeed() {
                               <OverlayTrigger
                                 trigger={["hover", "focus"]}
                                 placement="top"
+                                rootClose
                                 overlay={<Tooltip>Unfavorite</Tooltip>}>
                                 <div
                                   className="btn-like"
@@ -434,6 +433,7 @@ function ListArticleGlobalFeed() {
                               <OverlayTrigger
                                 trigger={["hover", "focus"]}
                                 placement="top"
+                                rootClose
                                 overlay={<Tooltip>Favorite</Tooltip>}>
                                 <div
                                   className="btn-like"
@@ -500,10 +500,10 @@ function ListArticleGlobalFeed() {
               {articleListLoadMore && articleListLoadMore.loading ? (
                 <Loader />
               ) : (
-                page &&
-                pages &&
-                pages > 1 &&
-                page < pages && (
+                articles.page &&
+                articles.pages &&
+                articles.pages > 1 &&
+                articles.page < articles.pages && (
                   <div className="d-flex justify-content-center">
                     <div
                       className="btn my-3 col-5 text-white bg-dark rounded-0 font-btn"
@@ -539,10 +539,7 @@ function ListArticleByAuthor({ author, flag }) {
 
   const articleListLoadMore = useSelector((state) => state.articleListLoadMore);
 
-  const {
-    loading,
-    articles: { articles, page, pages },
-  } = articleYourList;
+  const { loading, articles } = articleYourList;
 
   const [pageArticleAuthor, setPageArticleAuthor] = useState(1);
 
@@ -566,9 +563,9 @@ function ListArticleByAuthor({ author, flag }) {
         <Loader />
       ) : (
         <div>
-          {articles && articles.length !== 0 ? (
+          {articles && articles.articles && articles.articles.length !== 0 ? (
             <>
-              {articles.map((article, index) => {
+              {articles.articles.map((article, index) => {
                 return (
                   <div
                     key={index}
@@ -598,6 +595,7 @@ function ListArticleByAuthor({ author, flag }) {
                           <OverlayTrigger
                             trigger={["hover", "focus"]}
                             placement="bottom"
+                            rootClose
                             overlay={
                               <Tooltip className="date">
                                 <Moment format="ddd, MMM DD YYYY HH:mm">
@@ -645,6 +643,7 @@ function ListArticleByAuthor({ author, flag }) {
                               <OverlayTrigger
                                 trigger={["hover", "focus"]}
                                 placement="top"
+                                rootClose
                                 overlay={<Tooltip>Unfavorite</Tooltip>}>
                                 <div
                                   className="btn-like"
@@ -672,6 +671,7 @@ function ListArticleByAuthor({ author, flag }) {
                               <OverlayTrigger
                                 trigger={["hover", "focus"]}
                                 placement="top"
+                                rootClose
                                 overlay={<Tooltip>Favorite</Tooltip>}>
                                 <div
                                   className="btn-like"
@@ -735,10 +735,10 @@ function ListArticleByAuthor({ author, flag }) {
               {articleListLoadMore && articleListLoadMore.loading ? (
                 <Loader />
               ) : (
-                page &&
-                pages &&
-                pages > 1 &&
-                page < pages && (
+                articles.page &&
+                articles.pages &&
+                articles.pages > 1 &&
+                articles.page < articles.pages && (
                   <div className="d-flex justify-content-center">
                     <div
                       className="btn my-3 col-5 text-white bg-dark rounded-0 font-btn"
@@ -784,10 +784,7 @@ function ListArticleRelativeByAuthor({ author, slug }) {
   const articleRelativeAuthor = useSelector(
     (state) => state.articleRelativeAuthor
   );
-  const {
-    articles: { articles, total },
-    loading,
-  } = articleRelativeAuthor;
+  const { articles, loading } = articleRelativeAuthor;
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -802,12 +799,13 @@ function ListArticleRelativeByAuthor({ author, slug }) {
         <Loader />
       ) : (
         <>
-          {articles && articles.length !== 0 && (
+          {articles && articles.articles && articles.articles.length !== 0 && (
             <div className="sub-title mt-3">More from {author}</div>
           )}
           {articles &&
-            articles.length !== 0 &&
-            articles.map((article, index) => {
+            articles.articles &&
+            articles.articles.length !== 0 &&
+            articles.articles.map((article, index) => {
               return (
                 <div
                   key={index}
@@ -837,6 +835,7 @@ function ListArticleRelativeByAuthor({ author, slug }) {
                         <OverlayTrigger
                           trigger={["hover", "focus"]}
                           placement="bottom"
+                          rootClose
                           overlay={
                             <Tooltip className="date">
                               <Moment format="ddd, MMM DD YYYY HH:mm">
@@ -884,6 +883,7 @@ function ListArticleRelativeByAuthor({ author, slug }) {
                             <OverlayTrigger
                               trigger={["hover", "focus"]}
                               placement="top"
+                              rootClose
                               overlay={<Tooltip>Unfavorite</Tooltip>}>
                               <div
                                 className="btn-like"
@@ -911,6 +911,7 @@ function ListArticleRelativeByAuthor({ author, slug }) {
                             <OverlayTrigger
                               trigger={["hover", "focus"]}
                               placement="top"
+                              rootClose
                               overlay={<Tooltip>Favorite</Tooltip>}>
                               <div
                                 className="btn-like"
@@ -970,8 +971,10 @@ function ListArticleRelativeByAuthor({ author, slug }) {
                 </div>
               );
             })}
-          {total > 5 && (
-            <Link to={`/profile/${author}`} className="text-decoration-none d-flex">
+          {articles && articles.total > 5 && (
+            <Link
+              to={`/profile/${author}`}
+              className="text-decoration-none d-flex">
               <div className="author-article-more btn btn-success mt-3 col-5 mx-auto rounded-pill">
                 Read more from {`${author}`}
               </div>
@@ -989,10 +992,7 @@ function ListArticleRelativeByTag({ tag, slug }) {
   const dispatch = useDispatch();
 
   const articleRelativeTag = useSelector((state) => state.articleRelativeTag);
-  const {
-    articles: { articles, total },
-    loading,
-  } = articleRelativeTag;
+  const { articles, loading } = articleRelativeTag;
 
   useEffect(() => {
     dispatch(listArticleRelativeTag(tag, slug, token));
@@ -1004,12 +1004,13 @@ function ListArticleRelativeByTag({ tag, slug }) {
         <Loader />
       ) : (
         <>
-          {articles && total !== 0 && (
+          {articles && articles.articles && articles.total !== 0 && (
             <div className="sub-title mb-2">More from DualBlog</div>
           )}
           {articles &&
-            total !== 0 &&
-            articles.map((article, index) => {
+            articles.articles &&
+            articles.total !== 0 &&
+            articles.articles.map((article, index) => {
               return (
                 <div
                   key={index}
@@ -1066,10 +1067,7 @@ function ListArticleTrending() {
   const dispatch = useDispatch();
 
   const articleNewList = useSelector((state) => state.articleNewList);
-  const {
-    articles: { articles, total },
-    loading,
-  } = articleNewList;
+  const { articles, loading } = articleNewList;
 
   useEffect(() => {
     dispatch(listArticleNew());
@@ -1081,15 +1079,16 @@ function ListArticleTrending() {
         <Loader />
       ) : (
         <>
-          {articles && total !== 0 && (
+          {articles && articles.articles && articles.total !== 0 && (
             <div className="title-list font-text mb-2 d-flex align-items-center">
               <span className="badge bg-success me-1">New</span> What We're
               Reading Today
             </div>
           )}
           {articles &&
-            total !== 0 &&
-            articles.map((article, index) => {
+            articles.articles &&
+            articles.total !== 0 &&
+            articles.articles.map((article, index) => {
               return (
                 <div
                   key={index}

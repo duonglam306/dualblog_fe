@@ -59,10 +59,7 @@ function YourArticlesScreen() {
 
   const articleDelete = useSelector((state) => state.articleDelete);
 
-  const {
-    loading,
-    articles: { articles, page, pages, total, totalTag },
-  } = articleYourList;
+  const { loading, articles } = articleYourList;
 
   const [pageYourArticle, setPageYourArticle] = useState(1);
   const [slug, setSlug] = useState("");
@@ -189,9 +186,11 @@ function YourArticlesScreen() {
                 </div>
                 {userInfo && (
                   <div className="articles-component">
-                    {articles && articles.length !== 0 ? (
+                    {articles &&
+                    articles.articles &&
+                    articles.articles.length !== 0 ? (
                       <>
-                        {articles.map((article, index) => {
+                        {articles.articles.map((article, index) => {
                           return (
                             <div
                               key={index}
@@ -221,6 +220,7 @@ function YourArticlesScreen() {
                                     <OverlayTrigger
                                       trigger={["hover", "focus"]}
                                       placement="bottom"
+                                      rootClose
                                       overlay={
                                         <Tooltip className="date">
                                           <Moment format="ddd, MMM DD YYYY HH:mm">
@@ -272,6 +272,7 @@ function YourArticlesScreen() {
                                         <OverlayTrigger
                                           trigger={["hover", "focus"]}
                                           placement="top"
+                                          rootClose
                                           overlay={
                                             <Tooltip>Unfavorite</Tooltip>
                                           }>
@@ -301,6 +302,7 @@ function YourArticlesScreen() {
                                         <OverlayTrigger
                                           trigger={["hover", "focus"]}
                                           placement="top"
+                                          rootClose
                                           overlay={<Tooltip>Favorite</Tooltip>}>
                                           <div
                                             className="btn-like"
@@ -343,6 +345,7 @@ function YourArticlesScreen() {
                                       <OverlayTrigger
                                         trigger="click"
                                         placement="bottom"
+                                        rootClose
                                         overlay={
                                           <Popover id="popover-article">
                                             <Popover.Body>
@@ -361,8 +364,7 @@ function YourArticlesScreen() {
                                               </div>
                                             </Popover.Body>
                                           </Popover>
-                                        }
-                                        rootClose>
+                                        }>
                                         <i
                                           className="fa fa-ellipsis-h ms-3"
                                           onClick={() => setSlug(article.slug)}
@@ -393,17 +395,20 @@ function YourArticlesScreen() {
                         {articleListLoadMore && articleListLoadMore.loading && (
                           <Loader />
                         )}
-                        {page && pages && pages > 1 && page < pages && (
-                          <div className="d-flex justify-content-center">
-                            <div
-                              className="btn my-3 col-5 text-white bg-dark rounded-0 font-btn"
-                              onClick={() => {
-                                setPageYourArticle((prev) => prev + 1);
-                              }}>
-                              Load More
+                        {articles.page &&
+                          articles.pages &&
+                          articles.pages > 1 &&
+                          articles.page < articles.pages && (
+                            <div className="d-flex justify-content-center">
+                              <div
+                                className="btn my-3 col-5 text-white bg-dark rounded-0 font-btn"
+                                onClick={() => {
+                                  setPageYourArticle((prev) => prev + 1);
+                                }}>
+                                Load More
+                              </div>
                             </div>
-                          </div>
-                        )}
+                          )}
                       </>
                     ) : (
                       <EmptyData />
@@ -419,21 +424,25 @@ function YourArticlesScreen() {
             <div className="mt-2 ms-1 pb-4 border-bottom">
               <SearchBox />
             </div>
-            {total && totalTag && (
+            {articles && articles.total && articles.totalTag && (
               <div className="pb-1 border-bottom">
                 <div className="info-article-tag d-flex ms-1 mb-2">
                   <div className="col-6 num-article">
-                    <div className="number font-text title-page">{total}</div>
+                    <div className="number font-text title-page">
+                      {articles.total}
+                    </div>
                     <div className="type font-text">
-                      {total > 1 ? "Articles" : "Article"}
+                      {articles.total > 1 ? "Articles" : "Article"}
                     </div>
                   </div>
                   <div className="col-6 num-author">
                     <div className="number font-text title-page">
-                      {totalTag && totalTag.length}
+                      {articles.totalTag && articles.totalTag.length}
                     </div>
                     <div className="type font-text">
-                      {totalTag && totalTag.length > 1 ? "Topics" : "Topic"}
+                      {articles.totalTag && articles.totalTag.length > 1
+                        ? "Topics"
+                        : "Topic"}
                     </div>
                   </div>
                 </div>

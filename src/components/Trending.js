@@ -12,10 +12,7 @@ import Img36x36 from "../image/36x36.png";
 const Trending = () => {
   const dispatch = useDispatch();
   const articlePopularList = useSelector((state) => state.articlePopularList);
-  const {
-    loading,
-    articles: { articles },
-  } = articlePopularList;
+  const { loading, articles } = articlePopularList;
 
   useEffect(() => {
     dispatch(listArticlePopular());
@@ -35,7 +32,8 @@ const Trending = () => {
         <Loader />
       ) : (
         articles &&
-        articles.length > 0 && (
+        articles.articles &&
+        articles.articles.length > 0 && (
           <div className="trending-component border-bottom py-3">
             <div className="container">
               <div>
@@ -47,7 +45,7 @@ const Trending = () => {
                 </span>
               </div>
               <div className="articles d-flex justify-content-start py-2">
-                {articles.map((article, index) => {
+                {articles.articles.map((article, index) => {
                   return (
                     <div
                       key={index}

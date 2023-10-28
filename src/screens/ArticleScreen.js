@@ -96,9 +96,7 @@ const ArticleScreen = () => {
   const articleDelete = useSelector((state) => state.articleDelete);
 
   const commentList = useSelector((state) => state.commentList);
-  const {
-    comments: { comments, total, page, pages },
-  } = commentList;
+  const { comments } = commentList;
 
   const [isMinimize, setIsMinimize] = useState(true);
 
@@ -161,7 +159,7 @@ const ArticleScreen = () => {
   }, [dispatch, slug, token]);
 
   useEffect(() => {
-    if (article) {
+    if (article && article.auth_name && article.title) {
       document.querySelector(
         "title"
       ).innerHTML = `${article.title} — Dual Blog`;
@@ -207,7 +205,7 @@ const ArticleScreen = () => {
     articleDetails,
     userProfile,
     articleRelativeAuthor,
-    navigate
+    navigate,
   ]);
 
   return (
@@ -234,7 +232,11 @@ const ArticleScreen = () => {
         <div className="modal-comment-content p-3">
           <div className="modal-comment-header d-flex justify-content-between align-items-center">
             <div className="title-modal font-text">
-              Responses {comments && total > 0 && "(" + total + ")"}
+              Responses{" "}
+              {comments &&
+                comments.comments &&
+                comments.total > 0 &&
+                "(" + comments.total + ")"}
             </div>
             <div className="btn-close" onClick={() => setIsOpen(!isOpen)}></div>
           </div>
@@ -304,9 +306,9 @@ const ArticleScreen = () => {
             <Loader />
           ) : (
             <div className="comment-list mt-3">
-              {comments && total > 0 ? (
+              {comments && comments.comments && comments.total > 0 ? (
                 <>
-                  {comments.map((cmt) => {
+                  {comments.comments.map((cmt) => {
                     return (
                       <div className="comment mt-2" key={cmt._id}>
                         <div className="rounded border">
@@ -333,6 +335,7 @@ const ArticleScreen = () => {
                                     <OverlayTrigger
                                       trigger={["hover", "focus"]}
                                       placement="bottom"
+                                      rootClose
                                       overlay={
                                         <Tooltip className="date">
                                           <Moment format="ddd, MMM DD YYYY HH:mm">
@@ -538,7 +541,10 @@ const ArticleScreen = () => {
                   })}
                   {commentListLoadMore && commentListLoadMore.loading ? (
                     <Loader />
-                  ) : page && pages && pages > 1 && page < pages ? (
+                  ) : comments.page &&
+                    comments.pages &&
+                    comments.pages > 1 &&
+                    comments.page < comments.pages ? (
                     <div className="d-flex justify-content-center">
                       <div
                         className="btn my-3 col-5 text-white bg-dark rounded-0 font-btn"
@@ -601,6 +607,7 @@ const ArticleScreen = () => {
                         <OverlayTrigger
                           trigger={["hover", "focus"]}
                           placement="bottom"
+                          rootClose
                           overlay={
                             <Tooltip className="date">
                               <Moment format="ddd, MMM DD YYYY HH:mm">
@@ -619,6 +626,7 @@ const ArticleScreen = () => {
                         <OverlayTrigger
                           trigger={["hover", "focus"]}
                           placement="top"
+                          rootClose
                           overlay={<Tooltip>Unfavorite</Tooltip>}>
                           <div
                             className="btn-like"
@@ -646,6 +654,7 @@ const ArticleScreen = () => {
                         <OverlayTrigger
                           trigger={["hover", "focus"]}
                           placement="top"
+                          rootClose
                           overlay={<Tooltip>Favorite</Tooltip>}>
                           <div
                             className="btn-like"
@@ -677,7 +686,10 @@ const ArticleScreen = () => {
                           className="fa fa-comments-o"
                           aria-hidden="true"></i>
                         <div className="ms-2">
-                          {comments && total > 0 && total}
+                          {comments &&
+                            comments.comments &&
+                            comments.total > 0 &&
+                            comments.total}
                         </div>
                       </div>
                     </div>
@@ -685,6 +697,7 @@ const ArticleScreen = () => {
                       <OverlayTrigger
                         trigger="click"
                         placement="bottom"
+                        rootClose
                         overlay={
                           <Popover id="popover-article">
                             <Popover.Body>
@@ -703,8 +716,7 @@ const ArticleScreen = () => {
                               </div>
                             </Popover.Body>
                           </Popover>
-                        }
-                        rootClose>
+                        }>
                         <i
                           className="fa fa-ellipsis-h my-auto ms-3"
                           aria-hidden="true"></i>
@@ -729,6 +741,7 @@ const ArticleScreen = () => {
                       <OverlayTrigger
                         trigger={["hover", "focus"]}
                         placement="top"
+                        rootClose
                         overlay={<Tooltip>Unfavorite</Tooltip>}>
                         <div
                           className="btn-like"
@@ -756,6 +769,7 @@ const ArticleScreen = () => {
                       <OverlayTrigger
                         trigger={["hover", "focus"]}
                         placement="top"
+                        rootClose
                         overlay={<Tooltip>Favorite</Tooltip>}>
                         <div
                           className="btn-like"
@@ -787,7 +801,10 @@ const ArticleScreen = () => {
                         className="fa fa-comments-o"
                         aria-hidden="true"></i>
                       <div className="ms-2">
-                        {comments && total > 0 && total}
+                        {comments &&
+                          comments.comments &&
+                          comments.total > 0 &&
+                          comments.total}
                       </div>
                     </div>
                   </div>
@@ -795,6 +812,7 @@ const ArticleScreen = () => {
                     <OverlayTrigger
                       trigger="click"
                       placement="bottom"
+                      rootClose
                       overlay={
                         <Popover id="popover-article">
                           <Popover.Body>
@@ -813,8 +831,7 @@ const ArticleScreen = () => {
                             </div>
                           </Popover.Body>
                         </Popover>
-                      }
-                      rootClose>
+                      }>
                       <i
                         className="fa fa-ellipsis-h my-auto ms-3"
                         aria-hidden="true"></i>
@@ -836,6 +853,7 @@ const ArticleScreen = () => {
                       <OverlayTrigger
                         trigger={["hover", "focus"]}
                         placement="top"
+                        rootClose
                         overlay={<Tooltip>Unfavorite</Tooltip>}>
                         <div
                           className="btn-like"
@@ -863,6 +881,7 @@ const ArticleScreen = () => {
                       <OverlayTrigger
                         trigger={["hover", "focus"]}
                         placement="top"
+                        rootClose
                         overlay={<Tooltip>Favorite</Tooltip>}>
                         <div
                           className="btn-like"
@@ -895,7 +914,12 @@ const ArticleScreen = () => {
                       onClick={() => setIsOpen(!isOpen)}
                       className="fa fa-comments-o"
                       aria-hidden="true"></i>
-                    <div className="ms-2">{comments && total > 0 && total}</div>
+                    <div className="ms-2">
+                      {comments &&
+                        comments.comments &&
+                        comments.total > 0 &&
+                        comments.total}
+                    </div>
                   </div>
 
                   {userInfo && userInfo.username === article.auth_name && (
@@ -904,6 +928,7 @@ const ArticleScreen = () => {
                       <OverlayTrigger
                         trigger="click"
                         placement="top"
+                        rootClose
                         overlay={
                           <Popover id="popover-article">
                             <Popover.Body>
@@ -922,8 +947,7 @@ const ArticleScreen = () => {
                               </div>
                             </Popover.Body>
                           </Popover>
-                        }
-                        rootClose>
+                        }>
                         <i
                           className="fa fa-ellipsis-h my-auto"
                           aria-hidden="true"></i>

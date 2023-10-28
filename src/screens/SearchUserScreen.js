@@ -43,10 +43,7 @@ function SearchUserScreen() {
   const { userInfo } = userLogin;
 
   const userSearch = useSelector((state) => state.userSearch);
-  const {
-    loading,
-    users: { users, page, pages },
-  } = userSearch;
+  const { loading, users } = userSearch;
 
   const articleSearchRelative = useSelector(
     (state) => state.articleSearchRelative
@@ -170,9 +167,9 @@ function SearchUserScreen() {
                 <Loader />
               ) : (
                 <div className="list-user py-3">
-                  {users && users.length !== 0 ? (
+                  {users && users.users && users.users.length !== 0 ? (
                     <>
-                      {users.map((user) => {
+                      {users.users.map((user) => {
                         return (
                           <div
                             key={user.username}
@@ -262,10 +259,10 @@ function SearchUserScreen() {
                       {userListLoadMore && userListLoadMore.loading ? (
                         <Loader />
                       ) : (
-                        page &&
-                        pages &&
-                        pages > 1 &&
-                        page < pages && (
+                        users.page &&
+                        users.pages &&
+                        users.pages > 1 &&
+                        users.page < users.pages && (
                           <div className="d-flex justify-content-center">
                             <div
                               className="btn my-3 col-5 text-white bg-dark rounded-0 font-btn"

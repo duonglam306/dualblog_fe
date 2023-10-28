@@ -99,6 +99,7 @@ const persistConfig = {
     key: "root",
     storage: storage,
     stateReconciler: autoMergeLevel2,
+    whitelist: ['userLogin']
 };
 
 const preloadedState = {};

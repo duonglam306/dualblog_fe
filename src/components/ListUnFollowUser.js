@@ -30,10 +30,7 @@ function ListUnFollowUser({ flag }) {
   const userListLoadMore = useSelector((state) => state.userListLoadMore);
 
   const userUnFollowList = useSelector((state) => state.userUnFollowList);
-  const {
-    users: { users, page, pages, total },
-    loading,
-  } = userUnFollowList;
+  const { users, loading } = userUnFollowList;
 
   const [pageUser, setPageUser] = useState(1);
 
@@ -55,7 +52,7 @@ function ListUnFollowUser({ flag }) {
 
   return (
     <div className="list-user-un-follow-component">
-      {users && users.length > 5 && (
+      {users && users.users && users.users.length > 5 && (
         <div
           id="listUserUnFollowModal"
           className={`modal-comment ${openModal ? "" : "d-none"}`}>
@@ -73,7 +70,7 @@ function ListUnFollowUser({ flag }) {
               </div>
               <div className="modal-main-content d-flex flex-column align-items-center">
                 <div className="mx-auto col-10 follow-list">
-                  {users.map((item) => {
+                  {users.users.map((item) => {
                     return (
                       <div
                         key={item.username}
@@ -208,10 +205,10 @@ function ListUnFollowUser({ flag }) {
                       </div>
                     </div>
                   ) : (
-                    page &&
-                    pages &&
-                    pages > 1 &&
-                    page < pages && (
+                    users.page &&
+                    users.pages &&
+                    users.pages > 1 &&
+                    users.page < users.pages && (
                       <div className="col-12 d-flex justify-content-center">
                         <div
                           className="btn col-5 my-3 text-white bg-dark rounded-0 font-btn"
@@ -233,7 +230,8 @@ function ListUnFollowUser({ flag }) {
         <Loader />
       ) : (
         users &&
-        users.length > 0 && (
+        users.users &&
+        users.users.length > 0 && (
           <div
             className={`un-follow-list ${
               flag === "home"
@@ -244,7 +242,7 @@ function ListUnFollowUser({ flag }) {
             }`}>
             <div className="font-subject fw-bold mt-2 ms-1">Who to follow</div>
             <div className="mt-2">
-              {users.map((item, index) => {
+              {users.users.map((item, index) => {
                 return (
                   index < 5 && (
                     <div
@@ -325,11 +323,11 @@ function ListUnFollowUser({ flag }) {
                 );
               })}
             </div>
-            {users.length > 5 && (
+            {users.users.length > 5 && (
               <div
                 className="btn-see-more mt-3"
                 onClick={() => setOpenModal(true)}>
-                {`See all (${total})`}
+                {`See all (${users.total})`}
               </div>
             )}
           </div>

@@ -32,10 +32,7 @@ const ListFollowUser = () => {
   const { userInfo } = userLogin;
 
   const userFollowList = useSelector((state) => state.userFollowList);
-  const {
-    users: { users, page, pages, total },
-    loading,
-  } = userFollowList;
+  const { users, loading } = userFollowList;
 
   const userListLoadMore = useSelector((state) => state.userListLoadMore);
 
@@ -59,7 +56,7 @@ const ListFollowUser = () => {
 
   return (
     <div className="list-user-follow-component">
-      {users && users.length > 5 && (
+      {users && users.users && users.users.length > 5 && (
         <div
           id="listUserFollowModal"
           className={`modal-comment ${openModal ? "" : "d-none"}`}>
@@ -73,11 +70,11 @@ const ListFollowUser = () => {
             </div>
             <div className="modal-body pt-0">
               <div className="my-2 title-modal font-text text-center">
-                {total} following
+                {users.total} following
               </div>
               <div className="modal-main-content d-flex flex-column align-items-center">
                 <div className="mx-auto col-10 follow-list">
-                  {users.map((item) => {
+                  {users.users.map((item) => {
                     return (
                       <div
                         key={item.username}
@@ -204,10 +201,10 @@ const ListFollowUser = () => {
                       </div>
                     </div>
                   ) : (
-                    page &&
-                    pages &&
-                    pages > 1 &&
-                    page < pages && (
+                    users.page &&
+                    users.pages &&
+                    users.pages > 1 &&
+                    users.page < users.pages && (
                       <div className="col-12 d-flex justify-content-center">
                         <div
                           className="btn col-3 my-3 text-white bg-dark rounded-0 font-btn"
@@ -229,12 +226,13 @@ const ListFollowUser = () => {
         <Loader />
       ) : (
         users &&
-        users.length > 0 && (
+        users.users &&
+        users.users.length > 0 && (
           <div className="following-col my-3 me-auto">
             <div className="sub-title">Following</div>
             <div className="followList mt-3">
               <>
-                {users.map((item, index) => {
+                {users.users.map((item, index) => {
                   return (
                     index < 5 && (
                       <div
@@ -311,11 +309,11 @@ const ListFollowUser = () => {
                 })}
               </>
             </div>
-            {users.length > 5 && (
+            {users.users.length > 5 && (
               <div
                 className="btn-see-more mt-3"
                 onClick={() => setOpenModal(true)}>
-                {`See all (${total})`}
+                {`See all (${users.total})`}
               </div>
             )}
           </div>

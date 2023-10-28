@@ -58,7 +58,7 @@ function ArticlesByTagScreen() {
 
   const {
     loading,
-    articles: { articles, page, pages, total, totalAuthor, authImages },
+    articles
   } = articleList;
 
   const [pageArticleTag, setPageArticleTag] = useState(1);
@@ -115,9 +115,9 @@ function ArticlesByTagScreen() {
               <Loader />
             ) : (
               <div className="articles-component">
-                {articles && articles.length !== 0 ? (
+                {articles && articles.articles && articles.articles.length !== 0 ? (
                   <>
-                    {articles.map((article, index) => {
+                    {articles.articles.map((article, index) => {
                       return (
                         <div
                           key={index}
@@ -147,6 +147,7 @@ function ArticlesByTagScreen() {
                                 <OverlayTrigger
                                   trigger={["hover", "focus"]}
                                   placement="bottom"
+                                  rootClose
                                   overlay={
                                     <Tooltip className="date">
                                       <Moment format="ddd, MMM DD YYYY HH:mm">
@@ -196,6 +197,7 @@ function ArticlesByTagScreen() {
                                     <OverlayTrigger
                                       trigger={["hover", "focus"]}
                                       placement="top"
+                                      rootClose
                                       overlay={<Tooltip>Unfavorite</Tooltip>}>
                                       <div
                                         className="btn-like"
@@ -223,6 +225,7 @@ function ArticlesByTagScreen() {
                                     <OverlayTrigger
                                       trigger={["hover", "focus"]}
                                       placement="top"
+                                      rootClose
                                       overlay={<Tooltip>Favorite</Tooltip>}>
                                       <div
                                         className="btn-like"
@@ -287,10 +290,10 @@ function ArticlesByTagScreen() {
                     {articleListLoadMore && articleListLoadMore.loading ? (
                       <Loader />
                     ) : (
-                      page &&
-                      pages &&
-                      pages > 1 &&
-                      page < pages && (
+                      articles.page &&
+                      articles.pages &&
+                      articles.pages > 1 &&
+                      articles.page < articles.pages && (
                         <div className="d-flex justify-content-center">
                           <div
                             className="btn my-3 col-5 text-white bg-dark rounded-0 font-btn"
@@ -333,28 +336,28 @@ function ArticlesByTagScreen() {
             <div className="mt-2 ms-1 pb-4 border-bottom">
               <SearchBox />
             </div>
-            {total && authImages && (
+            {articles && articles.total && articles.authImages && (
               <div className="pb-3 border-bottom">
                 <div className="info-article-tag d-flex ms-1 mb-2">
                   <div className="col-6 num-article">
-                    <div className="number font-text title-page">{total}</div>
+                    <div className="number font-text title-page">{articles.total}</div>
                     <div className="type font-text">
-                      {total > 1 ? "Articles" : "Article"}
+                      {articles.total > 1 ? "Articles" : "Article"}
                     </div>
                   </div>
                   <div className="col-6 num-author">
                     <div className="number font-text title-page">
-                      {totalAuthor}
+                      {articles.totalAuthor}
                     </div>
                     <div className="type font-text">
-                      {authImages.length > 1 ? "Writers" : "Writer"}
+                      {articles.authImages.length > 1 ? "Writers" : "Writer"}
                     </div>
                   </div>
                 </div>
                 <div className="list-auth mt-3">
-                  {authImages &&
-                    authImages.length > 0 &&
-                    authImages.map((item, index) => {
+                  {articles.authImages &&
+                    articles.authImages.length > 0 &&
+                    articles.authImages.map((item, index) => {
                       return (
                         <img
                           onError={({ currentTarget }) => {
