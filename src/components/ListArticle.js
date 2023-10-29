@@ -10,6 +10,7 @@ import Loader from "../components/Loader";
 import EmptyData from "../components/EmptyData";
 
 import Img112x112 from "../image/112x112.png";
+import Img72x72 from "../image/72x72.png";
 import Img200x134 from "../image/200x134.png";
 import Img36x36 from "../image/36x36.png";
 
@@ -1047,11 +1048,11 @@ function ListArticleRelativeByTag({ tag, slug }) {
                     <img
                       onError={({ currentTarget }) => {
                         currentTarget.onerror = null; // prevents looping
-                        currentTarget.src = Img112x112;
+                        currentTarget.src = Img72x72;
                       }}
                       src={article.thumbnail_url}
                       alt="img-article"
-                      className="img-fluid border thumbnail"
+                      className="img-fluid border thumbnail__small"
                     />
                   </div>
                 </div>

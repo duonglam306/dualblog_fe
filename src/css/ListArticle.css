@@ -17,6 +17,14 @@
   vertical-align: middle;
   object-fit: cover;
 }
+
+.articles-component .article .thumbnail__small {
+  width: 72px;
+  aspect-ratio: auto 72 / 72;
+  height: 72px;
+  vertical-align: middle;
+  object-fit: cover;
+}
 .articles-component .article .thumbnail-guess {
   width: 200px;
   aspect-ratio: auto 200 / 134;
