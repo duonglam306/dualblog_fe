@@ -23,6 +23,10 @@
     font-weight: 500;
 }
 
+#popover-article {
+    font-family: source-serif-pro, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
 #popover-article .btn-article{
     font-size: 0.8em;
     cursor: pointer;

@@ -1,28 +1,34 @@
+#root {
+  font-family: source-serif-pro, Georgia, Cambria, "Times New Roman", Times, serif;
+  font-size: 20px;
+}
+
 .font-title {
-  font-family: gt-super, Georgia, Cambria, "Times New Roman", Times, serif !important;
+  font-family: source-serif-pro, Georgia, Cambria, "Times New Roman", Times, serif;
 }
 .font-btn,
 .font-text {
-  font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  font-family: source-serif-pro, Georgia, Cambria, "Times New Roman", Times, serif;
 }
 .font-subject {
   font-size: 0.9em;
+  font-family: source-serif-pro, Georgia, Cambria, "Times New Roman", Times, serif;;
 }
 
 .font-article {
-  font-family: charter, Georgia, Cambria, "Times New Roman", Times, serif;
+  font-family: source-serif-pro, Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
 .title-page {
   font-weight: 800;
   font-size: 2em;
-  font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: source-serif-pro, Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
 .sub-title {
   font-weight: 600;
   font-size: 0.9em;
-  font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: source-serif-pro, Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
 .list-btn button {
